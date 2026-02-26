@@ -1,0 +1,325 @@
+/* 🎨 Paleta de colores */
+:root {
+  --azul: #0A3D62;
+  --amarillo: #F1C40F;
+  --blanco: #FDFEFE;
+  --gris: #2C3E50;
+  --sombra: rgba(0, 0, 0, 0.4);
+  --radius: 10px;
+  --transition: 0.3s ease;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ========== ESTILOS GENERALES ========== */
+body {
+  margin: 0;
+  background-color: var(--blanco);
+  color: var(--gris);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ========== ENCABEZADO ========== */
+.navbar {
+  background-color: var(--azul);
+  color: var(--blanco);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Menú */
+.nav-menu {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-menu a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--amarillo);
+  transition: width var(--transition);
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+  width: 100%;
+}
+
+/* Botón de menú móvil */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--blanco);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* ========== SECCIÓN PRINCIPAL (Hero) ========== */
+.hero {
+  position: relative;
+ background-image: url('../imagenes/fondo-pescado.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blanco);
+  text-align: center;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  background-color: var(--amarillo);
+  color: var(--gris);
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background var(--transition);
+}
+
+.btn:hover {
+  background-color: #d4ac0d;
+}
+
+/* ========== SECCIÓN SOBRE NOSOTROS ========== */
+.about {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.about h2 {
+  color: var(--azul);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+/* ========== PIE DE PÁGINA ========== */
+footer {
+  background-color: var(--azul);
+  color: var(--blanco);
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 0.95rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--azul);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 8px 0;
+  }
+
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+/* ====== MENÚ DE PLATOS ====== */
+.menu-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.menu-section h2 {
+  color: var(--azul);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.menu-section p {
+  color: var(--gris);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+/* ====== CATEGORÍAS ====== */
+.menu-category {
+  margin-top: 50px;
+  background-color: var(--blanco);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  text-align: left;
+}
+
+.menu-category h3 {
+  color: var(--azul);
+  border-left: 5px solid var(--amarillo);
+  padding-left: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+/* ====== TABLAS ====== */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.menu-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.menu-table td:first-child {
+  color: var(--gris);
+}
+
+.menu-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--azul);
+}
+
+.menu-table tr:hover {
+  background-color: rgba(241, 196, 15, 0.1);
+  transition: background 0.3s ease;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .menu-category {
+    padding: 15px;
+  }
+
+  .menu-category h3 {
+    font-size: 1.2rem;
+  }
+
+  .menu-table td {
+    padding: 10px 5px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ====== MENSAJE DE ÉXITO (para formularios en otras páginas) ====== */
+.mensaje-exito {
+  background-color: rgba(241, 196, 15, 0.15);
+  color: var(--azul);
+  border: 2px solid var(--amarillo);
+  padding: 12px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+  margin-top: 20px;
+}
+/* ====== FILAS CLICKEABLES ====== */
+.menu-table tr[data-plato] {
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.menu-table tr[data-plato]:hover {
+  background-color: rgba(241, 196, 15, 0.15);
+  transform: scale(1.01);
+}
+/* --- Vista previa (modal) --- */
+.modal{
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:rgba(0,0,0,.7);
+  justify-content:center; align-items:center; padding:16px;
+}
+.modal-content{
+  background:#fff; max-width:420px; width:100%;
+  border-radius:12px; padding:20px; text-align:center; position:relative;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  animation:modalIn .2s ease-out;
+}
+.modal-content img{
+  width:100%; height:auto; border-radius:10px; display:block; margin-bottom:10px;
+}
+.cerrar{
+  position:absolute; right:12px; top:8px; cursor:pointer;
+  font-size:24px; line-height:1; user-select:none; color:#333;
+}
+.price{ display:inline-block; margin:8px 0 14px; font-weight:700; font-size:1.1rem; }
+.btn{
+  display:inline-block; padding:10px 14px; border:0; border-radius:8px;
+  background:#0ea5e9; color:#fff; cursor:pointer; font-weight:600;
+}
+.btn:hover{ filter:brightness(0.95); }
+
+.menu-table tr[data-plato]{ cursor:pointer; }
+.menu-table tr[data-plato]:hover{ background:#f7f7f7; }
+
+@keyframes modalIn{ from{opacity:0; transform:scale(.96)} to{opacity:1; transform:scale(1)} }

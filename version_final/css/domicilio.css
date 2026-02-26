@@ -1,0 +1,195 @@
+/* ======================================================
+   domicilio.css - Página de solicitud de domicilio
+   ====================================================== */
+
+main {
+  background-color: var(--blanco);
+  padding: 40px 10%;
+  min-height: 80vh;
+}
+
+/* ====== SECCIÓN PRINCIPAL ====== */
+.domicilio-section {
+  background-color: #fffaf0;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 750px;
+  margin: 40px auto;
+  transition: all 0.3s ease;
+}
+
+.domicilio-section:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.domicilio-section h2 {
+  color: var(--azul);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.domicilio-section p {
+  text-align: center;
+  color: var(--gris);
+  margin-bottom: 25px;
+}
+
+/* ====== RESUMEN DEL CARRITO ====== */
+.resumen-carrito {
+  background: var(--blanco);
+  border: 2px solid rgba(241, 196, 15, 0.3);
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+  color: var(--gris);
+}
+
+.resumen-carrito p {
+  margin: 4px 0;
+}
+
+.oculto {
+  display: none;
+}
+
+/* ====== LISTA DE PRODUCTOS ====== */
+.productos-carrito {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.producto-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 10px 0;
+}
+
+.producto-item:last-child {
+  border-bottom: none;
+}
+
+.producto-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.producto-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  color: var(--gris);
+  font-size: 0.95rem;
+}
+
+/* ====== ESTILO CUANDO ESTÁ VACÍO ====== */
+.productos-carrito.vacio {
+  background: none;
+  box-shadow: none;
+  text-align: center;
+  color: var(--gris);
+  opacity: 0.7;
+  border: none;
+}
+
+/* ====== FORMULARIO ====== */
+.form-domicilio {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  color: var(--gris);
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--amarillo);
+  box-shadow: 0 0 6px rgba(241, 196, 15, 0.4);
+}
+
+/* ====== BOTÓN DE ENVÍO ====== */
+.btn-enviar {
+  background-color: var(--azul);
+  color: var(--blanco);
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #07446f;
+  transform: translateY(-2px);
+}
+
+/* ====== MENSAJE DE ÉXITO ====== */
+.mensaje-exito {
+  display: none;
+  margin-top: 20px;
+  background-color: #27ae60;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  animation: aparecer 0.3s ease-in-out;
+}
+
+/* Animación */
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .domicilio-section {
+    padding: 20px;
+  }
+
+  .resumen-carrito {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .producto-info {
+    flex-direction: column;
+    text-align: right;
+  }
+}
