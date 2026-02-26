@@ -10,7 +10,7 @@ $sql = "INSERT INTO productos (nombre, descripcion, precio, categoria)
         VALUES ('$nombre', '$descripcion', '$precio', '$categoria')";
 
 if ($conexion->query($sql)) {
-    header("Location: ../../../paginas/productos.php?mensaje=creado");
+    header("Location: ../../../paginas/admin/productos.php?mensaje=creado");
 } else {
     echo "Error: " . $conexion->error;
 }

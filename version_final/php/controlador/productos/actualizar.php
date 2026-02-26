@@ -12,7 +12,7 @@ $sql = "UPDATE productos
         WHERE id=$id";
 
 if ($conexion->query($sql)) {
-    header("Location: ../../../paginas/productos.php?mensaje=actualizado");
+    header("Location: ../../../paginas/admin/productos.php?mensaje=actualizado");
 } else {
     echo "Error al actualizar";
 }
