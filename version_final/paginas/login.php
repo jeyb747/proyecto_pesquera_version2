@@ -1,5 +1,4 @@
 <?php
-// iniciar sesión por si luego quieres usar variables
 session_start();
 ?>
 <!DOCTYPE html>

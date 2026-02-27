@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //  Guardar en sesión
         $_SESSION['usuario'] = $usuario['nombre'];
+        $_SESSION['usuario_id'] = $usuario['id']; 
         $_SESSION['rol'] = $usuario['rol'];
 
         //  Redirección por rol

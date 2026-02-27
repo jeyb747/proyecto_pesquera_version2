@@ -41,44 +41,42 @@
       <h2>📅 Reserva tu mesa</h2>
       <p>Completa los datos para asegurar tu mesa en La Pesquera.</p>
 
-      <form id="formReserva" class="form-reserva" novalidate>
-        
-        <div class="campo">
-          <label for="nombre">Nombre completo</label>
-          <input type="text" id="nombre" required>
-        </div>
+      <form action="../php/controlador/reservas/guardar.php" method="POST" class="form-reserva">
 
-        <div class="campo">
-          <label for="telefono">Teléfono</label>
-          <input type="tel" id="telefono" placeholder="3001234567" required pattern="[0-9]{7,10}">
-        </div>
+      <div class="campo">
+        <label>Nombre</label>
+        <input type="text" name="nombre" required>
+      </div>
 
-        <div class="campo">
-          <label for="fecha">Fecha de reserva</label>
-          <input type="date" id="fecha" required>
-        </div>
+      <div class="campo">
+        <label>Teléfono</label>
+        <input type="text" name="telefono" required>
+      </div>
 
-        <div class="campo">
-          <label for="hora">Hora</label>
-          <input type="time" id="hora" required>
-        </div>
+      <div class="campo">
+        <label>Fecha</label>
+        <input type="date" name="fecha" required>
+      </div>
 
-        <div class="campo">
-          <label for="personas">Número de personas</label>
-          <input type="number" id="personas" min="1" max="20" value="2" required>
-        </div>
+      <div class="campo">
+        <label>Hora</label>
+        <input type="time" name="hora" required>
+      </div>
 
-        <div class="campo">
-          <label for="comentarios">Comentarios (opcional)</label>
-          <textarea id="comentarios" rows="3" placeholder="Ej: Mesa cerca a la ventana"></textarea>
-        </div>
+      <div class="campo">
+        <label>Personas</label>
+        <input type="number" name="personas" required>
+      </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn-reservar" id="btnReservar">Reservar ahora</button>
-          <a id="btnWhatsapp" class="btn-wpp" target="_blank" rel="noopener noreferrer" style="display:none;">Enviar por WhatsApp</a>
-        </div>
+      <div class="campo">
+        <label>Comentarios</label>
+        <textarea name="comentarios"></textarea>
+      </div>
 
-      </form>
+      <button type="submit" class="btn-reservar">Reservar</button>
+
+    </form>
+      
 
       <div id="mensajeExito" class="mensaje-exito">
         ¡Reserva registrada! Puedes ver el historial o enviar por WhatsApp.

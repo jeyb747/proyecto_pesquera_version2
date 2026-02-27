@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnWhatsapp.style.display = "inline-block";
 
     // preparar enlace WhatsApp
-    const numeroRestaurante = "573008404600"; // reemplaza por el número real con código país (ej: 573001234567)
+    const numeroRestaurante = "573008404600"; 
     const texto = construirTextoWhatsApp(reserva);
     btnWhatsapp.href = `https://wa.me/${numeroRestaurante}?text=${encodeURIComponent(texto)}`;
 
