@@ -1,195 +1,298 @@
 /* ======================================================
-   domicilio.css - Página de solicitud de domicilio
-   ====================================================== */
+   DOMICILIO - LA PESQUERA (BOOTSTRAP PRO)
+====================================================== */
 
-main {
-  background-color: var(--blanco);
-  padding: 40px 10%;
-  min-height: 80vh;
+/* ===== RESET ===== */
+*{
+  box-sizing: border-box;
 }
 
-/* ====== SECCIÓN PRINCIPAL ====== */
-.domicilio-section {
-  background-color: #fffaf0;
-  padding: 35px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 750px;
-  margin: 40px auto;
-  transition: all 0.3s ease;
-}
+/* ======================================================
+   BODY
+====================================================== */
 
-.domicilio-section:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-}
+body{
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
 
-.domicilio-section h2 {
-  color: var(--azul);
-  text-align: center;
-  margin-bottom: 10px;
-}
+  background: linear-gradient(to bottom, #f4f6f8, #e9eef2);
 
-.domicilio-section p {
-  text-align: center;
-  color: var(--gris);
-  margin-bottom: 25px;
-}
+  min-height: 100vh;
 
-/* ====== RESUMEN DEL CARRITO ====== */
-.resumen-carrito {
-  background: var(--blanco);
-  border: 2px solid rgba(241, 196, 15, 0.3);
-  border-radius: 12px;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+/* ===== MAIN ===== */
+main{
+  flex: 1;
+}
+
+/* ======================================================
+   CARD PRINCIPAL
+====================================================== */
+
+.domicilio-card{
+  border-radius: 25px !important;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  animation: fadeUp 0.5s ease;
+}
+
+/* ===== ANIMACION ===== */
+@keyframes fadeUp{
+
+  from{
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* ======================================================
+   TITULO
+====================================================== */
+
+.titulo-domicilio{
+  color: #0A3D62;
+
+  font-family: 'Cinzel', sans-serif;
+
   font-weight: bold;
-  color: var(--gris);
 }
 
-.resumen-carrito p {
-  margin: 4px 0;
+/* ======================================================
+   RESUMEN
+====================================================== */
+
+.resumen-box{
+  background: #f8f9fa;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  border: 1px solid #ececec;
 }
 
-.oculto {
-  display: none;
+/* ITEMS */
+.resumen-item{
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* ====== LISTA DE PRODUCTOS ====== */
-.productos-carrito {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 25px;
+/* TITULOS */
+.resumen-item h5{
+  color: #0A3D62;
+
+  margin-bottom: 10px;
+
+  font-weight: bold;
 }
 
-.producto-item {
+/* VALORES */
+.resumen-item span{
+  color: #F1C40F;
+
+  font-size: 1.6rem;
+
+  font-weight: bold;
+}
+
+/* ======================================================
+   PRODUCTOS
+====================================================== */
+
+.productos-box{
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  border: 1px solid #ececec;
+
+  overflow: hidden;
+}
+
+/* PRODUCTO */
+.producto{
   display: flex;
-  align-items: center;
+
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 10px 0;
+
+  align-items: center;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #f1f1f1;
+
+  transition: 0.3s ease;
 }
 
-.producto-item:last-child {
+/* ULTIMO */
+.producto:last-child{
   border-bottom: none;
 }
 
-.producto-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* HOVER */
+.producto:hover{
+  background: #fafafa;
 }
 
-.producto-info {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  color: var(--gris);
-  font-size: 0.95rem;
+/* TEXTO */
+.producto strong{
+  color: #0A3D62;
 }
 
-/* ====== ESTILO CUANDO ESTÁ VACÍO ====== */
-.productos-carrito.vacio {
-  background: none;
-  box-shadow: none;
-  text-align: center;
-  color: var(--gris);
-  opacity: 0.7;
-  border: none;
-}
+/* PRECIO */
+.producto span{
+  color: #F1C40F;
 
-/* ====== FORMULARIO ====== */
-.form-domicilio {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
   font-weight: bold;
-  color: var(--gris);
-  margin-bottom: 5px;
 }
 
-input, select, textarea {
-  padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background-color: #fff;
+/* ======================================================
+   INPUTS
+====================================================== */
+
+.form-control,
+.form-select{
+  border-radius: 14px !important;
+
+  padding: 14px !important;
+
+  border: 1px solid #dcdcdc !important;
+
+  transition: 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: var(--amarillo);
-  box-shadow: 0 0 6px rgba(241, 196, 15, 0.4);
+/* FOCUS */
+.form-control:focus,
+.form-select:focus{
+  border-color: #F1C40F !important;
+
+  box-shadow:
+    0 0 0 0.2rem rgba(241,196,15,0.2) !important;
 }
 
-/* ====== BOTÓN DE ENVÍO ====== */
-.btn-enviar {
-  background-color: var(--azul);
-  color: var(--blanco);
-  border: none;
-  padding: 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background 0.3s ease, transform 0.2s ease;
+/* TEXTAREA */
+textarea{
+  resize: none;
 }
 
-.btn-enviar:hover {
-  background-color: #07446f;
+/* ======================================================
+   BOTON
+====================================================== */
+
+.btn-warning{
+  background: #F1C40F !important;
+
+  border: none !important;
+
+  color: #2C3E50 !important;
+
+  transition: 0.3s ease;
+}
+
+/* HOVER */
+.btn-warning:hover{
+  background: #d4ac0d !important;
+
   transform: translateY(-2px);
 }
 
-/* ====== MENSAJE DE ÉXITO ====== */
-.mensaje-exito {
-  display: none;
-  margin-top: 20px;
-  background-color: #27ae60;
-  color: #fff;
-  text-align: center;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: bold;
-  animation: aparecer 0.3s ease-in-out;
+/* ======================================================
+   COMPROBANTE
+====================================================== */
+
+#campoComprobante{
+  animation: fadeIn 0.3s ease;
 }
 
-/* Animación */
-@keyframes aparecer {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+/* ANIMACION */
+@keyframes fadeIn{
+
+  from{
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
+  }
+
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 600px) {
-  .domicilio-section {
-    padding: 20px;
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer{
+  margin-top: auto;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+/* TABLET */
+@media(max-width: 992px){
+
+  .domicilio-card{
+    border-radius: 20px !important;
   }
 
-  .resumen-carrito {
-    flex-direction: column;
-    text-align: center;
-    gap: 5px;
+}
+
+/* MOVIL */
+@media(max-width: 768px){
+
+  .titulo-domicilio{
+    font-size: 1.8rem;
   }
 
-  .producto-info {
-    flex-direction: column;
-    text-align: right;
+  .resumen-item{
+    margin-bottom: 15px;
   }
+
+  .producto{
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .card-body{
+    padding: 30px 20px !important;
+  }
+
+}
+
+/* CELULARES PEQUEÑOS */
+@media(max-width: 480px){
+
+  .titulo-domicilio{
+    font-size: 1.5rem;
+  }
+
+  .resumen-item span{
+    font-size: 1.3rem;
+  }
+
+  .btn-warning{
+    width: 100%;
+  }
+
 }

@@ -18,11 +18,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $usuario = mysqli_fetch_assoc($resultado);
 
-        // 🔥 AQUÍ ESTÁ LA CLAVE
-        $_SESSION['usuario'] = $usuario['nombre']; 
-        // también puedes usar correo si quieres
+        // ✅ sesión
+        $_SESSION['id'] = $usuario['id'];
+        $_SESSION['usuario'] = $usuario['nombre'];
+        $_SESSION['rol'] = $usuario['rol']; 
 
-        header("Location: ../../index.php");
+        // 🔥 REDIRECCIÓN POR ROL
+        if ($usuario['rol'] == 'admin') {
+
+            header("Location: http://localhost/version_final/paginas/admin/dashboard.php");
+
+        } elseif ($usuario['rol'] == 'repartidor') {
+
+            header("Location: http://localhost/version_final/paginas/repartidor/domicilios.php");
+
+        } else {
+
+            header("Location: http://localhost/version_final/paginas/menu.php");
+        }
+
         exit();
 
     } else {

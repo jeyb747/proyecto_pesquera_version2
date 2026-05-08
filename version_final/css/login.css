@@ -1,91 +1,165 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.login-container {
+  min-height: calc(100vh - 90px);
+}
 
-/* ====== Ajustes globales para que el footer quede abajo ====== */
-html, body {
+/* ===== LADO IZQUIERDO ===== */
+.login-left {
+  background: url('../imagenes/restaurante.png') center center/cover no-repeat;
+  position: relative;
+}
+
+/* OSCURECER IMAGEN */
+.login-left::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+}
+
+/* OVERLAY */
+.overlay {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
+
+  padding: 50px;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  background: #f8f8f8;
-}
-
-/* Empuja el footer hacia abajo */
-footer {
-  margin-top: auto;
-}
-
-/* ====== Caja del login ====== */
-.login-box {
-  background: rgba(241,196,15,0.06);
-  padding: 35px;
-  border-radius: 14px;
-  margin-top: 40px;
-  max-width: 450px;
-  width: 100%;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  text-align: center;
-
-  /* CENTRAR el login cuando haya mucho espacio */
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* ====== Formulario ====== */
-.login-form .campo {
+/* TEXTOS */
+.login-left h1 {
+  font-size: 3rem;
   margin-bottom: 15px;
-  text-align: left;
 }
 
-.login-form label {
-  font-weight: bold;
-  color: var(--azul);
-}
-
-.login-form input {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid var(--gris);
-  border-radius: var(--radius);
-}
-
-/* ====== Botón ====== */
-.btn-login {
-  width: 100%;
-  padding: 12px;
-  background: var(--amarillo);
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: var(--radius);
+.login-left p {
   font-size: 1.1rem;
+  max-width: 500px;
 }
 
-.btn-login:hover {
+/* ===== LADO DERECHO ===== */
+.login-right {
+  background: #f8f9fa;
+  padding: 30px;
+}
+
+/* ===== CARD LOGIN ===== */
+.login-box {
+  width: 100%;
+  max-width: 480px;
+
+  border-radius: 20px;
+
+  background: white;
+
+  transition: 0.3s ease;
+}
+
+/* EFECTO HOVER */
+.login-box:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== LOGO ===== */
+.login-logo {
+  width: 120px;
+  object-fit: contain;
+}
+
+/* ===== TITULOS ===== */
+.login-box h2 {
+  color: #0A3D62;
+}
+
+.login-box p {
+  color: #6c757d;
+}
+
+/* ===== INPUTS ===== */
+.form-control {
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #ced4da;
+}
+
+/* FOCUS */
+.form-control:focus {
+  border-color: #F1C40F;
+
+  box-shadow: 0 0 0 0.2rem rgba(241,196,15,0.25);
+}
+
+/* ===== BOTON PASSWORD ===== */
+.input-group .btn {
+  border-radius: 0 12px 12px 0;
+}
+
+/* ===== BOTON LOGIN ===== */
+.btn-warning {
+  background: #F1C40F;
+  border: none;
+
+  border-radius: 12px;
+
+  transition: 0.3s ease;
+}
+
+.btn-warning:hover {
   background: #d4ac0d;
+  transform: translateY(-2px);
 }
 
-/* ====== Enlace registro ====== */
-.register-link {
-  margin-top: 15px;
-}
-
+/* ===== LINK REGISTRO ===== */
 .register-link a {
-  color: var(--azul);
-  font-weight: bold;
+  color: #0A3D62;
 }
 
-/* ====== Error ====== */
-.mensaje-error {
-  display: none;
-  background: #e74c3c;
-  color: white;
-  padding: 10px;
-  margin-top: 15px;
-  border-radius: 10px;
-  font-weight: bold;
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===== ALERTA ===== */
+.alert {
+  border-radius: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+
+  .login-left {
+    display: none !important;
+  }
+
+  .login-right {
+    min-height: 100vh;
+  }
+
+  .login-box {
+    margin: 20px auto;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .login-right {
+    padding: 20px;
+  }
+
+  .login-box {
+    padding: 25px !important;
+  }
+
+  .login-logo {
+    width: 90px;
+  }
+
+  .login-box h2 {
+    font-size: 1.8rem;
+  }
+
 }

@@ -1,6 +1,7 @@
 // ============================================================
-// 💰 Formateo de precios en COP sin decimales
+// 💰 FORMATO COP
 // ============================================================
+
 const fmtCOP = new Intl.NumberFormat('es-CO', {
   style: 'currency',
   currency: 'COP',
@@ -8,87 +9,121 @@ const fmtCOP = new Intl.NumberFormat('es-CO', {
 });
 
 // ============================================================
-// 🧩 Elementos del modal
+// 🛒 CARRITO
 // ============================================================
-const modal = document.getElementById('modalProducto');
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+const contadorCarrito = document.getElementById('contador-carrito');
+
+function actualizarContador() {
+
+  if (contadorCarrito) {
+    contadorCarrito.textContent = carrito.length;
+  }
+
+}
+
+actualizarContador();
+
+// ============================================================
+// 📦 MODAL BOOTSTRAP
+// ============================================================
+
+const modalElement = document.getElementById('modalProducto');
+
+const modalBootstrap = new bootstrap.Modal(modalElement);
+
 const modalImg = document.getElementById('modalImg');
 const modalTitulo = document.getElementById('modalTitulo');
 const modalDescripcion = document.getElementById('modalDescripcion');
 const modalPrecio = document.getElementById('modalPrecio');
-const cerrarModal = document.getElementById('cerrarModal');
 const btnCarrito = document.getElementById('btnCarrito');
-const contadorCarrito = document.getElementById('contador-carrito');
 
 // ============================================================
-// 🛒 Cargar carrito guardado en localStorage
+// 📂 ABRIR MODAL
 // ============================================================
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-if (contadorCarrito) contadorCarrito.textContent = carrito.length;
 
-// ============================================================
-// 📦 Abre modal usando los data-* de cada fila
-// ============================================================
-document.querySelectorAll('table.menu-table tr[data-plato]').forEach(tr => {
-  tr.addEventListener('click', () => {
-    const nombre = tr.dataset.plato || '';
-    const imagen = tr.dataset.img || 'imagenes/default.jpg';
-    const desc   = tr.dataset.desc || '';
-    const precio = Number(tr.dataset.precio || 0);
+document.querySelectorAll('.producto').forEach(card => {
+
+  card.addEventListener('click', () => {
+
+    const nombre = card.dataset.plato;
+    const imagen = card.dataset.img;
+    const desc = card.dataset.desc || 'Delicioso plato de La Pesquera';
+    const precio = Number(card.dataset.precio);
 
     modalImg.src = imagen;
-    modalImg.alt = nombre;
     modalTitulo.textContent = nombre;
     modalDescripcion.textContent = desc;
-    modalPrecio.textContent = precio ? fmtCOP.format(precio) : '';
+    modalPrecio.textContent = fmtCOP.format(precio);
 
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    modalBootstrap.show();
+
   });
+
 });
 
 // ============================================================
-// ❌ Cerrar modal
+// ➕ BOTÓN +
 // ============================================================
-function cerrar(){
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-  modalImg.src = ''; // libera el recurso si cambian mucho de plato
-}
 
-cerrarModal.addEventListener('click', cerrar);
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) cerrar();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.style.display === 'flex') cerrar();
+document.addEventListener('click', (e) => {
+
+  const btn = e.target.closest('.btn-add');
+
+  if (!btn) return;
+
+  e.stopPropagation();
+
+  const card = btn.closest('.producto');
+
+  const producto = {
+    nombre: card.dataset.plato,
+    precio: fmtCOP.format(Number(card.dataset.precio)),
+    imagen: card.dataset.img
+  };
+
+  carrito.push(producto);
+
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+
+  actualizarContador();
+
+  btn.innerHTML = '✓';
+
+  setTimeout(() => {
+    btn.innerHTML = '+';
+  }, 700);
+
 });
 
 // ============================================================
-// 🛒 Acción del botón "Agregar al carrito"
+// 🛒 AGREGAR DESDE MODAL
 // ============================================================
+
 btnCarrito.addEventListener('click', () => {
+
   const producto = {
     nombre: modalTitulo.textContent,
     precio: modalPrecio.textContent,
     imagen: modalImg.src
   };
 
-  // Añadir al arreglo y guardar en localStorage
   carrito.push(producto);
+
   localStorage.setItem('carrito', JSON.stringify(carrito));
 
-  // Actualizar contador del carrito si existe
-  if (contadorCarrito) contadorCarrito.textContent = carrito.length;
+  actualizarContador();
 
-  // Animación visual de confirmación
-  btnCarrito.textContent = '✅ Agregado';
-  btnCarrito.style.backgroundColor = '#27ae60';
-  btnCarrito.disabled = true;
+  btnCarrito.innerHTML = '✅ Agregado';
 
   setTimeout(() => {
-    btnCarrito.textContent = 'Agregar al carrito';
-    btnCarrito.style.backgroundColor = '';
-    btnCarrito.disabled = false;
-    cerrar();
-  }, 1200);
+
+    btnCarrito.innerHTML = 'Agregar al carrito';
+
+    modalBootstrap.hide();
+
+  }, 800);
+
 });

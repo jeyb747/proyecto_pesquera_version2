@@ -1,222 +1,393 @@
 /* ======================================================
-   carrito.css - Estilos para la página del carrito
-   ====================================================== */
+   CARRITO - LA PESQUERA (BOOTSTRAP PRO)
+====================================================== */
 
-main {
-  padding: 40px 10%;
-  background-color: var(--blanco);
-  color: var(--gris);
-  min-height: 70vh;
+/* ===== RESET ===== */
+*{
+  box-sizing: border-box;
 }
 
-h1 {
-  color: var(--azul);
-  text-align: center;
-  margin-bottom: 30px;
-}
+/* ======================================================
+   BODY
+====================================================== */
 
-/* ====== CONTENEDOR DEL CARRITO ====== */
-.carrito-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* ====== ITEM DEL CARRITO ====== */
-.carrito-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(241, 196, 15, 0.12);
-  border-radius: var(--radius);
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.carrito-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
-  background: rgba(241, 196, 15, 0.18);
-}
-
-/* ====== IMAGEN DEL PRODUCTO ====== */
-.carrito-item img {
-  width: 60px;              /* 🔹 más pequeña */
-  height: 60px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.05);
-  margin-right: 15px;
-  flex-shrink: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* ====== INFORMACIÓN ====== */
-.carrito-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.carrito-info h3 {
+body{
   margin: 0;
-  color: var(--azul);
-  font-size: 1rem;
-  font-weight: 700;
-}
 
-.carrito-info span,
-.carrito-info .precio {
-  color: var(--gris);
-  font-weight: bold;
-  font-size: 0.95rem;
-}
+  font-family: 'Segoe UI', sans-serif;
 
-/* ====== BOTÓN ELIMINAR ====== */
-.btn-eliminar {
-  background: linear-gradient(180deg, #ff6b6b, #e74c3c);
-  color: #fff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
+  background:
+    linear-gradient(to bottom, #f4f6f8, #e9eef2);
 
-.btn-eliminar:hover:not(:disabled) {
-  background: linear-gradient(180deg, #ff8787, #e74c3c);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
-}
+  min-height: 100vh;
 
-.btn-eliminar:disabled {
-  opacity: 0.7;
-  cursor: default;
-  transform: none;
-}
-
-/* ====== TOTAL ====== */
-.total {
-  text-align: right;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--azul);
-  margin-top: 20px;
-}
-
-/* ====== ACCIONES ====== */
-.acciones {
-  text-align: right;
-  margin-top: 25px;
-}
-
-.acciones .btn {
-  background-color: var(--azul);
-  color: var(--blanco);
-  border: none;
-  padding: 10px 20px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: bold;
-  margin-left: 10px;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.acciones .btn:hover {
-  background-color: #07446f;
-  transform: translateY(-2px);
-}
-
-/* ====== CARRITO EN MENÚ SUPERIOR ====== */
-.nav-menu .carrito-link {
-  background-color: var(--amarillo);
-  color: var(--gris);
-  padding: 6px 12px;
-  border-radius: var(--radius);
-  font-weight: bold;
-  transition: background 0.3s ease, color 0.3s ease;
-  position: relative;
-}
-
-/* Contador del carrito */
-#contador-carrito {
-  background-color: var(--azul);
-  color: var(--blanco);
-  font-size: 0.8rem;
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 2px 6px;
-  margin-left: 4px;
-}
-
-.nav-menu .carrito-link:hover {
-  background-color: #d4ac0d;
-  color: var(--blanco);
-}
-
-/* ====== MENSAJE DE CARRITO VACÍO ====== */
-.vacio {
-  text-align: center;
-  color: var(--gris);
-  font-size: 1rem;
-  margin: 30px 0;
-  opacity: 0.8;
-}
-/* ====== Modal de pago ====== */
-.modal-pago {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+/* ===== MAIN ===== */
+main{
+  flex: 1;
+}
+
+/* ======================================================
+   TITULO
+====================================================== */
+
+.titulo-carrito{
+  color: #0A3D62;
+
+  font-family: 'Cinzel', sans-serif;
+
+  font-size: 2.5rem;
+}
+
+/* ======================================================
+   CARD PRINCIPAL
+====================================================== */
+
+.carrito-card{
+  border-radius: 25px !important;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  animation: fadeUp 0.5s ease;
+}
+
+/* ===== ANIMACION ===== */
+@keyframes fadeUp{
+
+  from{
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* ======================================================
+   CONTENEDOR PRODUCTOS
+====================================================== */
+
+.carrito-container{
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* ======================================================
+   ITEM DEL CARRITO
+====================================================== */
+
+.carrito-item{
+  display: flex;
+
   align-items: center;
-  z-index: 999;
-}
 
-.modal-pago.oculto {
-  display: none;
-}
-
-.modal-contenido {
-  background: white;
-  padding: 25px;
-  width: 90%;
-  max-width: 420px;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-.cerrar-pago {
-  float: right;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.metodos {
-  display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+
+  gap: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #ececec;
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  transition: 0.3s ease;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.metodos .metodo {
-  width: 30%;
-  padding: 10px;
-  background: var(--amarillo);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
+/* ===== HOVER ===== */
+.carrito-item:hover{
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  border-color: #F1C40F;
+}
+
+/* ======================================================
+   IMAGEN
+====================================================== */
+
+.carrito-item img{
+
+  width: 90px;
+
+  height: 90px;
+
+  object-fit: cover;
+
+  border-radius: 15px;
+
+  flex-shrink: 0;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ======================================================
+   INFO
+====================================================== */
+
+.carrito-info{
+  flex: 1;
+}
+
+/* TITULO */
+.carrito-info h3{
+
+  margin: 0 0 8px;
+
+  color: #0A3D62;
+
+  font-size: 1.2rem;
+
   font-weight: bold;
 }
 
-.opciones {
+/* TEXTO */
+.carrito-info span,
+.carrito-info .precio{
+
+  color: #2C3E50;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+}
+
+/* ======================================================
+   PRECIO
+====================================================== */
+
+.precio{
+  color: #F1C40F !important;
+
+  font-size: 1.1rem !important;
+
+  font-weight: bold !important;
+}
+
+/* ======================================================
+   BOTON ELIMINAR
+====================================================== */
+
+.btn-eliminar{
+
+  background:
+    linear-gradient(to right, #ff6b6b, #e74c3c);
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 12px;
+
+  font-weight: bold;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+/* HOVER */
+.btn-eliminar:hover{
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(231,76,60,0.3);
+}
+
+/* ======================================================
+   TOTAL
+====================================================== */
+
+.total-box{
+
+  background: #f8f9fa;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  border: 1px solid #ececec;
+}
+
+/* PRECIO */
+.precio-total{
+
+  color: #F1C40F;
+
+  font-size: 2rem;
+
+  font-weight: bold;
+}
+
+/* ======================================================
+   BOTONES
+====================================================== */
+
+.btn{
+
+  border-radius: 14px !important;
+
+  transition: 0.3s ease !important;
+}
+
+/* HOVER */
+.btn:hover{
+
+  transform: translateY(-2px);
+}
+
+/* BOTON WARNING */
+.btn-warning{
+
+  background: #F1C40F !important;
+
+  border: none !important;
+
+  color: #2C3E50 !important;
+}
+
+/* HOVER */
+.btn-warning:hover{
+
+  background: #d4ac0d !important;
+}
+
+/* ======================================================
+   MODAL
+====================================================== */
+
+.modal-content{
+
+  border-radius: 25px !important;
+
+  overflow: hidden;
+}
+
+/* METODOS */
+.metodo{
+
+  border-radius: 16px !important;
+
+  transition: 0.3s ease;
+}
+
+/* HOVER */
+.metodo:hover{
+
+  background: #F1C40F !important;
+
+  border-color: #F1C40F !important;
+
+  transform: translateY(-2px);
+}
+
+/* OPCIONES */
+.opciones{
+
   margin-top: 20px;
-  font-size: 1rem;
+}
+
+/* ======================================================
+   CARRITO VACIO
+====================================================== */
+
+.vacio{
+
+  text-align: center;
+
+  padding: 40px;
+
+  border-radius: 18px;
+
+  background: #f8f9fa;
+
+  color: #6c757d;
+
+  font-size: 1.1rem;
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer{
+  margin-top: auto;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+/* TABLET */
+@media(max-width: 992px){
+
+  .titulo-carrito{
+    font-size: 2rem;
+  }
+
+}
+
+/* MOVIL */
+@media(max-width: 768px){
+
+  .carrito-item{
+
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .carrito-item img{
+
+    width: 100%;
+
+    max-width: 250px;
+
+    height: 180px;
+  }
+
+  .precio-total{
+
+    font-size: 1.5rem;
+  }
+
+  .card-body{
+
+    padding: 25px 20px !important;
+  }
+
+}
+
+/* CELULARES PEQUEÑOS */
+@media(max-width: 480px){
+
+  .titulo-carrito{
+
+    font-size: 1.6rem;
+  }
+
+  .btn{
+
+    width: 100%;
+  }
+
 }

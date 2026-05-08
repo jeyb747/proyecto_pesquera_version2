@@ -2,78 +2,261 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Carrito | La Pesquera</title>
 
-  <!-- 🎨 Estilos -->
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/carro.css">
+  <!-- ===== GOOGLE FONT ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- ===== BOOTSTRAP CSS ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- ===== BOOTSTRAP ICONS ===== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="../css/inicio.css">
+  <link rel="stylesheet" href="../css/carro.css?v=4">
+
 </head>
 
 <body>
-  <!-- ====== ENCABEZADO ====== -->
-  <header class="navbar">
-    <div class="container nav-content">
-      <h1 class="logo">La Pesquera</h1>
 
-      <button id="menu-toggle" class="menu-toggle">☰</button>
+<!-- ===== NAVBAR ===== -->
+<?php include("../includes/navbar.php"); ?>
 
-      <nav id="nav-menu" class="nav-menu">
-      <a href="../index.php">Inicio</a>
-      <a href="login.php" class="active">Iniciar sesión</a>
-      <a href="menu.php">Menú</a>
-      <a href="domicilio.php">Domicilio</a>
-      <a href="reservas.php">Reservas</a>
-      <a href="contacto.php">Contacto</a>
-      <a href="carrito.php" class="carrito-link">🛒 Carrito</a>
-      <a href="historial.php">Historial</a>
-      </nav>
-    </div>
-  </header>
+<!-- ======================================================
+     CONTENIDO
+====================================================== -->
 
-  <!-- ====== CONTENIDO PRINCIPAL ====== -->
-  <main>
-    <h1>Carrito de Compras</h1>
+<main class="container py-5">
 
-    <div class="carrito-container" id="carrito-container">
-      <!-- Productos se cargan con JS -->
-    </div>
+  <!-- TITULO -->
+  <div class="text-center mb-5">
 
-    <div class="total" id="total">Total: $0</div>
+    <h1 class="fw-bold titulo-carrito">
+      <i class="bi bi-cart3"></i>
+      Carrito de Compras
+    </h1>
 
-    <div class="acciones">
-      <button class="btn" id="vaciarCarrito">Vaciar carrito</button>
-      <button class="btn" id="btnPagar" style="background:#27ae60;">Pagar</button>
-      <a href="menu.html" class="btn">Volver al menú</a>
-    </div>
-  </main>
+    <p class="text-muted">
+      Revisa tus productos antes de finalizar tu pedido.
+    </p>
 
-  <!-- ====== PIE DE PÁGINA ====== -->
-  <footer>
-    <p>© 2025 La Pesquera · Todos los derechos reservados</p>
-  </footer>
-
-  <!-- ====== MODAL DE PAGO ====== -->
-  <div id="modalPago" class="modal-pago oculto">
-    <div class="modal-contenido">
-      <span id="cerrarPago" class="cerrar-pago">✕</span>
-
-      <h2>💳 Selecciona un método de pago</h2>
-
-      <div class="metodos">
-        <button class="metodo" data-metodo="efectivo">Efectivo</button>
-        <button class="metodo" data-metodo="nequi">nequi</button>
-        <button class="metodo" data-metodo="tarjeta">Tarjeta</button>
-      </div>
-
-      <div id="opcionesPago" class="opciones"></div>
-
-    </div>
   </div>
 
-  <!-- ⚙️ Scripts -->
-  <script defer src="../js/script.js"></script>
-  <script defer src="../js/carrito.js"></script>
+  <!-- CARD PRINCIPAL -->
+  <div class="card shadow-lg border-0 carrito-card">
+
+    <div class="card-body p-4 p-lg-5">
+
+      <!-- PRODUCTOS -->
+      <div id="carrito-container" class="carrito-container">
+
+        <!-- PRODUCTOS JS -->
+
+      </div>
+
+      <!-- TOTAL -->
+      <div class="total-box mt-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+          <div>
+
+            <h4 class="mb-1 fw-bold">
+              Total del pedido
+            </h4>
+
+            <p class="text-muted mb-0">
+              Incluye todos los productos agregados
+            </p>
+
+          </div>
+
+          <div id="total" class="precio-total">
+            $0
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTONES -->
+      <div class="row mt-4 g-3">
+
+        <!-- VACIAR -->
+        <div class="col-md-4">
+
+          <button
+            class="btn btn-outline-danger w-100 py-3 fw-bold"
+            id="vaciarCarrito">
+
+            <i class="bi bi-trash3"></i>
+            Vaciar carrito
+
+          </button>
+
+        </div>
+
+        <!-- PAGAR -->
+        <div class="col-md-4">
+
+          <button
+            class="btn btn-success w-100 py-3 fw-bold"
+            id="btnPagar">
+
+            <i class="bi bi-credit-card"></i>
+            Pagar
+
+          </button>
+
+        </div>
+
+        <!-- VOLVER -->
+        <div class="col-md-4">
+
+          <a
+            href="menu.php"
+            class="btn btn-warning w-100 py-3 fw-bold">
+
+            <i class="bi bi-arrow-left"></i>
+            Volver al menú
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ======================================================
+     MODAL PAGO
+====================================================== -->
+
+<div
+  class="modal fade"
+  id="modalPago"
+  tabindex="-1"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content border-0 shadow-lg rounded-4">
+
+      <!-- HEADER -->
+      <div class="modal-header border-0 pb-0">
+
+        <h4 class="modal-title fw-bold">
+
+          💳 Método de pago
+
+        </h4>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal">
+
+        </button>
+
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body p-4">
+
+        <p class="text-muted mb-4">
+          Selecciona cómo deseas pagar tu pedido.
+        </p>
+
+        <!-- METODOS -->
+        <div class="row g-3">
+
+          <!-- EFECTIVO -->
+          <div class="col-12">
+
+            <button
+              class="metodo btn btn-light border w-100 py-3 text-start"
+              data-metodo="efectivo">
+
+              <i class="bi bi-cash-coin me-2"></i>
+              Efectivo
+
+            </button>
+
+          </div>
+
+          <!-- NEQUI -->
+          <div class="col-12">
+
+            <button
+              class="metodo btn btn-light border w-100 py-3 text-start"
+              data-metodo="nequi">
+
+              <i class="bi bi-phone me-2"></i>
+              Nequi
+
+            </button>
+
+          </div>
+
+          <!-- TARJETA -->
+          <div class="col-12">
+
+            <button
+              class="metodo btn btn-light border w-100 py-3 text-start"
+              data-metodo="tarjeta">
+
+              <i class="bi bi-credit-card-2-front me-2"></i>
+              Tarjeta
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- OPCIONES -->
+        <div id="opcionesPago" class="mt-4"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer class="bg-dark text-white text-center py-3 mt-auto">
+
+  <p class="mb-0">
+    © 2025 La Pesquera · Todos los derechos reservados
+  </p>
+
+</footer>
+
+<!-- ======================================================
+     SCRIPTS
+====================================================== -->
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS -->
+<script defer src="../js/script.js"></script>
+<script defer src="../js/carrito.js"></script>
+
 </body>
 </html>

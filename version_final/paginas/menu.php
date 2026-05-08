@@ -1,172 +1,829 @@
 <?php require_once("../php/configuracion/auth.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>La Pesquera | Menú</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/style.css" />
+  <!-- ✅ BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- JS -->
-  <script defer src="../js/script.js"></script>
+  <!-- ✅ FUENTE -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- ✅ CSS -->
+  <link rel="stylesheet" href="../css/inicio.css">
+  <link rel="stylesheet" href="../css/menu.css?v=2">
+
 </head>
+
 <body>
 
-  <!-- ====== Encabezado ====== -->
-  <header class="navbar">
-    <div class="container nav-content">
-      <h1 class="logo">La Pesquera</h1>
-      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">☰</button>
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+<?php include("../includes/navbar.php"); ?>
 
-      <nav id="nav-menu" class="nav-menu">
-       <a href="../index.php">Inicio</a>
-      <a href="login.php" class="active">Iniciar sesión</a>
-      <a href="menu.php">Menú</a>
-      <a href="domicilio.php">Domicilio</a>
-      <a href="reservas.php">Reservas</a>
-      <a href="contacto.php">Contacto</a>
-      <a href="carrito.php" class="carrito-link">🛒 Carrito</a>
-      <a href="historial.php">Historial</a>
-      </nav>
+<!-- ========================= -->
+<!-- CONTENIDO -->
+<!-- ========================= -->
+<main class="container py-5">
+
+  <!-- TITULO -->
+  <section class="text-center mb-5">
+
+    <h1 class="fw-bold">
+      Nuestro Menú
+    </h1>
+
+    <p class="text-muted">
+      Del mar a tu mesa — descubre los mejores sabores de La Pesquera.
+    </p>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- 🐟 PESCADOS Y CARNES -->
+  <!-- ================================================= -->
+  <section class="mb-5">
+
+    <h2 class="categoria-titulo mb-4">
+      🐟 Pescados y Carnes
+    </h2>
+
+    <div class="row g-4">
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Trucha frita"
+          data-precio="25000"
+          data-img="../imagenes/trucha.jpg"
+          data-desc="Trucha frita con patacones">
+
+          <img src="../imagenes/trucha.jpg"
+            class="card-img-top"
+            alt="Trucha frita">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Trucha frita
+            </h5>
+
+            <p class="text-muted">
+              Con patacones
+            </p>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $25.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Bagre en salsa"
+          data-precio="25000"
+          data-img="../imagenes/bagre.jpg"
+          data-desc="Bagre en salsa criolla">
+
+          <img src="../imagenes/bagre.jpg"
+            class="card-img-top"
+            alt="Bagre">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Bagre en salsa
+            </h5>
+
+            <p class="text-muted">
+              Salsa criolla
+            </p>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $25.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Bagre frito"
+          data-precio="25000"
+          data-img="../imagenes/bagre-frito.jpg">
+
+          <img src="../imagenes/bagre-frito.jpg"
+            class="card-img-top"
+            alt="Bagre">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Bagre frito
+            </h5>
+
+            <p class="text-muted">
+              Crujiente
+            </p>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $25.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Filete de robalo"
+          data-precio="25000"
+          data-img="../imagenes/Filete_de_robalo.jpg">
+
+          <img src="../imagenes/Filete_de_robalo.jpg"
+            class="card-img-top"
+            alt="Robalo">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Filete de robalo
+            </h5>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $25.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Mojarra frita"
+          data-precio="25000"
+          data-img="../imagenes/mojarra.jpg">
+
+          <img src="../imagenes/mojarra.jpg"
+            class="card-img-top"
+            alt="Mojarra">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Mojarra frita
+            </h5>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $25.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Cazuela de mariscos"
+          data-precio="35000"
+          data-img="../imagenes/Cazuela_de_mariscos.jpg">
+
+          <img src="../imagenes/Cazuela_de_mariscos.jpg"
+            class="card-img-top"
+            alt="Cazuela">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Cazuela de mariscos
+            </h5>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $35.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Carne asada"
+          data-precio="25000"
+          data-img="../imagenes/carne_asada.jpg">
+
+          <img src="../imagenes/carne_asada.jpg"
+            class="card-img-top"
+            alt="Carne">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Carne asada
+            </h5>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $25.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="col-md-6 col-lg-3">
+
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Pechuga a la plancha"
+          data-precio="20000"
+          data-img="../imagenes/pechuga.jpg">
+
+          <img src="../imagenes/pechuga.jpg"
+            class="card-img-top"
+            alt="Pechuga">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title">
+              Pechuga a la plancha
+            </h5>
+
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+
+              <span class="fw-bold text-primary">
+                $20.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
-  </header>
 
-  <!-- ====== Contenido principal ====== -->
-  <main class="container">
-    <section class="menu-section">
-      <h2>Nuestro Menú</h2>
-      <p>Del mar a tu mesa — descubre los mejores sabores de La Pesquera.</p>
+  </section>
 
-      <!-- 🐟 PESCADOS Y CARNES -->
-      <div class="menu-category">
-        <h3>🐟 Pescados y Carnes</h3>
+  <!-- ================================================= -->
+  <!-- 🍲 SOPAS -->
+  <!-- ================================================= -->
+  <section class="mb-5">
 
-        <table class="menu-table">
-          <tr data-plato="Trucha frita" data-precio="25000" data-img="../imagenes/trucha.jpg" data-desc="Deliciosa trucha frita con patacones y ensalada.">
-            <td>Trucha frita</td><td>$25.000</td>
-          </tr>
+    <h2 class="categoria-titulo mb-4">
+      🍲 Sopas
+    </h2>
 
-          <tr data-plato="Bagre en salsa" data-precio="25000" data-img="../imagenes/bagre.jpg" data-desc="Bagre en salsa criolla con arroz y ensalada.">
-            <td>Bagre en salsa</td><td>$25.000</td>
-          </tr>
+    <div class="row g-4">
 
-          <tr data-plato="Bagre frito" data-precio="25000" data-img="../imagenes/bagre-frito.jpg" data-desc="Bagre frito acompañado de arroz y ensalada fresca.">
-            <td>Bagre frito</td><td>$25.000</td>
-          </tr>
+      <div class="col-md-6 col-lg-4">
 
-          <tr data-plato="Filete de robalo" data-precio="25000" data-img="../imagenes/Filete_de_robalo.jpg" data-desc="Suave filete de robalo con papas y ensalada.">
-            <td>Filete de robalo</td><td>$25.000</td>
-          </tr>
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Sopa de pescado"
+          data-precio="13000"
+          data-img="../imagenes/sopa-pescado.jpg">
 
-          <tr data-plato="Mojarra frita ½" data-precio="25000" data-img="../imagenes/mojarra.jpg" data-desc="Mojarra frita mediana servida con patacones.">
-            <td>Mojarra frita (½)</td><td>$25.000</td>
-          </tr>
+          <img src="../imagenes/sopa-pescado.jpg"
+            class="card-img-top">
 
-          <tr data-plato="Cazuela de mariscos" data-precio="35000" data-img="../imagenes/Cazuela_de_mariscos.jpg" data-desc="Mariscos en crema de coco servidos con arroz blanco.">
-            <td>Cazuela de mariscos</td><td>$35.000</td>
-          </tr>
+          <div class="card-body d-flex flex-column">
 
-          <tr data-plato="Carne asada" data-precio="25000" data-img="../imagenes/carne_asada.jpg" data-desc="Jugosa carne asada con arroz y yuca frita.">
-            <td>Carne asada</td><td>$25.000</td>
-          </tr>
+            <h5>Sopa de pescado</h5>
 
-          <tr data-plato="Pechuga a la plancha" data-precio="20000" data-img="../imagenes/pechuga.jpg" data-desc="Pechuga de pollo a la plancha, acompañada de arroz y ensalada.">
-            <td>Pechuga a la plancha</td><td>$20.000</td>
-          </tr>
-        </table>
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $13.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- 🍲 SOPAS -->
-      <div class="menu-category">
-        <h3>🍲 Sopas (Sábados y Domingos)</h3>
+      <div class="col-md-6 col-lg-4">
 
-        <table class="menu-table">
-          <tr data-plato="Sopa de pescado" data-precio="13000" data-img="../imagenes/sopa-pescado.jpg" data-desc="Caldo de pescado tradicional con yuca y papa.">
-            <td>Sopa de pescado</td><td>$13.000</td>
-          </tr>
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Sopa de mondongo"
+          data-precio="13000"
+          data-img="../imagenes/mondongo.jpg">
 
-          <tr data-plato="Sopa de mondongo" data-precio="13000" data-img="../imagenes/mondongo.jpg" data-desc="Sopa espesa con callos, papa y especias típicas.">
-            <td>Sopa de mondongo</td><td>$13.000</td>
-          </tr>
+          <img src="../imagenes/mondongo.jpg"
+            class="card-img-top">
 
-          <tr data-plato="Sopa de menudencias" data-precio="13000" data-img="../imagenes/sopa de menudencias.jpg" data-desc="Sopa tradicional con menudencias y aliños caseros.">
-            <td>Sopa de menudencias</td><td>$13.000</td>
-          </tr>
-        </table>
+          <div class="card-body d-flex flex-column">
+
+            <h5>Sopa de mondongo</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $13.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- 🍚 PORCIONES -->
-      <div class="menu-category">
-        <h3>🍚 Porciones</h3>
+      <div class="col-md-6 col-lg-4">
 
-        <table class="menu-table">
-          <tr data-plato="Papa salada" data-precio="5000" data-img="../imagenes/papa.jpg" data-desc="Porción de papa salada recién cocida.">
-            <td>Papa francesa</td><td>$5.000</td>
-          </tr>
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Sopa de menudencias"
+          data-precio="13000"
+          data-img="../imagenes/sopa de menudencias.jpg">
 
-          <tr data-plato="Ensalada" data-precio="5000" data-img="../imagenes/ensalada.jpg" data-desc="Porción de ensalada fresca con tomate y lechuga.">
-            <td>Ensalada</td><td>$5.000</td>
-          </tr>
+          <img src="../imagenes/sopa de menudencias.jpg"
+            class="card-img-top">
 
-          <tr data-plato="Yuca frita" data-precio="5000" data-img="../imagenes/yuca.jpg" data-desc="Porción de yuca dorada y crujiente.">
-            <td>Yuca frita</td><td>$5.000</td>
-          </tr>
+          <div class="card-body d-flex flex-column">
 
-          <tr data-plato="Arroz" data-precio="3000" data-img="../imagenes/arroz.jpg" data-desc="Porción de arroz blanco recién hecho.">
-            <td>Arroz</td><td>$3.000</td>
-          </tr>
-        </table>
+            <h5>Sopa de menudencias</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $13.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- 🍹 BEBIDAS -->
-      <div class="menu-category">
-        <h3>🍹 Bebidas</h3>
-
-        <table class="menu-table">
-          <tr data-plato="Gaseosa personal" data-precio="3000" data-img="../imagenes/Gaseosa personal.jpg" data-desc="Bebida gaseosa personal fría.">
-            <td>Gaseosa personal</td><td>$3.000</td>
-          </tr>
-
-          <tr data-plato="Cerveza" data-precio="4000" data-img="../imagenes/cerveza.jpg" data-desc="Cerveza fría para acompañar tus comidas.">
-            <td>Cerveza</td><td>$4.000</td>
-          </tr>
-
-          <tr data-plato="Jugo natural" data-precio="5000" data-img="../imagenes/jugo natural.jpg" data-desc="Jugo de frutas naturales al gusto.">
-            <td>Jugo natural</td><td>$5.000</td>
-          </tr>
-
-          <tr data-plato="Limonada natural" data-precio="10000" data-img="../imagenes/limonada.jpg" data-desc="Limonada natural fría con hielo.">
-            <td>Limonada natural</td><td>$10.000</td>
-          </tr>
-        </table>
-      </div>
-
-    </section>
-  </main>
-
-  <!-- ====== Modal ====== -->
-  <div id="modalProducto" class="modal">
-    <div class="modal-content">
-      <span id="cerrarModal" class="cerrar">✕</span>
-
-      <img id="modalImg" src="" alt="Producto">
-      <h3 id="modalTitulo"></h3>
-      <p id="modalDescripcion"></p>
-      <span id="modalPrecio" class="price"></span>
-
-      <button id="btnCarrito" class="btn">Agregar al carrito</button>
     </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- 🍚 PORCIONES -->
+  <!-- ================================================= -->
+  <section class="mb-5">
+
+    <h2 class="categoria-titulo mb-4">
+      🍚 Porciones
+    </h2>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Papa francesa"
+          data-precio="5000"
+          data-img="../imagenes/papa.jpg">
+
+          <img src="../imagenes/papa.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Papa francesa</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $5.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Ensalada"
+          data-precio="5000"
+          data-img="../imagenes/ensalada.jpg">
+
+          <img src="../imagenes/ensalada.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Ensalada</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $5.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Yuca frita"
+          data-precio="5000"
+          data-img="../imagenes/yuca.jpg">
+
+          <img src="../imagenes/yuca.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Yuca frita</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $5.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Arroz"
+          data-precio="3000"
+          data-img="../imagenes/arroz.jpg">
+
+          <img src="../imagenes/arroz.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Arroz</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $3.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- 🍹 BEBIDAS -->
+  <!-- ================================================= -->
+  <section class="mb-5">
+
+    <h2 class="categoria-titulo mb-4">
+      🍹 Bebidas
+    </h2>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Gaseosa"
+          data-precio="3000"
+          data-img="../imagenes/Gaseosa personal.jpg">
+
+          <img src="../imagenes/Gaseosa personal.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Gaseosa</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $3.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Cerveza"
+          data-precio="4000"
+          data-img="../imagenes/cerveza.jpg">
+
+          <img src="../imagenes/cerveza.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Cerveza</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $4.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Jugo natural"
+          data-precio="5000"
+          data-img="../imagenes/jugo natural.jpg">
+
+          <img src="../imagenes/jugo natural.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Jugo natural</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $5.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="producto card h-100 shadow border-0"
+          data-plato="Limonada"
+          data-precio="10000"
+          data-img="../imagenes/limonada.jpg">
+
+          <img src="../imagenes/limonada.jpg"
+            class="card-img-top">
+
+          <div class="card-body d-flex flex-column">
+
+            <h5>Limonada</h5>
+
+            <div class="mt-auto d-flex justify-content-between">
+
+              <span class="fw-bold text-primary">
+                $10.000
+              </span>
+
+              <button class="btn btn-warning rounded-circle btn-add">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ========================= -->
+<!-- MODAL -->
+<!-- ========================= -->
+<div class="modal fade"
+  id="modalProducto"
+  tabindex="-1">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content border-0 shadow-lg">
+
+      <div class="modal-header">
+
+        <h5 class="modal-title"
+          id="modalTitulo">
+        </h5>
+
+        <button type="button"
+          class="btn-close"
+          data-bs-dismiss="modal">
+        </button>
+
+      </div>
+
+      <div class="modal-body text-center">
+
+        <img id="modalImg"
+          src=""
+          alt="Producto"
+          class="img-fluid rounded mb-3">
+
+        <p id="modalDescripcion"></p>
+
+        <h4 id="modalPrecio"
+          class="fw-bold text-primary">
+        </h4>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button id="btnCarrito"
+          class="btn btn-warning w-100">
+
+          Agregar al carrito
+
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- ====== Footer ====== -->
-  <footer>
-    <p>© 2025 La Pesquera · Todos los derechos reservados</p>
-  </footer>
+</div>
 
-  <!-- Script del menú -->
-  <script defer src="../js/menu-interactivo.js"></script>
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+<footer class="bg-dark text-white text-center py-3">
+
+  <div class="container">
+
+    <p class="mb-0">
+      © 2025 La Pesquera · Todos los derechos reservados
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- ✅ Scripts -->
+<script defer src="../js/script.js"></script>
+<script defer src="../js/menu-interactivo.js"></script>
+<!-- ✅ Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>

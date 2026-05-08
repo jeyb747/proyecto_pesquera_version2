@@ -14,21 +14,21 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
 // VALIDAR ID
 if (!isset($_GET['id'])) {
 
-    die("Producto no encontrado");
+    die("Usuario no encontrado");
 
 }
 
 $id = intval($_GET['id']);
 
-$sql = "SELECT * FROM productos WHERE id = $id";
+$sql = "SELECT * FROM usuarios WHERE id = $id";
 
 $resultado = mysqli_query($conexion, $sql);
 
-$producto = mysqli_fetch_assoc($resultado);
+$user = mysqli_fetch_assoc($resultado);
 
-if (!$producto) {
+if (!$user) {
 
-    die("Producto no encontrado");
+    die("Usuario no encontrado");
 
 }
 ?>
@@ -42,7 +42,7 @@ if (!$producto) {
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Editar Producto</title>
+<title>Editar Usuario</title>
 
 <!-- BOOTSTRAP -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -64,10 +64,10 @@ if (!$producto) {
 <div class="header">
 
     <h1>
-        ✏️ Editar Producto
+        👤 Editar Usuario
     </h1>
 
-    <a href="productos.php">
+    <a href="usuarios.php">
         Volver
     </a>
 
@@ -81,7 +81,7 @@ if (!$producto) {
 
     <div class="row justify-content-center">
 
-        <div class="col-lg-7">
+        <div class="col-lg-6">
 
             <div class="box">
 
@@ -89,32 +89,32 @@ if (!$producto) {
                 <div class="mb-4">
 
                     <h2 class="fw-bold mb-1">
-                        Editar información
+                        Información del usuario
                     </h2>
 
                     <p class="text-muted mb-0">
-                        Modifica los datos del producto.
+                        Actualiza los datos y permisos del usuario.
                     </p>
 
                 </div>
 
                 <!-- FORM -->
                 <form
-                    action="/version_final/php/controlador/productos/actualizar.php"
+                    action="/version_final/php/controlador/usuarios/actualizar.php"
                     method="POST">
 
                     <!-- ID -->
                     <input
                         type="hidden"
                         name="id"
-                        value="<?= $producto['id']; ?>">
+                        value="<?= $user['id'] ?>">
 
                     <!-- NOMBRE -->
                     <div class="mb-3">
 
                         <label class="form-label fw-semibold">
 
-                            Nombre del producto
+                            Nombre
 
                         </label>
 
@@ -122,69 +122,59 @@ if (!$producto) {
                             type="text"
                             name="nombre"
                             class="form-control"
-                            value="<?= $producto['nombre']; ?>"
+                            value="<?= $user['nombre'] ?>"
                             required>
 
                     </div>
 
-                    <!-- DESCRIPCION -->
+                    <!-- CORREO -->
                     <div class="mb-3">
 
                         <label class="form-label fw-semibold">
 
-                            Descripción
-
-                        </label>
-
-                        <textarea
-                            name="descripcion"
-                            class="form-control"
-                            rows="4"
-                            required><?= $producto['descripcion']; ?></textarea>
-
-                    </div>
-
-                    <!-- PRECIO -->
-                    <div class="mb-3">
-
-                        <label class="form-label fw-semibold">
-
-                            Precio
-
-                        </label>
-
-                        <div class="input-group">
-
-                            <span class="input-group-text">
-                                $
-                            </span>
-
-                            <input
-                                type="number"
-                                name="precio"
-                                class="form-control"
-                                value="<?= $producto['precio']; ?>"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                    <!-- CATEGORIA -->
-                    <div class="mb-4">
-
-                        <label class="form-label fw-semibold">
-
-                            Categoría
+                            Correo electrónico
 
                         </label>
 
                         <input
-                            type="text"
-                            name="categoria"
+                            type="email"
+                            name="correo"
                             class="form-control"
-                            value="<?= $producto['categoria']; ?>"
+                            value="<?= $user['correo'] ?>"
                             required>
+
+                    </div>
+
+                    <!-- ROL -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+
+                            Rol del usuario
+
+                        </label>
+
+                        <select
+                            name="rol"
+                            class="form-select">
+
+                            <option
+                                value="cliente"
+                                <?= $user['rol']=="cliente"?"selected":"" ?>>
+
+                                Cliente
+
+                            </option>
+
+                            <option
+                                value="admin"
+                                <?= $user['rol']=="admin"?"selected":"" ?>>
+
+                                Administrador
+
+                            </option>
+
+                        </select>
 
                     </div>
 
@@ -201,7 +191,7 @@ if (!$producto) {
                         </button>
 
                         <a
-                            href="productos.php"
+                            href="usuarios.php"
                             class="btn btn-dark px-4">
 
                             Cancelar
