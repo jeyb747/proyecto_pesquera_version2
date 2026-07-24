@@ -1,0 +1,108 @@
+/* ======================================================
+   CSS ESPECÍFICO: GESTIÓN DE PEDIDOS PREMIUM (1400px)
+====================================================== */
+
+:root {
+  --azul: #0A3D62;
+  --amarillo: #F1C40F;
+  --blanco: #FDFEFE;
+  --gris: #2C3E50;
+}
+
+/* BOX CONTENEDOR (Limitado a 1400px y centrado) */
+.custom-box {
+  background: var(--blanco);
+  padding: 35px;
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  
+  /* REGLAS DE TAMAÑO MÁXIMO */
+  max-width: 1400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TABLA GENERAL */
+.table {
+  margin-bottom: 0;
+}
+
+/* ENCABEZADOS DE LA TABLA */
+.table thead.table-light tr th {
+  background-color: #f8fafc !important;
+  color: var(--azul) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #edf2f7 !important;
+}
+
+/* FILAS DE LA TABLA */
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+/* EFECTO HOVER EN LAS FILAS */
+.table-hover tbody tr:hover {
+  background-color: rgba(10, 61, 98, 0.02) !important;
+  transform: scale(1.002);
+}
+
+/* CELDAS */
+.table td {
+  padding: 16px 12px !important;
+  color: #4b5563;
+}
+
+/* BLOQUE DE CADA PLATO DE COMIDA */
+.bg-light.border-start {
+  background-color: #f8fafc !important;
+  border-left: 4px solid var(--amarillo) !important;
+  padding: 10px 14px !important;
+  transition: background-color 0.2s ease;
+}
+
+.bg-light.border-start:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* FORMATO DE PRECIOS MONOESPACIADOS */
+.font-monospace {
+  font-family: 'Cinzel', serif !important;
+}
+
+/* BOTONES DE ACCIÓN MÁS FINOS */
+.btn-sm {
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  padding: 6px 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Efectos al pasar el mouse por los botones de contorno */
+.btn-outline-primary:hover {
+  background-color: var(--azul) !important;
+  border-color: var(--azul) !important;
+  color: white !important;
+}
+
+.btn-outline-danger:hover {
+  background-color: #de3e44 !important;
+  border-color: #de3e44 !important;
+  color: white !important;
+}
+
+/* BADGES DINÁMICOS */
+.badge.bg-primary-subtle {
+  background-color: rgba(10, 61, 98, 0.1) !important;
+  color: var(--azul) !important;
+}
+
+.badge.bg-light {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  font-size: 0.85rem;
+}

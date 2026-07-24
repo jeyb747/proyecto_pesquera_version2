@@ -1,0 +1,170 @@
+/* ======================================================
+   PANEL REPARTIDOR - LA PESQUERA (VERSIÓN PRO)
+====================================================== */
+
+:root {
+  --primary: #F1C40F;
+  --dark: #111;
+  --light: #fff;
+  --bg: #f4f6f8;
+  --text: #333;
+  --border: #eaeaea;
+}
+
+/* ================= BODY ================= */
+
+body {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ================= HEADER (MEJORADO) ================= */
+
+.header {
+  background: var(--dark);
+  color: var(--light);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header a {
+  background: var(--primary);
+  color: #000;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.header a:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ================= CONTENEDOR ================= */
+
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* ================= TABLA (MEJORADA) ================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+table th {
+  background: var(--dark);
+  color: var(--light);
+  padding: 14px;
+  font-size: 14px;
+  text-align: left;
+}
+
+table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+table tr:hover {
+  background: #fafafa;
+}
+
+/* ================= ESTADO (CORREGIDO) ================= */
+
+.estado {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.pendiente {
+  background: #ffeaa7;
+  color: #000;
+}
+
+.en-camino {
+  background: #74b9ff;
+  color: #fff;
+}
+
+.entregado {
+  background: #2ecc71;
+  color: #fff;
+}
+
+/* ================= SELECT ================= */
+
+select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+select:hover {
+  border-color: var(--primary);
+}
+
+/* ================= BOTÓN MAPS ================= */
+
+.btn-maps {
+  background: #2ecc71;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.btn-maps:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  table {
+    font-size: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  table td, table th {
+    padding: 10px;
+  }
+}

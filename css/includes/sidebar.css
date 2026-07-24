@@ -1,0 +1,102 @@
+/* ======================================================
+   SIDEBAR PREMIUM RE-DESIGN
+====================================================== */
+
+.sidebar {
+  width: 270px;
+  background: linear-gradient(180deg, var(--azul) 0%, #062842 100%); /* Degradado sutil para dar profundidad */
+  padding: 40px 24px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.08); /* Sombra suave para separar del contenido */
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOGO */
+.sidebar-logo {
+  color: var(--amarillo);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 50px;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* MENU CONTAINER */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espaciado más compacto y moderno */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ENLACES DEL MENÚ */
+.sidebar-menu a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65); /* Color de texto pasivo más elegante */
+  padding: 14px 18px;
+  border-radius: 14px; /* Bordes ligeramente más finos */
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida */
+}
+
+/* ICONOS */
+.sidebar-menu a i {
+  font-size: 1.25rem;
+  transition: transform 0.25s ease;
+}
+
+/* HOVER EFFECT */
+.sidebar-menu a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.sidebar-menu a:hover i {
+  transform: scale(1.1); /* Micro-interacción en el icono */
+}
+
+/* ACTIVE STATE (PÁGINA ACTUAL) */
+.sidebar-menu a.active {
+  background: var(--amarillo);
+  color: #0A3D62; /* Contraste perfecto con tu color azul principal */
+  box-shadow: 0 8px 20px rgba(241, 196, 15, 0.25); /* Resplandor sutil amarillo */
+}
+
+/* Indicador dinámico trasero para el elemento activo */
+.sidebar-menu a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 4px;
+  background: #0A3D62;
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-menu a.active i {
+  color: #0A3D62;
+}
+
+/* Opcional: Personalización del scroll interno de la barra si hay muchos items */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}

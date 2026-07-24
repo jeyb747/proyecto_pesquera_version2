@@ -1,0 +1,26 @@
+/* ======================================================
+   TOPBAR
+====================================================== */
+
+.topbar {
+  background: var(--blanco);
+  border-radius: 24px;
+  padding: 22px 30px; /* Aumenté un poco el espacio interno a los lados */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+  /* NUEVO: Control de ancho y centrado */
+  width: 90%;           /* Ocupa el 90% en pantallas pequeñas */
+  max-width: 1400px;     /* No se estirará más de 800px en pantallas grandes */
+  margin: 0 auto 25px;  /* El "auto" lo centra y el "25px" mantiene el espacio abajo */
+}
+
+/* TITULO */
+
+.topbar h2 {
+  margin: 0;
+  font-weight: 800;
+  color: var(--azul);
+}

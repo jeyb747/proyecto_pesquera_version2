@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap');
+/* ======================================================
+   CONFIGURACIÓN GLOBAL
+====================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --azul: #0A3D62;
+  --amarillo: #F1C40F;
+  --blanco: #FDFEFE;
+  --gris: #2C3E50;
+  --fondo: #eef2f7;
+}
+
+/* ======================================================
+   BODY
+====================================================== */
+body, button, input, select, textarea {
+  font-family: 'Cinzel', serif;
+  background: var(--fondo);
+  color: var(--gris);
+  overflow-x: hidden;
+}
+
+/* ======================================================
+   LAYOUT
+====================================================== */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ======================================================
+   MAIN CONTENT (CORREGIDO)
+====================================================== */
+.main-content {
+  margin-left: 270px;
+  width: calc(100% - 270px);
+  padding: 35px;
+  flex-grow: 1;
+}
+
+/* Forzar que las filas de Bootstrap usen todo el espacio disponible */
+.main-content .row {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ======================================================
+   TARJETAS
+====================================================== */
+.dashboard-card {
+  background: var(--blanco);
+  border-radius: 28px;
+  padding: 30px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: .3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* LINEA SUPERIOR */
+.dashboard-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--azul),
+    var(--amarillo)
+  );
+}
+
+/* HOVER */
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* ======================================================
+   ICONOS
+====================================================== */
+.card-icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 20px;
+  background: rgba(10,61,98,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.card-icon i {
+  color: var(--azul);
+  font-size: 1.7rem;
+}
+
+/* ======================================================
+   NUMEROS
+====================================================== */
+.dashboard-card h2 {
+  font-size: 2.7rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--azul);
+}
+
+/* TEXTO */
+.dashboard-card p {
+  margin: 0;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* ======================================================
+   CAJAS GRANDES
+====================================================== */
+.custom-box {
+  background: var(--blanco);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  height: 100%;
+}
+
+/* TITULOS */
+.custom-box h4 {
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: var(--azul);
+}
+
+/* ======================================================
+   ITEMS
+====================================================== */
+.list-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* ======================================================
+   BOTONES
+====================================================== */
+.btn {
+  border-radius: 16px !important;
+  padding: 12px 22px !important;
+  font-weight: 700 !important;
+  transition: .3s ease !important;
+}
+
+/* WARNING */
+.btn-warning {
+  background: var(--amarillo) !important;
+  border: none !important;
+  color: #111827 !important;
+}
+
+/* HOVER */
+.btn-warning:hover {
+  background: #ddb30d !important;
+  transform: translateY(-2px);
+}
+
+/* DARK */
+.btn-dark {
+  background: var(--azul) !important;
+  border: none !important;
+  color: var(--blanco) !important;
+}
+
+.btn-dark:hover {
+  background: #082b46 !important;
+  transform: translateY(-2px);
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media(max-width: 992px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+/* ======================================================
+   SCROLLBAR
+====================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--amarillo);
+  border-radius: 20px;
+}

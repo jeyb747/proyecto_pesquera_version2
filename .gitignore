@@ -1,0 +1,14 @@
+/vendor/
+/composer.lock
+
+# Credenciales locales - NUNCA subir a GitHub
+/php/configuracion/mail_config.php
+
+# Entorno
+.env
+.env.*
+!.env.*.example
+
+# Sistema
+.DS_Store
+Thumbs.db

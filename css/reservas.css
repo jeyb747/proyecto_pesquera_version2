@@ -1,0 +1,252 @@
+/* ======================================================
+   MENÚ - LA PESQUERA (BOOTSTRAP PRO)
+====================================================== */
+
+/* ===== CONTENEDOR ===== */
+.pesquera-textured-theme {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f4f6f8, #e9eef2);
+  position: relative;
+}
+
+.pesquera-textured-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.04'/></svg>");
+  background-size: 60px 30px;
+}
+
+.pesquera-textured-theme > * {
+  position: relative;
+  z-index: 1;
+}
+
+.menu-section {
+  padding: 40px 0;
+}
+
+/* ===== TITULO ===== */
+.menu-section h1,
+.menu-section h2 {
+  font-family: 'Cinzel', sans-serif;
+  color: #0A3D62;
+}
+
+/* ===== CATEGORIAS ===== */
+.categoria-titulo {
+  color: #0A3D62;
+  border-left: 6px solid #F1C40F;
+  padding-left: 12px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* ===== CARD ===== */
+.producto {
+  border-radius: 18px !important;
+  overflow: hidden;
+
+  transition: 0.35s ease;
+
+  cursor: pointer;
+
+  background: #ffffff;
+}
+
+/* HOVER */
+.producto:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 15px 30px rgba(0,0,0,0.12) !important;
+}
+
+/* ===== IMAGEN ===== */
+.producto img,
+.card-img-top {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+
+  transition: 0.4s ease;
+}
+
+/* EFECTO */
+.producto:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== BODY ===== */
+.card-body {
+  padding: 20px;
+}
+
+/* ===== TITULO PRODUCTO ===== */
+.card-title,
+.producto h5 {
+  color: #2C3E50;
+
+  font-weight: 700;
+
+  font-size: 1.1rem;
+
+  margin-bottom: 8px;
+}
+
+/* ===== DESCRIPCION ===== */
+.card-text,
+.producto p {
+  color: #777;
+
+  font-size: 0.95rem;
+
+  margin-bottom: 15px;
+}
+
+/* ===== PRECIO ===== */
+.text-primary {
+  color: #F1C40F !important;
+
+  font-size: 1.1rem;
+}
+
+/* ===== BOTON + ===== */
+.btn-add {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50% !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  padding: 0;
+
+  border: none;
+
+  transition: 0.3s ease;
+}
+
+/* HOVER BOTON */
+.btn-add:hover {
+  transform: scale(1.1);
+
+  background: #d4ac0d !important;
+}
+
+/* ===== BOTONES BOOTSTRAP ===== */
+.btn-warning {
+  background: #F1C40F;
+  border: none;
+  color: #2C3E50;
+  font-weight: bold;
+}
+
+.btn-warning:hover {
+  background: #d4ac0d;
+  color: #2C3E50;
+}
+
+/* ===== MODAL ===== */
+.modal-content {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.modal-body img {
+  max-height: 320px;
+  object-fit: cover;
+}
+
+/* ===== TITULO MODAL ===== */
+.modal-title {
+  color: #0A3D62;
+  font-weight: bold;
+}
+
+/* ===== PRECIO MODAL ===== */
+#modalPrecio {
+  color: #F1C40F !important;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: 50px;
+}
+
+/* ===== ANIMACION ===== */
+.producto {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+/* TABLET */
+@media (max-width: 992px) {
+
+  .card-img-top {
+    height: 220px;
+  }
+
+}
+
+/* MOVIL */
+@media (max-width: 768px) {
+
+  .menu-section {
+    padding: 20px 0;
+  }
+
+  .categoria-titulo {
+    font-size: 1.3rem;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+}
+
+/* CELULARES PEQUEÑOS */
+@media (max-width: 480px) {
+
+  .card-img-top {
+    height: 180px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .btn-add {
+    width: 38px;
+    height: 38px;
+  } 
+}
