@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - la-pesquera-samuel-us
+name: Build and deploy PHP app to Azure Web App 'la-pesquera-v2'
 
 on:
   push:
@@ -64,7 +64,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'la-pesquera-samuel-us'
+          app-name: 'la-pesquera-v2'
           slot-name: 'Production'
           package: .
           
