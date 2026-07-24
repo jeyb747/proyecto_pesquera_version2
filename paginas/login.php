@@ -88,7 +88,7 @@ session_start();
         <form 
           id="formLogin"
           class="login-form"
-          action="../php/controlador/controlador.php"
+          action="/php/controlador/controlador.php"
           method="POST"
         >
 
