@@ -98,6 +98,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
         </li>
 
+        <li class="nav-item"><a class="nav-link" href="/paginas/contacto.php">Contacto</a></li>
+
         <?php if (isset($_SESSION['usuario'])): ?>
           <li class="nav-item"><a class="nav-link" href="/paginas/mis_reservas.php">Mis reservas</a></li>
         <?php endif; ?>

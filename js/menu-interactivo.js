@@ -42,7 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.producto').forEach(card => {
       const text = (card.innerText + ' ' + (card.dataset.plato || '') + ' ' + (card.dataset.desc || '')).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
       const show = !query || text.includes(query);
-      card.closest('[class*="col-"]').style.display = show ? '' : 'none';
+      const wrapper = card.parentElement;
+      if (wrapper) wrapper.style.display = show ? '' : 'none';
       if (show) visible++;
     });
     empty?.classList.toggle('d-none', visible > 0);
@@ -88,7 +89,7 @@ document.querySelectorAll('.producto').forEach(card => {
 });
 
 document.querySelectorAll('.btn-add').forEach(btn => {
-  btn.addEventListener('click', event => event.stopPropagation());
+  btn.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); }, true);
 });
 
 // ============================================================

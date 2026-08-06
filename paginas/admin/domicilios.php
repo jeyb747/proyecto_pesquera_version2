@@ -62,9 +62,9 @@ while ($row = mysqli_fetch_assoc($resultado)) {
                         <h2 class="h4 fw-bold text-dark mb-1">Gestión de Domicilios</h2>
                         <p class="text-muted mb-0">Visualiza y administra las órdenes de entrega a domicilio</p>
                     </div>
-                    <span class="badge bg-light text-dark border px-3 py-2 fs-6 rounded-pill">
+                    <div class="d-flex gap-2 align-items-center"><form method="post" action="/php/controlador/domicilios/asignar_equitativo.php"><button class="btn btn-primary rounded-pill px-3"><i class="bi bi-diagram-3 me-1"></i>Distribuir pedidos</button></form><span class="badge bg-light text-dark border px-3 py-2 fs-6 rounded-pill">
                         <i class="bi bi-list-task me-1"></i> Total: <?= count($domicilios) ?>
-                    </span>
+                    </span></div>
                 </div>
 
                 <div class="delivery-summary-grid mb-4">
