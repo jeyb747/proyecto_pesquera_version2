@@ -1,0 +1,217 @@
+/* ======================================================
+   PALETA DE COLORES - LA PESQUERA
+====================================================== */
+:root {
+    --azul: #0A3D62;
+    --amarillo: #F1C40F;
+    --blanco: #FDFEFE;
+    --gris: #2C3E50;
+    --fondo-suave: #F4F7F9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+  font-family: 'Cinzel', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--fondo-suave);
+}
+
+/* TEXTURA DE OLAS GEOMÉTRICAS SUTILES EN EL FONDO */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.04'/></svg>");
+    background-size: 60px 30px;
+}
+
+main {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+/* ======================================================
+   TARJETA CORPORATIVA PREMIUM
+====================================================== */
+.domicilio-card {
+    border-radius: 12px !important;
+    background: var(--blanco) !important;
+    box-shadow: 0 15px 40px rgba(10, 61, 98, 0.08) !important;
+    border: 1px solid rgba(10, 61, 98, 0.06) !important;
+    animation: fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.font-cinzel { font-family: 'Cinzel', serif; }
+.text-azul-pesquera { color: var(--azul); }
+.text-gris-pesquera { color: var(--gris); }
+.bg-amarillo-pesquera { background-color: var(--amarillo) !important; }
+
+.linea-decorativa {
+    width: 40px;
+    height: 3px;
+    background-color: var(--amarillo);
+    border-radius: 2px;
+}
+
+/* ======================================================
+   PANEL DE RESUMEN
+====================================================== */
+.resumen-box {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 14px;
+    border: 1px solid #edf2f7;
+}
+
+.resumen-item {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.resumen-item h5 {
+    color: var(--gris);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.resumen-item span {
+    color: var(--azul);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* ======================================================
+   BLOQUE DE PRODUCTOS
+====================================================== */
+.productos-box {
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #edf2f7;
+    overflow: hidden;
+}
+
+.producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.producto:last-child {
+    border-bottom: none;
+}
+
+.producto strong {
+    color: var(--gris);
+    font-size: 0.85rem;
+}
+
+.producto span {
+    color: var(--azul);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* ======================================================
+   CAMPOS DE ENTRADA FORMALES (INPUTS)
+====================================================== */
+.wrapper-input-pesquera {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-pesquera {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    padding: 11px 12px 11px 42px !important;
+    font-size: 0.85rem !important;
+    color: var(--gris);
+    background-color: #fff;
+    width: 100%;
+}
+
+textarea.input-pesquera {
+    padding-left: 12px !important;
+}
+
+.input-pesquera:focus {
+    border-color: var(--azul) !important;
+    box-shadow: 0 0 0 3px rgba(10, 61, 98, 0.08) !important;
+}
+
+.icono-izq {
+    position: absolute;
+    left: 14px;
+    color: var(--azul);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* ======================================================
+   BOTÓN DE ACCIÓN
+====================================================== */
+.btn-amarillo-action {
+    background-color: var(--amarillo) !important;
+    border: none !important;
+    color: var(--gris) !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 6px !important;
+    transition: background-color 0.2s ease;
+}
+
+.btn-amarillo-action:hover {
+    background-color: #e2b407 !important;
+}
+
+/* COMPLEMENTOS */
+.extra-small { font-size: 0.65rem !important; letter-spacing: 0.6px; }
+.label-spacing { font-size: 0.75rem !important; letter-spacing: 0.3px; }
+.bg-gris-pesquera { background-color: var(--gris) !important; }
+
+#campoComprobante {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .producto {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

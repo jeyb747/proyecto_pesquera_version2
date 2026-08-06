@@ -1,0 +1,113 @@
+/* ==========================================================================
+   HOJA DE ESTILOS: GESTIÓN DE PRODUCTOS (MAX 1400PX)
+   ========================================================================== */
+
+/* --- Limitador Mandatorio de Ancho Máximo --- */
+.content-container-max {
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Personalización de los Inputs del Formulario --- */
+.custom-input {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.9rem !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    background-color: #f8f9fa !important;
+    transition: all 0.2s ease-index !important;
+}
+
+.custom-input:focus {
+    background-color: #ffffff !important;
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15) !important;
+}
+
+/* --- Botón de Guardar Corporativo --- */
+.btn-warning {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #212529 !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800 !important;
+    border-color: #d39e00 !important;
+    transform: translateY(-1px);
+}
+
+/* --- Estilos de la Tabla de Datos --- */
+.table-responsive {
+    border: none;
+}
+
+.header-styled-table {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.header-styled-table thead {
+    background-color: #f8f9fa !important;
+}
+
+.header-styled-table thead th {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #6c757d !important;
+    border-bottom: none !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+.header-styled-table tbody tr {
+    border-bottom: 1px solid #edf2f7 !important;
+    transition: background-color 0.2s ease;
+}
+
+.header-styled-table tbody tr:hover {
+    background-color: #fcfdfd !important;
+}
+
+.header-styled-table tbody td {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    border-bottom: none !important;
+}
+
+/* --- Badges de Categoría Limpios --- */
+.bg-warning-subtle {
+    background-color: #fff3cd !important;
+}
+.text-warning-dark {
+    color: #856404 !important;
+}
+.border-warning {
+    border-color: #ffeeba !important;
+}
+
+/* --- Botones Outline de Acciones --- */
+.btn-outline-primary {
+    color: #0d325c !important;
+    border-color: #0d325c !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+}
+.btn-outline-primary:hover {
+    background-color: #0d325c !important;
+    color: #ffffff !important;
+}
+
+.btn-outline-danger {
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+}
+
+.fs-7 {
+    font-size: 0.75rem !important;
+}

@@ -1,0 +1,70 @@
+/* ==========================================================================
+   HOJA DE ESTILOS: GESTIÓN DE USUARIOS (MAX 1400PX)
+   ========================================================================== */
+
+.content-container-max {
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Estilos de la Tabla --- */
+.header-styled-table thead {
+    background-color: #f8f9fa !important;
+}
+
+.header-styled-table thead th {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #6c757d !important;
+    border-bottom: none !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+.header-styled-table tbody tr {
+    border-bottom: 1px solid #edf2f7 !important;
+    transition: background-color 0.2s ease;
+}
+
+.header-styled-table tbody tr:hover {
+    background-color: #fcfdfd !important;
+}
+
+.header-styled-table tbody td {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    border-bottom: none !important;
+}
+
+/* --- Estilos de Roles (Badges Pastel/Limpios) --- */
+.bg-danger-subtle {
+    background-color: #f8d7da !important;
+}
+.bg-primary-subtle {
+    background-color: #cfe2ff !important;
+}
+
+/* --- Botones Outline --- */
+.btn-outline-primary {
+    color: #0d325c !important;
+    border-color: #0d325c !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+}
+.btn-outline-primary:hover {
+    background-color: #0d325c !important;
+    color: #ffffff !important;
+}
+
+.btn-outline-danger {
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+}
+
+.fs-7 {
+    font-size: 0.75rem !important;
+}

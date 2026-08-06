@@ -1,0 +1,6 @@
+{
+  "name": "la-pesquera/reservas",
+  "require": {
+    "phpmailer/phpmailer": "^6.9"
+  }
+}

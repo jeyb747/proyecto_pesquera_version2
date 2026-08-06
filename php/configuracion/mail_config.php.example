@@ -1,0 +1,10 @@
+<?php
+/* Copia este archivo como mail_config.php y completa los datos. No publiques ese archivo. */
+return [
+    'host' => 'smtp.gmail.com',
+    'port' => 587,
+    'username' => 'tu_correo@gmail.com',
+    /* Usa una contraseña de aplicación de Google de 16 caracteres, NO tu contraseña de Gmail. */
+    'password' => 'PEGA_AQUI_LA_CONTRASENA_DE_APLICACION',
+    'from_name' => 'La Pesquera',
+];

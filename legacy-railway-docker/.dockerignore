@@ -1,0 +1,7 @@
+.git
+flutter_app/.dart_tool
+flutter_app/build
+flutter_app/.git
+php/configuracion/mail_config.php
+vendor
+*.zip
