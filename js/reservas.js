@@ -197,6 +197,7 @@ Hora: ${data.get("hora")}`;
 
     btn.href = `https://wa.me/573008404600?text=${encodeURIComponent(texto)}`;
     btn.classList.remove("d-none");
+    btn.focus();
 
   });
 

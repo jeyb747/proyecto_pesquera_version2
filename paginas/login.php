@@ -26,6 +26,7 @@ session_start();
 
 <body>
 <?php require_once(__DIR__ . '/../includes/flash.php'); flash_render(); ?>
+<?php if (!empty($_SESSION['flash_auth'])): ?><div class="container pt-3"><div class="alert alert-warning alert-dismissible fade show" role="alert"><?= htmlspecialchars($_SESSION['flash_auth']); unset($_SESSION['flash_auth']); ?><button class="btn-close" data-bs-dismiss="alert"></button></div></div><?php endif; ?>
 
 <!-- NAVBAR -->
 <?php include(__DIR__ . "/../includes/navbar.php"); ?>
