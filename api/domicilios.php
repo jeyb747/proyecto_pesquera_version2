@@ -1,3 +1,4 @@
+Reemplaza todo el contenido de api/domicilios.php por este código:
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
@@ -19,31 +20,71 @@ function responder($success, $mensaje, $extra = []) {
 }
 
 function columna_existe($conexion, $tabla, $columna) {
-    $stmt = $conexion->prepare("SHOW COLUMNS FROM `$tabla` LIKE ?");
-    $stmt->bind_param("s", $columna);
+    $sql = "SELECT 1
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = DATABASE()
+              AND TABLE_NAME = ?
+              AND COLUMN_NAME = ?
+            LIMIT 1";
+
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        throw new Exception(
+            "Error al preparar la verificacion de columnas: " . $conexion->error
+        );
+    }
+
+    $stmt->bind_param("ss", $tabla, $columna);
     $stmt->execute();
-    return $stmt->get_result()->num_rows > 0;
+    $stmt->store_result();
+
+    return $stmt->num_rows > 0;
+}
+
+function vincular_parametros($stmt, $tipos, $valores) {
+    $parametros = [];
+    $parametros[] = &$tipos;
+
+    foreach ($valores as $indice => $valor) {
+        $parametros[] = &$valores[$indice];
+    }
+
+    return call_user_func_array([$stmt, "bind_param"], $parametros);
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $usuario_id = intval($_GET["usuario_id"] ?? 0);
-    $sql = "SELECT d.*, p.usuario_id, p.productos, p.total
-            FROM domicilios d
-            INNER JOIN pedidos p ON d.pedido_id = p.id";
+    try {
+        $usuario_id = intval($_GET["usuario_id"] ?? 0);
 
-    if ($usuario_id > 0) {
-        $sql .= " WHERE p.usuario_id = " . $usuario_id;
+        $sql = "SELECT d.*, p.usuario_id, p.productos, p.total
+                FROM domicilios d
+                INNER JOIN pedidos p ON d.pedido_id = p.id";
+
+        if ($usuario_id > 0) {
+            $sql .= " WHERE p.usuario_id = " . $usuario_id;
+        }
+
+        $sql .= " ORDER BY d.id DESC";
+
+        $resultado = $conexion->query($sql);
+
+        if (!$resultado) {
+            throw new Exception($conexion->error);
+        }
+
+        $domicilios = [];
+
+        while ($fila = $resultado->fetch_assoc()) {
+            $domicilios[] = $fila;
+        }
+
+        responder(true, "Domicilios cargados", [
+            "domicilios" => $domicilios
+        ]);
+    } catch (Throwable $e) {
+        responder(false, "No se pudieron cargar los domicilios: " . $e->getMessage());
     }
-
-    $sql .= " ORDER BY d.id DESC";
-    $resultado = $conexion->query($sql);
-    $domicilios = [];
-
-    while ($fila = $resultado->fetch_assoc()) {
-        $domicilios[] = $fila;
-    }
-
-    responder(true, "Domicilios cargados", ["domicilios" => $domicilios]);
 }
 
 $usuario_id = intval($_POST["usuario_id"] ?? 0);
@@ -55,7 +96,15 @@ $observaciones = trim($_POST["observaciones"] ?? "");
 $productos = trim($_POST["productos"] ?? "");
 $total = floatval($_POST["total"] ?? 0);
 
-if ($usuario_id <= 0 || $nombre === "" || $direccion === "" || $telefono === "" || $pago === "" || $productos === "" || $total <= 0) {
+if (
+    $usuario_id <= 0 ||
+    $nombre === "" ||
+    $direccion === "" ||
+    $telefono === "" ||
+    $pago === "" ||
+    $productos === "" ||
+    $total <= 0
+) {
     responder(false, "Completa todos los datos del domicilio");
 }
 
@@ -85,13 +134,31 @@ try {
     }
 
     $pedido_placeholders = implode(",", array_fill(0, count($pedido_cols), "?"));
-    $pedido_sql = "INSERT INTO pedidos (`" . implode("`,`", $pedido_cols) . "`) VALUES ($pedido_placeholders)";
+
+    $pedido_sql = "INSERT INTO pedidos (`" .
+        implode("`,`", $pedido_cols) .
+        "`) VALUES ($pedido_placeholders)";
+
     $pedido_stmt = $conexion->prepare($pedido_sql);
-    $pedido_stmt->bind_param($pedido_tipos, ...$pedido_vals);
-    $pedido_stmt->execute();
+
+    if (!$pedido_stmt) {
+        throw new Exception("Error al preparar pedido: " . $conexion->error);
+    }
+
+    if (!vincular_parametros($pedido_stmt, $pedido_tipos, $pedido_vals)) {
+        throw new Exception("Error al asignar datos del pedido: " . $pedido_stmt->error);
+    }
+
+    if (!$pedido_stmt->execute()) {
+        throw new Exception("Error al guardar pedido: " . $pedido_stmt->error);
+    }
+
     $pedido_id = $conexion->insert_id;
 
-    $campo_pedido = columna_existe($conexion, "domicilios", "pedido_id") ? "pedido_id" : "id_pedido";
+    $campo_pedido = columna_existe($conexion, "domicilios", "pedido_id")
+        ? "pedido_id"
+        : "id_pedido";
+
     $dom_cols = [$campo_pedido, "direccion", "estado"];
     $dom_vals = [$pedido_id, $direccion, "pendiente"];
     $dom_tipos = "iss";
@@ -121,10 +188,25 @@ try {
     }
 
     $dom_placeholders = implode(",", array_fill(0, count($dom_cols), "?"));
-    $dom_sql = "INSERT INTO domicilios (`" . implode("`,`", $dom_cols) . "`) VALUES ($dom_placeholders)";
+
+    $dom_sql = "INSERT INTO domicilios (`" .
+        implode("`,`", $dom_cols) .
+        "`) VALUES ($dom_placeholders)";
+
     $dom_stmt = $conexion->prepare($dom_sql);
-    $dom_stmt->bind_param($dom_tipos, ...$dom_vals);
-    $dom_stmt->execute();
+
+    if (!$dom_stmt) {
+        throw new Exception("Error al preparar domicilio: " . $conexion->error);
+    }
+
+    if (!vincular_parametros($dom_stmt, $dom_tipos, $dom_vals)) {
+        throw new Exception("Error al asignar datos del domicilio: " . $dom_stmt->error);
+    }
+
+    if (!$dom_stmt->execute()) {
+        throw new Exception("Error al guardar domicilio: " . $dom_stmt->error);
+    }
+
     $domicilio_id = $conexion->insert_id;
 
     $conexion->commit();
@@ -135,6 +217,7 @@ try {
     ]);
 } catch (Throwable $e) {
     $conexion->rollback();
+
     responder(false, "No se pudo guardar el domicilio: " . $e->getMessage());
 }
 ?>
