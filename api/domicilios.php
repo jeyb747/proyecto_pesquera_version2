@@ -1,4 +1,3 @@
-Reemplaza todo el contenido de api/domicilios.php por este código:
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
@@ -31,7 +30,7 @@ function columna_existe($conexion, $tabla, $columna) {
 
     if (!$stmt) {
         throw new Exception(
-            "Error al preparar la verificacion de columnas: " . $conexion->error
+            "Error al verificar columnas: " . $conexion->error
         );
     }
 
@@ -146,7 +145,7 @@ try {
     }
 
     if (!vincular_parametros($pedido_stmt, $pedido_tipos, $pedido_vals)) {
-        throw new Exception("Error al asignar datos del pedido: " . $pedido_stmt->error);
+        throw new Exception("Error al asignar pedido: " . $pedido_stmt->error);
     }
 
     if (!$pedido_stmt->execute()) {
@@ -200,7 +199,7 @@ try {
     }
 
     if (!vincular_parametros($dom_stmt, $dom_tipos, $dom_vals)) {
-        throw new Exception("Error al asignar datos del domicilio: " . $dom_stmt->error);
+        throw new Exception("Error al asignar domicilio: " . $dom_stmt->error);
     }
 
     if (!$dom_stmt->execute()) {
@@ -217,7 +216,5 @@ try {
     ]);
 } catch (Throwable $e) {
     $conexion->rollback();
-
     responder(false, "No se pudo guardar el domicilio: " . $e->getMessage());
 }
-?>
