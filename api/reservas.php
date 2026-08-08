@@ -1,4 +1,3 @@
-El archivo existe en GitHub, pero Azure aún no lo tiene desplegado: por eso devuelve 404. Además, reemplaza su contenido por este código limpio; inicia directamente en <?php:
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
