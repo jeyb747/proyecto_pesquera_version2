@@ -82,7 +82,7 @@ try {
     $nombre = trim($_POST["nombre"] ?? "");
     $telefono = trim($_POST["telefono"] ?? "");
     $fecha = trim($_POST["fecha"] ?? "");
-    $hora = trim($_POST["hora"] ?? "");
+    $hora_recibida = trim($_POST["hora"] ?? "");
     $personas = intval($_POST["personas"] ?? 0);
     $observaciones = trim($_POST["observaciones"] ?? "");
 
@@ -91,11 +91,23 @@ try {
         $nombre === "" ||
         $telefono === "" ||
         $fecha === "" ||
-        $hora === "" ||
+        $hora_recibida === "" ||
         $personas <= 0
     ) {
         responder(false, "Completa todos los datos de la reserva");
     }
+
+    $hora_objeto = DateTime::createFromFormat(
+        "g:i A",
+        strtoupper($hora_recibida)
+    );
+
+    if (!$hora_objeto) {
+        responder(false, "Formato de hora no valido");
+    }
+
+    // Convierte, por ejemplo, 1:00 PM a 13:00:00 para MySQL.
+    $hora = $hora_objeto->format("H:i:s");
 
     $columnas = ["usuario_id", "fecha", "hora", "personas"];
     $valores = [$usuario_id, $fecha, $hora, $personas];
