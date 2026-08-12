@@ -1,0 +1,5 @@
+<?php
+
+// Configure this value in Azure App Service as APP_BASE_URL.
+// It must be the canonical public HTTPS URL, without a trailing slash.
+// Example: https://la-pesquera-v2-g6ane0emd0etahgb.eastus-01.azurewebsites.net

@@ -26,15 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 🔥 REDIRECCIÓN POR ROL
         if ($usuario['rol'] == 'admin') {
 
-            header("Location: http://localhost/version_final/paginas/admin/dashboard.php");
+            header("Location: /version_final/paginas/admin/dashboard.php");
 
         } elseif ($usuario['rol'] == 'repartidor') {
 
-            header("Location: http://localhost/version_final/paginas/repartidor/domicilios.php");
+            header("Location: /version_final/paginas/repartidor/domicilios.php");
 
         } else {
 
-            header("Location: http://localhost/version_final/paginas/menu.php");
+            header("Location: /version_final/paginas/menu.php");
         }
 
         exit();
