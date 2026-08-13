@@ -13,7 +13,9 @@
   --amarillo: #F1C40F;
   --blanco: #FDFEFE;
   --gris: #2C3E50;
-  --fondo: #eef2f7;
+  --fondo: #f4f7f9;
+  --borde-suave: #e6edf5;
+  --sombra-suave: 0 18px 45px rgba(10, 61, 98, 0.08);
 }
 
 /* ======================================================
@@ -21,9 +23,24 @@
 ====================================================== */
 body, button, input, select, textarea {
   font-family: 'Cinzel', serif;
-  background: var(--fondo);
   color: var(--gris);
+}
+
+body {
+  background-color: var(--fondo);
   overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.045'/></svg>");
+  background-size: 60px 30px;
 }
 
 /* ======================================================
@@ -33,6 +50,14 @@ body, button, input, select, textarea {
   display: flex;
   min-height: 100vh;
   width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 /* ======================================================
@@ -43,6 +68,7 @@ body, button, input, select, textarea {
   width: calc(100% - 270px);
   padding: 35px;
   flex-grow: 1;
+  background: transparent !important;
 }
 
 /* Forzar que las filas de Bootstrap usen todo el espacio disponible */
@@ -57,13 +83,14 @@ body, button, input, select, textarea {
 ====================================================== */
 .dashboard-card {
   background: var(--blanco);
-  border-radius: 28px;
+  border: 1px solid var(--borde-suave);
+  border-radius: 18px;
   padding: 30px;
   height: 100%;
   position: relative;
   overflow: hidden;
   transition: .3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: var(--sombra-suave);
 }
 
 /* LINEA SUPERIOR */
@@ -74,17 +101,13 @@ body, button, input, select, textarea {
   left: 0;
   width: 100%;
   height: 6px;
-  background: linear-gradient(
-    to right,
-    var(--azul),
-    var(--amarillo)
-  );
+  background: linear-gradient(to right, var(--azul), #0e6c92, var(--amarillo));
 }
 
 /* HOVER */
 .dashboard-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 24px 52px rgba(10, 61, 98, 0.12);
 }
 
 /* ======================================================
@@ -93,7 +116,7 @@ body, button, input, select, textarea {
 .card-icon {
   width: 65px;
   height: 65px;
-  border-radius: 20px;
+  border-radius: 14px;
   background: rgba(10,61,98,0.08);
   display: flex;
   align-items: center;
@@ -128,10 +151,40 @@ body, button, input, select, textarea {
 ====================================================== */
 .custom-box {
   background: var(--blanco);
-  border-radius: 28px;
+  border: 1px solid var(--borde-suave);
+  border-radius: 18px;
   padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: var(--sombra-suave);
   height: 100%;
+}
+
+.card {
+  border: 1px solid var(--borde-suave) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--sombra-suave) !important;
+}
+
+.table {
+  --bs-table-bg: transparent;
+}
+
+.table thead th {
+  color: var(--azul) !important;
+  background: #f8fafc !important;
+  font-weight: 800;
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+  border-color: #dbe4ee;
+  border-radius: 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 0.2rem rgba(10, 61, 98, 0.12);
 }
 
 /* TITULOS */

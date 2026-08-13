@@ -4,10 +4,12 @@ $pagina_actual = basename($_SERVER['SCRIPT_NAME']);
 ?>
 
 <div class="sidebar">
-  <link rel="stylesheet" href="/css/includes/sidebar.css?v=10">
+  <link rel="stylesheet" href="/css/includes/sidebar.css?v=11">
 
   <div class="sidebar-logo">
-      AdminPanel
+      <img src="/imagenes/logo.png" alt="La Pesquera">
+      <span>La Pesquera</span>
+      <small>Admin</small>
   </div>
 
   <div class="sidebar-menu">

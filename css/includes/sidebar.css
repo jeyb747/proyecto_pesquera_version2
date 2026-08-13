@@ -1,89 +1,105 @@
-/* ======================================================
-   SIDEBAR PREMIUM RE-DESIGN
-====================================================== */
-
 .sidebar {
   width: 270px;
-  background: linear-gradient(180deg, var(--azul) 0%, #062842 100%); /* Degradado sutil para dar profundidad */
-  padding: 40px 24px;
-  position: fixed;
   height: 100vh;
-  overflow-y: auto;
-  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.08); /* Sombra suave para separar del contenido */
+  position: fixed;
   z-index: 100;
   display: flex;
   flex-direction: column;
+  padding: 30px 22px;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #0A3D62 0%, #07324f 55%, #05263f 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 8px 0 32px rgba(10, 61, 98, 0.18);
 }
 
-/* LOGO */
 .sidebar-logo {
-  color: var(--amarillo);
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  margin-bottom: 50px;
-  padding-left: 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 42px;
+  padding: 12px 10px;
+  color: #ffffff;
 }
 
-/* MENU CONTAINER */
+.sidebar-logo img {
+  width: 54px;
+  height: 42px;
+  object-fit: contain;
+  padding: 3px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+.sidebar-logo span {
+  font-size: 1.05rem;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.sidebar-logo small {
+  width: 100%;
+  padding-left: 66px;
+  color: var(--amarillo);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Espaciado más compacto y moderno */
-  list-style: none;
+  gap: 8px;
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
-/* ENLACES DEL MENÚ */
 .sidebar-menu a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.65); /* Color de texto pasivo más elegante */
-  padding: 14px 18px;
-  border-radius: 14px; /* Bordes ligeramente más finos */
-  font-weight: 600;
-  font-size: 0.95rem;
+  position: relative;
   display: flex;
   align-items: center;
   gap: 14px;
-  position: relative;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida */
+  padding: 14px 18px;
+  color: rgba(255, 255, 255, 0.72);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
-/* ICONOS */
 .sidebar-menu a i {
   font-size: 1.25rem;
   transition: transform 0.25s ease;
 }
 
-/* HOVER EFFECT */
 .sidebar-menu a:hover {
-  background: rgba(255, 255, 255, 0.06);
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateX(3px);
 }
 
 .sidebar-menu a:hover i {
-  transform: scale(1.1); /* Micro-interacción en el icono */
+  transform: scale(1.08);
 }
 
-/* ACTIVE STATE (PÁGINA ACTUAL) */
 .sidebar-menu a.active {
+  color: #0A3D62;
   background: var(--amarillo);
-  color: #0A3D62; /* Contraste perfecto con tu color azul principal */
-  box-shadow: 0 8px 20px rgba(241, 196, 15, 0.25); /* Resplandor sutil amarillo */
+  box-shadow: 0 12px 24px rgba(241, 196, 15, 0.28);
+  transform: none;
 }
 
-/* Indicador dinámico trasero para el elemento activo */
 .sidebar-menu a.active::before {
   content: "";
   position: absolute;
   left: 0;
   top: 25%;
-  height: 50%;
   width: 4px;
+  height: 50%;
   background: #0A3D62;
   border-radius: 0 4px 4px 0;
 }
@@ -92,11 +108,29 @@
   color: #0A3D62;
 }
 
-/* Opcional: Personalización del scroll interno de la barra si hay muchos items */
 .sidebar::-webkit-scrollbar {
   width: 4px;
 }
+
 .sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 10px;
+}
+
+@media(max-width: 992px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 18px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 18px;
+  }
+
+  .sidebar-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

@@ -109,7 +109,7 @@ $ultimas_reservas = mysqli_query(
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="/css/admin.css?v=10">
+    <link rel="stylesheet" href="/css/admin.css?v=12">
 </head>
 <body>
 

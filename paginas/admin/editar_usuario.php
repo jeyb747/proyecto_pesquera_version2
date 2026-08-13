@@ -34,7 +34,7 @@ $roles = mysqli_query($conexion, "SELECT id, nombre_rol FROM roles ORDER BY nomb
     <title>Editar Usuario | Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/admin.css?v=11">
+    <link rel="stylesheet" href="/css/admin.css?v=12">
     <link rel="stylesheet" href="/css/admin/crud-pages.css?v=1">
 </head>
 <body>
