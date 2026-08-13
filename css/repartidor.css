@@ -369,6 +369,7 @@ body::before {
 }
 
 #mapaRuta {
+  display: block;
   width: 100%;
   height: min(68vh, 620px);
   min-height: 420px;

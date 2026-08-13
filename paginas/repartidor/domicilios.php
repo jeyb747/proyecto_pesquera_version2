@@ -39,7 +39,6 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
     <title>Domicilios | Repartidor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="/css/repartidor.css?v=3">
 </head>
 <body>
@@ -177,26 +176,25 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
       </div>
       <div class="modal-body">
         <div id="rutaEstado" class="route-status">Preparando ruta...</div>
-        <div id="mapaRuta"></div>
+        <iframe id="mapaRuta" title="Ruta de entrega" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/avisos.js"></script>
 <script>
 const origenRestaurante = 'Cra. 79 #42B-07, Antonio Narino, Bogota, Colombia';
-let mapaRuta;
-let rutaLayer;
-let marcadorActual;
-let marcadorSalida;
-let marcadoresDestino = [];
-let seguimientoId;
+
+function normalizarDireccion(direccion) {
+  const limpia = String(direccion || '').trim();
+  if (!limpia) return '';
+  return /colombia/i.test(limpia) ? limpia : `${limpia}, Colombia`;
+}
 
 function crearUrlGoogleMaps(destinos) {
-  const pendientes = [...destinos];
+  const pendientes = destinos.map(normalizarDireccion).filter(Boolean);
   const destino = pendientes.pop();
   const url = new URL('https://www.google.com/maps/dir/?api=1');
   url.searchParams.set('origin', origenRestaurante);
@@ -207,96 +205,29 @@ function crearUrlGoogleMaps(destinos) {
   return url.toString();
 }
 
+function crearUrlGoogleEmbed(destinos) {
+  const puntos = destinos.map(normalizarDireccion).filter(Boolean);
+  const destino = puntos.length > 1 ? puntos.join(' to:') : puntos[0];
+  const url = new URL('https://www.google.com/maps');
+  url.searchParams.set('output', 'embed');
+  url.searchParams.set('saddr', origenRestaurante);
+  url.searchParams.set('daddr', destino);
+  return url.toString();
+}
+
 function setRutaEstado(mensaje) {
   document.getElementById('rutaEstado').textContent = mensaje;
 }
 
-async function geocodificar(direccion) {
-  const url = new URL('https://nominatim.openstreetmap.org/search');
-  url.searchParams.set('format', 'json');
-  url.searchParams.set('limit', '1');
-  url.searchParams.set('q', direccion);
-  const respuesta = await fetch(url);
-  const datos = await respuesta.json();
-  if (!datos.length) throw new Error(`No se encontro la direccion: ${direccion}`);
-  return [Number(datos[0].lat), Number(datos[0].lon)];
-}
-
-async function dibujarRuta(destinos) {
-  const puntos = await Promise.all([origenRestaurante, ...destinos].map(geocodificar));
-  const coordenadasOsrm = puntos.map(([lat, lon]) => `${lon},${lat}`).join(';');
-  const respuesta = await fetch(`https://router.project-osrm.org/route/v1/driving/${coordenadasOsrm}?overview=full&geometries=geojson`);
-  const datos = await respuesta.json();
-  if (!datos.routes?.length) throw new Error('No se pudo calcular el trayecto.');
-
-  if (!mapaRuta) {
-    mapaRuta = L.map('mapaRuta');
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap'
-    }).addTo(mapaRuta);
-  }
-
-  if (rutaLayer) rutaLayer.remove();
-  if (marcadorSalida) marcadorSalida.remove();
-  if (marcadorActual) marcadorActual.remove();
-  marcadoresDestino.forEach((marcador) => marcador.remove());
-  marcadoresDestino = [];
-  marcadorActual = null;
-
-  const linea = datos.routes[0].geometry.coordinates.map(([lon, lat]) => [lat, lon]);
-  rutaLayer = L.polyline(linea, { color: '#0A3D62', weight: 6, opacity: 0.9 }).addTo(mapaRuta);
-  marcadorSalida = L.marker(puntos[0]).addTo(mapaRuta).bindPopup('Salida: La Pesquera');
-  puntos.slice(1).forEach((punto, index) => {
-    marcadoresDestino.push(L.marker(punto).addTo(mapaRuta).bindPopup(`Entrega ${index + 1}`));
-  });
-  mapaRuta.fitBounds(rutaLayer.getBounds(), { padding: [28, 28] });
-}
-
-function iniciarSeguimiento() {
-  if (!navigator.geolocation) {
-    setRutaEstado('Ruta lista. Este navegador no permite mostrar tu ubicacion actual.');
-    return;
-  }
-
-  if (seguimientoId) navigator.geolocation.clearWatch(seguimientoId);
-  seguimientoId = navigator.geolocation.watchPosition(
-    ({ coords }) => {
-      const posicion = [coords.latitude, coords.longitude];
-      if (!marcadorActual) {
-        marcadorActual = L.circleMarker(posicion, {
-          radius: 9,
-          color: '#0A3D62',
-          fillColor: '#F1C40F',
-          fillOpacity: 1,
-          weight: 3
-        }).addTo(mapaRuta).bindPopup('Vas aqui');
-      } else {
-        marcadorActual.setLatLng(posicion);
-      }
-      mapaRuta.panTo(posicion, { animate: true });
-      setRutaEstado('Ruta activa. El punto amarillo muestra donde vas.');
-    },
-    () => setRutaEstado('Ruta lista. Activa el permiso de ubicacion para ver donde vas.'),
-    { enableHighAccuracy: true, maximumAge: 10000, timeout: 12000 }
-  );
-}
-
-async function iniciarRuta(destinos) {
+function iniciarRuta(destinos) {
   const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalRuta'));
-  document.getElementById('abrirGoogleMaps').href = crearUrlGoogleMaps(destinos);
-  modal.show();
-  setRutaEstado('Calculando trayecto desde La Pesquera...');
+  const destinosValidos = destinos.map(normalizarDireccion).filter(Boolean);
+  if (!destinosValidos.length) return;
 
-  setTimeout(() => mapaRuta?.invalidateSize(), 250);
-  try {
-    await dibujarRuta(destinos);
-    setTimeout(() => mapaRuta?.invalidateSize(), 250);
-    setRutaEstado('Ruta lista. Buscando tu ubicacion actual...');
-    iniciarSeguimiento();
-  } catch (error) {
-    setRutaEstado(error.message + ' Puedes abrirla en Google Maps.');
-  }
+  document.getElementById('abrirGoogleMaps').href = crearUrlGoogleMaps(destinosValidos);
+  document.getElementById('mapaRuta').src = crearUrlGoogleEmbed(destinosValidos);
+  modal.show();
+  setRutaEstado('Ruta cargada desde La Pesquera. Para ver tu ubicacion moviendose, toca Google Maps e inicia la navegacion.');
 }
 
 document.querySelectorAll('.action-route[data-destination]').forEach((btn) => {
@@ -315,10 +246,7 @@ document.getElementById('abrirRutaConjunta')?.addEventListener('click', (event) 
 });
 
 document.getElementById('modalRuta')?.addEventListener('hidden.bs.modal', () => {
-  if (seguimientoId) {
-    navigator.geolocation.clearWatch(seguimientoId);
-    seguimientoId = null;
-  }
+  document.getElementById('mapaRuta').src = '';
 });
 </script>
 <script>
