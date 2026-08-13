@@ -186,6 +186,7 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
 <script src="../../js/avisos.js"></script>
 <script>
 const origenRestaurante = 'Cra. 79 #42B-07, Antonio Narino, Bogota, Colombia';
+const maxPedidosRuta = 5;
 
 function normalizarDireccion(direccion) {
   const limpia = String(direccion || '').trim();
@@ -223,6 +224,10 @@ function iniciarRuta(destinos) {
   const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalRuta'));
   const destinosValidos = destinos.map(normalizarDireccion).filter(Boolean);
   if (!destinosValidos.length) return;
+  if (destinosValidos.length > maxPedidosRuta) {
+    alert(`Solo puedes seleccionar maximo ${maxPedidosRuta} pedidos por ruta.`);
+    return;
+  }
 
   document.getElementById('abrirGoogleMaps').href = crearUrlGoogleMaps(destinosValidos);
   document.getElementById('mapaRuta').src = crearUrlGoogleEmbed(destinosValidos);
@@ -238,27 +243,26 @@ document.querySelectorAll('.action-route[data-destination]').forEach((btn) => {
   });
 });
 
+document.querySelectorAll('.pedido-ruta').forEach((checkbox) => {
+  checkbox.addEventListener('change', () => {
+    const seleccionados = document.querySelectorAll('.pedido-ruta:checked');
+    if (seleccionados.length > maxPedidosRuta) {
+      checkbox.checked = false;
+      alert(`Solo puedes seleccionar maximo ${maxPedidosRuta} pedidos para llevarlos.`);
+    }
+  });
+});
+
 document.getElementById('abrirRutaConjunta')?.addEventListener('click', (event) => {
   event.stopImmediatePropagation();
   const destinos = [...document.querySelectorAll('.pedido-ruta:checked')].map(x => x.value).filter(Boolean);
   if (!destinos.length) return alert('Selecciona al menos un pedido para crear la ruta.');
+  if (destinos.length > maxPedidosRuta) return alert(`Solo puedes seleccionar maximo ${maxPedidosRuta} pedidos por ruta.`);
   iniciarRuta(destinos);
 });
 
 document.getElementById('modalRuta')?.addEventListener('hidden.bs.modal', () => {
   document.getElementById('mapaRuta').src = '';
-});
-</script>
-<script>
-document.getElementById('abrirRutaConjunta')?.addEventListener('click', () => {
-  const destinos = [...document.querySelectorAll('.pedido-ruta:checked')].map(x => x.value).filter(Boolean);
-  if (!destinos.length) return alert('Selecciona al menos un pedido para crear la ruta.');
-  const origen = 'Cra. 79 #42B-07, Antonio Nariño, Bogotá';
-  const destino = destinos.pop();
-  const url = new URL('https://www.google.com/maps/dir/?api=1');
-  url.searchParams.set('origin', origen); url.searchParams.set('destination', destino);
-  if (destinos.length) url.searchParams.set('waypoints', destinos.join('|'));
-  window.open(url.toString(), '_blank', 'noopener');
 });
 </script>
 </body>
