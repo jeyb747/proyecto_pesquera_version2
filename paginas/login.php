@@ -25,8 +25,7 @@ session_start();
 </head>
 
 <body>
-<?php require_once(__DIR__ . '/../includes/flash.php'); flash_render(); ?>
-<?php if (!empty($_SESSION['flash_auth'])): ?><div class="container pt-3"><div class="alert alert-warning alert-dismissible fade show" role="alert"><?= htmlspecialchars($_SESSION['flash_auth']); unset($_SESSION['flash_auth']); ?><button class="btn-close" data-bs-dismiss="alert"></button></div></div><?php endif; ?>
+<?php require_once(__DIR__ . '/../includes/flash.php'); if (!empty($_SESSION['flash_auth'])) { flash_set('warning', $_SESSION['flash_auth']); unset($_SESSION['flash_auth']); } flash_render(); ?>
 
 <!-- NAVBAR -->
 <?php include(__DIR__ . "/../includes/navbar.php"); ?>
@@ -206,6 +205,7 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- JS -->
+<script src="../js/avisos.js"></script>
 <script src="../js/login.js"></script>
 
 </body>

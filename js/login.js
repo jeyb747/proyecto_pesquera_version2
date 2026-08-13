@@ -22,12 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function mostrarError(msg) {
-    msgError.textContent = msg;
-    msgError.style.display = "block";
-
-    setTimeout(() => {
-      msgError.style.display = "none";
-    }, 3000);
+    window.mostrarAviso(msg, "Revisa la información");
   }
 
 });

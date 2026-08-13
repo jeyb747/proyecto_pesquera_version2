@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../css/historial.css" />
 
   <!-- JS -->
+  <script src="../js/avisos.js"></script>
   <script defer src="../js/script.js"></script>
   <script defer src="../js/historial.js"></script>
 </head>

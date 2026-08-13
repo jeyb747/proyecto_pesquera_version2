@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../modelo/conexion.php';
+require_once __DIR__ . '/../../includes/flash.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -19,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = $consulta->get_result();
 
     if ($resultado->num_rows > 0) {
-        header("Location: /paginas/registro.php?error=correo");
+        flash_set('warning', 'Este correo ya está registrado.');
+        header("Location: /paginas/registro.php");
         exit();
     }
 
@@ -29,10 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insert->bind_param("sissss", $nombre, $tipo_documento, $numero_documento, $correo, $telefono, $password);
 
     if ($insert->execute()) {
-        header("Location: /paginas/login.php?exito=1");
+        flash_set('success', 'Cuenta creada correctamente. Ya puedes iniciar sesión.');
+        header("Location: /paginas/login.php");
         exit();
     } else {
-        header("Location: /index.php");
+        flash_set('danger', 'No fue posible crear la cuenta. Inténtalo nuevamente.');
+        header("Location: /paginas/registro.php");
         exit();
     }
 }

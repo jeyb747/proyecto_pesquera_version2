@@ -46,12 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.open(url, "_blank");
 
-    mensajeExito.style.display = "block";
+    window.mostrarAviso("Tu mensaje está listo para enviarse por WhatsApp.", "Mensaje preparado");
     form.reset();
-
-    setTimeout(() => {
-      mensajeExito.style.display = "none";
-    }, 3000);
   });
 
 });

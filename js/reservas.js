@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(error.message); return;
     }
 
-    document.getElementById("mensajeExito").classList.remove("d-none");
+    window.mostrarAviso("Tu reserva fue creada correctamente.", "Reserva realizada");
 
     const texto = `Reserva La Pesquera
 Personas: ${personas}

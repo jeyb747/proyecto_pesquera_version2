@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contacto | La Pesquera</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link rel="stylesheet" href="../css/inicio.css"><link rel="stylesheet" href="../css/contacto.css"></head>
+<script src="../js/avisos.js"></script>
 <body class="pesquera-textured-theme"><?php include(__DIR__ . '/../includes/navbar.php'); ?>
 <main class="container py-5"><div class="row justify-content-center"><div class="col-lg-8 col-xl-7"><section class="contact-card"><header class="text-center mb-4"><span class="contact-icon"><i class="bi bi-chat-heart"></i></span><h1>Contáctanos</h1><p>Estamos para ayudarte. Escríbenos y te responderemos por WhatsApp.</p><div class="linea-decorativa mx-auto"></div></header>
 <div class="contact-info row g-3 mb-4"><div class="col-sm-6"><div><i class="bi bi-geo-alt"></i><strong>Ubicación</strong><span>Cra. 79 #42B-07, Bogotá</span></div></div><div class="col-sm-6"><div><i class="bi bi-whatsapp"></i><strong>Respuesta rápida</strong><span>Atención por WhatsApp</span></div></div></div>

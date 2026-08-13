@@ -159,6 +159,7 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/avisos.js"></script>
 <script>
 document.getElementById('abrirRutaConjunta')?.addEventListener('click', () => {
   const destinos = [...document.querySelectorAll('.pedido-ruta:checked')].map(x => x.value).filter(Boolean);

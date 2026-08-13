@@ -1,3 +1,4 @@
+<?php session_start(); require_once(__DIR__ . '/../includes/flash.php'); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,11 +15,13 @@
 
   <link rel="stylesheet" href="../css/inicio.css">
   <link rel="stylesheet" href="../css/registro.css?v=20260812-1">
+  <link rel="stylesheet" href="../css/alerts.css">
 
 </head>
 
 <body>
 
+<?php flash_render(); ?>
 <?php include(__DIR__ . "/../includes/navbar.php"); ?>
 
 <main class="container-fluid registro-container">
