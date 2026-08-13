@@ -811,6 +811,15 @@
 
 </div>
 
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="avisoCarrito" class="toast align-items-center text-bg-success border-0" role="status" aria-live="polite" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+    </div>
+  </div>
+</div>
+
 <!-- ========================= -->
 <!-- FOOTER -->
 <!-- ========================= -->
@@ -830,7 +839,7 @@
 <!-- ✅ Scripts -->
 <script defer src="../js/script.js"></script>
 <script>window.usuarioAutenticado = <?= $usuario_autenticado ? 'true' : 'false' ?>;</script>
-<script defer src="../js/menu-interactivo.js?v=20260812"></script>
+<script defer src="../js/menu-interactivo.js?v=20260813"></script>
 <!-- ✅ Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
