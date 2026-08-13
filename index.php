@@ -52,10 +52,10 @@
             Un lugar donde el mar y la buena mesa se encuentran.
           </p>
 
-          <a href="paginas/reservas.php" class="btn btn-warning btn-lg px-5">
+          <a href="paginas/reservas.php" class="btn btn-warning btn-lg hero-action-button">
             Reserva
           </a>
-          <a href="paginas/menu.php" class="btn btn-warning btn-lg px-5 ms-2">
+          <a href="paginas/menu.php" class="btn btn-warning btn-lg hero-action-button">
             Menú
           </a>
 

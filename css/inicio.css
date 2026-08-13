@@ -182,9 +182,25 @@ h2,
   color: black;
 }
 
+/* ===== ACCIONES DE PORTADA ===== */
+.hero-action-button {
+  width: 178px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-action-button + .hero-action-button {
+  margin-left: 12px;
+}
+
 /* ===== ABOUT ===== */
 .about {
   padding: 70px 0;
+  background-color: #fdfefe;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.07'/></svg>");
+  background-size: 60px 30px;
 }
 
 .about h2 {
@@ -306,6 +322,14 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+
+  .hero-action-button {
+    width: min(100%, 260px);
+  }
+
+  .hero-action-button + .hero-action-button {
+    margin: 12px 0 0;
+  }
 
   .menu-toggle {
     display: block;
