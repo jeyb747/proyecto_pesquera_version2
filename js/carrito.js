@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnVaciar = document.getElementById('vaciarCarrito');
   const contadorGlobal = document.getElementById('contador-carrito');
   const MAX_PRODUCTOS_POR_CATEGORIA = 5;
-  const URL_CONTACTO = '/paginas/contacto.php';
 
   if (!contenedor) {
     console.error('No se encontró #carrito-container');
@@ -109,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function avisarPedidoGrande() {
     alert('Solo puedes agregar maximo 5 productos por categoria. Si necesitas un pedido mas grande, contactate con nosotros en la seccion Contacto.');
-    window.location.href = URL_CONTACTO;
   }
 
   /* ================================

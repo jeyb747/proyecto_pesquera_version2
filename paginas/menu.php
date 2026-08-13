@@ -843,7 +843,7 @@
 <!-- ✅ Scripts -->
 <script defer src="../js/script.js"></script>
 <script>window.usuarioAutenticado = <?= $usuario_autenticado ? 'true' : 'false' ?>;</script>
-<script defer src="../js/menu-interactivo.js?v=20260814-3"></script>
+<script defer src="../js/menu-interactivo.js?v=20260814-4"></script>
 <!-- ✅ Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 

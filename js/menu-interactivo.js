@@ -14,7 +14,6 @@ const fmtCOP = new Intl.NumberFormat('es-CO', {
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 const MAX_PRODUCTOS_POR_CATEGORIA = 5;
-const URL_CONTACTO = '/paginas/contacto.php';
 let categoriaProductoModal = '';
 
 function requiereInicioSesion() {
@@ -58,10 +57,7 @@ function puedeAgregarCategoria(categoria) {
 function avisarPedidoGrande() {
   mostrarAviso(
     'Solo puedes agregar maximo 5 productos por categoria. Si necesitas un pedido mas grande, contactate con nosotros en la seccion Contacto.',
-    'Pedido grande',
-    () => {
-      window.location.href = URL_CONTACTO;
-    }
+    'Pedido grande'
   );
 }
 

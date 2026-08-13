@@ -136,7 +136,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/avisos.js"></script>
 <script defer src="../js/script.js"></script>
-<script defer src="../js/carrito.js?v=20260814-3"></script>
+<script defer src="../js/carrito.js?v=20260814-4"></script>
 
 </body>
 </html>
