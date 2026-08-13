@@ -188,6 +188,14 @@ body::before {
     border-radius: 999px;
 }
 
+/* Evita que los estados de los domicilios se estiren con el contenido del pedido. */
+.pedido-card .estado {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+}
+
 .estado-pendiente {
     color: #ffffff;
     background: #0A3D62;
