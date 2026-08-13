@@ -17,8 +17,9 @@ let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 function requiereInicioSesion() {
   if (window.usuarioAutenticado) return false;
 
-  alert('Debes iniciar sesión para agregar productos al carrito.');
-  window.location.href = 'login.php?next=menu';
+  mostrarAviso('Debes iniciar sesión para agregar productos al carrito.', 'Inicia sesión para continuar', () => {
+    window.location.href = 'login.php?next=menu';
+  });
   return true;
 }
 
@@ -82,13 +83,18 @@ const modalTitulo = document.getElementById('modalTitulo');
 const modalDescripcion = document.getElementById('modalDescripcion');
 const modalPrecio = document.getElementById('modalPrecio');
 const btnCarrito = document.getElementById('btnCarrito');
-const avisoCarrito = document.getElementById('avisoCarrito');
+const modalAvisoElement = document.getElementById('modalAviso');
+const modalAviso = new bootstrap.Modal(modalAvisoElement);
+const avisoTitulo = document.getElementById('avisoTitulo');
+const avisoMensaje = document.getElementById('avisoMensaje');
 
-function mostrarAvisoCarrito(nombre) {
-  if (!avisoCarrito) return;
+function mostrarAviso(mensaje, titulo = 'Aviso', alCerrar) {
+  if (!modalAvisoElement) return;
 
-  avisoCarrito.querySelector('.toast-body').textContent = `${nombre} fue agregado al carrito.`;
-  bootstrap.Toast.getOrCreateInstance(avisoCarrito).show();
+  avisoTitulo.textContent = titulo;
+  avisoMensaje.textContent = mensaje;
+  if (alCerrar) modalAvisoElement.addEventListener('hidden.bs.modal', alCerrar, { once: true });
+  modalAviso.show();
 }
 
 // ============================================================
@@ -137,15 +143,7 @@ document.querySelectorAll('.btn-add').forEach(btn => {
     carrito.push(producto);
     localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarContador();
-    mostrarAvisoCarrito(producto.nombre);
-
-    btn.textContent = 'Agregado';
-    btn.disabled = true;
-
-    setTimeout(() => {
-      btn.textContent = '+';
-      btn.disabled = false;
-    }, 700);
+    mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
   });
 });
 
@@ -167,16 +165,9 @@ btnCarrito.addEventListener('click', () => {
   localStorage.setItem('carrito', JSON.stringify(carrito));
 
   actualizarContador();
-  mostrarAvisoCarrito(producto.nombre);
-
-  btnCarrito.textContent = 'Agregado';
-
-  setTimeout(() => {
-
-    btnCarrito.innerHTML = 'Agregar al carrito';
-
-    modalBootstrap.hide();
-
-  }, 800);
+  modalElement.addEventListener('hidden.bs.modal', () => {
+    mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
+  }, { once: true });
+  modalBootstrap.hide();
 
 });

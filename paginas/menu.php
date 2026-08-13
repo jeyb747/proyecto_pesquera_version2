@@ -811,11 +811,15 @@
 
 </div>
 
-<div class="toast-container position-fixed top-0 end-0 p-3">
-  <div id="avisoCarrito" class="toast align-items-center text-bg-success border-0" role="status" aria-live="polite" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body"></div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+<div class="modal fade" id="modalAviso" tabindex="-1" aria-labelledby="avisoTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-aviso-dialog">
+    <div class="modal-content aviso-content border-0">
+      <div class="modal-body text-center p-4 p-md-5">
+        <div class="aviso-icono" aria-hidden="true">i</div>
+        <h2 id="avisoTitulo" class="aviso-titulo">Aviso</h2>
+        <p id="avisoMensaje" class="aviso-mensaje mb-4"></p>
+        <button type="button" class="btn btn-warning aviso-boton px-5" data-bs-dismiss="modal">Entendido</button>
+      </div>
     </div>
   </div>
 </div>
@@ -839,7 +843,7 @@
 <!-- ✅ Scripts -->
 <script defer src="../js/script.js"></script>
 <script>window.usuarioAutenticado = <?= $usuario_autenticado ? 'true' : 'false' ?>;</script>
-<script defer src="../js/menu-interactivo.js?v=20260813"></script>
+<script defer src="../js/menu-interactivo.js?v=20260814"></script>
 <!-- ✅ Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 

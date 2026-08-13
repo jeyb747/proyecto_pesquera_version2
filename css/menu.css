@@ -41,11 +41,13 @@ body::before {
 
 /* ===== CATEGORIAS ===== */
 .categoria-titulo {
-  color: #0A3D62;
-  border-left: 6px solid #F1C40F;
-  padding-left: 12px;
+  color: #ffffff;
+  background: #0A3D62;
+  border-left: 7px solid #F1C40F;
+  padding: 14px 18px;
   font-weight: bold;
   margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(10, 61, 98, 0.2);
 }
 
 /* ===== CARD ===== */
@@ -179,6 +181,46 @@ body::before {
 /* ===== PRECIO MODAL ===== */
 #modalPrecio {
   color: #F1C40F !important;
+}
+
+/* ===== AVISOS CENTRADOS ===== */
+.modal-aviso-dialog {
+  max-width: 560px;
+}
+
+.aviso-content {
+  border-radius: 28px;
+  background: #f8f9fc;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.28);
+}
+
+.aviso-icono {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 24px;
+  display: grid;
+  place-items: center;
+  border: 6px solid #F1C40F;
+  border-radius: 50%;
+  color: #F1C40F;
+  font: 700 52px/1 Arial, sans-serif;
+}
+
+.aviso-titulo {
+  color: #0A3D62;
+  font: 700 clamp(1.7rem, 4vw, 2.35rem)/1.2 'Cinzel', serif;
+  margin-bottom: 16px;
+}
+
+.aviso-mensaje {
+  color: #2C3E50;
+  font-size: 1.15rem;
+}
+
+.aviso-boton {
+  min-width: 190px;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 /* ===== FOOTER ===== */

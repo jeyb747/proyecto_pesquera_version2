@@ -5,8 +5,11 @@ function flash_render() {
     if (empty($_SESSION['flash'])) return;
     $flash = $_SESSION['flash']; unset($_SESSION['flash']);
     $type = in_array($flash['type'], ['success','danger','warning','info']) ? $flash['type'] : 'info';
-    echo '<div id="app-alert" class="app-alert app-alert-' . $type . '" role="alert">'
-       . '<span>' . htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8') . '</span>'
-       . '<button type="button" aria-label="Cerrar" onclick="this.parentElement.remove()">&times;</button></div>';
+    echo '<div class="app-alert-backdrop" role="presentation">'
+       . '<div id="app-alert" class="app-alert app-alert-' . $type . '" role="alert">'
+       . '<div class="app-alert-icon" aria-hidden="true">i</div>'
+       . '<p>' . htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8') . '</p>'
+       . '<button type="button" onclick="this.closest(\'.app-alert-backdrop\').remove()">Entendido</button>'
+       . '</div></div>';
 }
 ?>
