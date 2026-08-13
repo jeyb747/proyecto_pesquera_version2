@@ -182,6 +182,16 @@ h2,
   color: black;
 }
 
+.navbar .btn {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
 /* ===== ACCIONES DE PORTADA ===== */
 .hero-action-button {
   width: 178px;
@@ -355,6 +365,16 @@ footer {
 
   .nav-links.show {
     display: flex;
+  }
+
+  .navbar-nav {
+    gap: 10px;
+    align-items: flex-start !important;
+  }
+
+  .navbar .nav-item .btn {
+    min-width: 96px;
+    margin: 5px 0;
   }
 
   .hero-content h1,

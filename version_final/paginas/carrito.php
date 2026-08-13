@@ -106,11 +106,11 @@
         <div class="col-md-4">
 
           <button
-            class="btn btn-success w-100 py-3 fw-bold"
+            class="btn btn-warning w-100 py-3 fw-bold"
             id="btnPagar">
 
             <i class="bi bi-credit-card"></i>
-            Pagar
+            Pagar pedido
 
           </button>
 

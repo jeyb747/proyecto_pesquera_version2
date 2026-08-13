@@ -71,7 +71,7 @@
                   </a>
                 </div>
                 <div class="col-md-4 order-1 order-md-3">
-                  <button class="btn btn-outline-primary-formal w-100 py-2.5 text-uppercase fw-bold" id="btnPagar">
+                  <button class="btn btn-outline-secondary-formal w-100 py-2.5 text-uppercase fw-bold" id="btnPagar">
                     <i class="bi bi-credit-card me-2"></i>Pagar pedido
                   </button>
                 </div>
