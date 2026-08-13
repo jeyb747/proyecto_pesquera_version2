@@ -225,6 +225,7 @@ body::before {
 
 .action-group {
   display: inline-flex;
+  width: 146px;
   gap: 10px;
   justify-content: flex-end;
   flex-wrap: wrap;
@@ -267,7 +268,7 @@ body::before {
 }
 
 .delivery-action-btn {
-  min-width: 86px;
+  width: 146px;
   min-height: 38px;
   padding: 10px 14px !important;
   font-size: 0.88rem !important;
@@ -398,7 +399,7 @@ body::before {
   }
 
   .delivery-action-btn {
-    min-width: 96px;
+    width: 146px;
   }
 
   .route-modal .modal-header,
