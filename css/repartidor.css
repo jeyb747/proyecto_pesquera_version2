@@ -20,17 +20,46 @@ body {
   background: var(--delivery-bg);
   color: var(--delivery-text);
   font-family: 'Cinzel', serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.045'/></svg>");
+  background-size: 60px 30px;
 }
 
 .delivery-topbar {
-  background: linear-gradient(135deg, var(--delivery-blue), #062842);
+  background:
+    linear-gradient(135deg, rgba(10, 61, 98, 0.98), rgba(6, 40, 66, 0.98));
   color: #fff;
-  padding: 24px clamp(18px, 4vw, 46px);
+  padding: 26px clamp(18px, 4vw, 46px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   box-shadow: 0 18px 40px rgba(10, 61, 98, 0.22);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.delivery-topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='36' viewBox='0 0 80 36'><path d='M0 18 Q 20 2, 40 18 T 80 18' fill='none' stroke='%23FDFEFE' stroke-width='1.5' stroke-opacity='0.55'/></svg>");
+  background-size: 80px 36px;
+}
+
+.delivery-topbar > * {
+  position: relative;
+  z-index: 1;
 }
 
 .delivery-topbar h1 {
@@ -40,6 +69,19 @@ body {
   margin: 4px 0 0;
   font-size: clamp(1.55rem, 3vw, 2.25rem);
   font-weight: 850;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.delivery-topbar h1 i {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
 }
 
 .eyebrow {
@@ -53,6 +95,8 @@ body {
 .delivery-shell {
   width: min(1240px, calc(100% - 32px));
   margin: 28px auto;
+  position: relative;
+  z-index: 1;
 }
 
 .delivery-summary,
@@ -200,12 +244,77 @@ body {
 .btn {
   border-radius: 14px !important;
   font-weight: 850 !important;
+  letter-spacing: 0.01em;
 }
 
 .btn-warning {
   background: var(--delivery-yellow) !important;
   border-color: var(--delivery-yellow) !important;
   color: #111827 !important;
+}
+
+.delivery-back-btn,
+.route-bulk-btn,
+.delivery-action-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 999px !important;
+  line-height: 1;
+  box-shadow: 0 10px 22px rgba(10, 61, 98, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.delivery-back-btn {
+  min-width: 108px;
+  padding: 11px 18px !important;
+}
+
+.route-bulk-btn {
+  min-height: 42px;
+  padding: 11px 18px !important;
+}
+
+.delivery-action-btn {
+  min-width: 86px;
+  min-height: 38px;
+  padding: 10px 14px !important;
+  font-size: 0.88rem !important;
+  text-decoration: none;
+}
+
+.action-view {
+  color: var(--delivery-blue) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(10, 61, 98, 0.18) !important;
+}
+
+.action-view:hover {
+  color: #ffffff !important;
+  background: var(--delivery-blue) !important;
+  border-color: var(--delivery-blue) !important;
+}
+
+.action-route {
+  color: #162033 !important;
+  background: var(--delivery-yellow) !important;
+  border: 1px solid var(--delivery-yellow) !important;
+}
+
+.action-route:hover,
+.delivery-back-btn:hover,
+.route-bulk-btn:hover {
+  background: #d9ad08 !important;
+  border-color: #d9ad08 !important;
+}
+
+.delivery-back-btn:hover,
+.route-bulk-btn:hover,
+.delivery-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(10, 61, 98, 0.18);
 }
 
 .empty-state {
@@ -228,7 +337,19 @@ body {
     flex-direction: column;
   }
 
-  .delivery-topbar .btn {
+  .delivery-topbar .btn,
+  .route-tools,
+  .route-tools form,
+  .route-bulk-btn {
     width: 100%;
+  }
+
+  .action-group {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .delivery-action-btn {
+    min-width: 96px;
   }
 }

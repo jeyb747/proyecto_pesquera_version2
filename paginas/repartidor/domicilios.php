@@ -39,7 +39,7 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
     <title>Domicilios | Repartidor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/repartidor.css?v=1">
+    <link rel="stylesheet" href="/css/repartidor.css?v=2">
 </head>
 <body>
 <header class="delivery-topbar">
@@ -48,7 +48,7 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
         <h1><i class="bi bi-truck"></i> Domicilios</h1>
     </div>
 
-    <a href="<?= $_SESSION['rol'] == 'admin' ? '/paginas/admin/dashboard.php' : '/index.php' ?>" class="btn btn-warning">
+    <a href="<?= $_SESSION['rol'] == 'admin' ? '/paginas/admin/dashboard.php' : '/index.php' ?>" class="btn btn-warning delivery-back-btn">
         <i class="bi bi-arrow-left"></i> Volver
     </a>
 </header>
@@ -64,9 +64,9 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
 
     <div class="d-flex justify-content-between align-items-center mb-3 gap-3 flex-wrap">
         <small class="text-muted"><i class="bi bi-geo-alt-fill"></i> Salida: Cra. 79 #42B-07, Antonio Nariño, Bogotá</small>
-        <div class="d-flex gap-2">
-          <?php if ($_SESSION['rol'] === 'admin'): ?><form method="post" action="/php/controlador/domicilios/asignar_equitativo.php"><button class="btn btn-primary"><i class="bi bi-diagram-3"></i> Distribuir pedidos</button></form><?php endif; ?>
-          <button type="button" id="abrirRutaConjunta" class="btn btn-warning"><i class="bi bi-sign-turn-right"></i> Abrir ruta con seleccionados</button>
+        <div class="d-flex gap-2 route-tools">
+          <?php if ($_SESSION['rol'] === 'admin'): ?><form method="post" action="/php/controlador/domicilios/asignar_equitativo.php"><button class="btn btn-primary route-bulk-btn"><i class="bi bi-diagram-3"></i> Distribuir pedidos</button></form><?php endif; ?>
+          <button type="button" id="abrirRutaConjunta" class="btn btn-warning route-bulk-btn"><i class="bi bi-sign-turn-right"></i> Abrir ruta con seleccionados</button>
         </div>
     </div>
 
@@ -132,12 +132,12 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
                             </td>
                             <td class="text-end">
                                 <div class="action-group">
-                                    <a href="/paginas/repartidor/ver_domicilio.php?id=<?= htmlspecialchars($row['id']) ?>" class="btn btn-outline-primary">
+                                    <a href="/paginas/repartidor/ver_domicilio.php?id=<?= htmlspecialchars($row['id']) ?>" class="btn delivery-action-btn action-view">
                                         <i class="bi bi-eye"></i> Ver
                                     </a>
                                     <a href="https://www.google.com/maps/dir/?api=1&origin=<?= urlencode('Cra. 79 #42B-07, Antonio Nariño, Bogotá') ?>&destination=<?= urlencode($row['direccion'] ?? '') ?>"
                                        target="_blank"
-                                       class="btn btn-warning">
+                                       class="btn delivery-action-btn action-route">
                                         <i class="bi bi-geo-alt-fill"></i> Ruta
                                     </a>
                                 </div>
