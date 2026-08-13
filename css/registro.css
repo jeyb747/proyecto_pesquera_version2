@@ -12,11 +12,11 @@ body {
   margin: 0;
   font-family: 'Cinzel', sans-serif;
 
-  background: linear-gradient(
-    to bottom,
-    #0b3c5d 0%,
-    #f4f6f8 40%
-  );
+  background-color: #f4f6f8;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.04'/></svg>"),
+    linear-gradient(to bottom, #f4f6f8, #e9eef2);
+  background-size: 60px 30px, 100% 100%;
 
   min-height: 100vh;
 
@@ -28,7 +28,7 @@ body {
 
 /* PEZ */
 body::before {
-  content: "";
+  display: none;
 
   position: absolute;
 
@@ -48,7 +48,7 @@ body::before {
 
 /* FARO */
 body::after {
-  content: "";
+  display: none;
 
   position: absolute;
 
@@ -81,6 +81,7 @@ body::after {
   background: rgba(255,255,255,0.96);
 
   backdrop-filter: blur(10px);
+  overflow: hidden;
 
   transition: 0.3s ease;
 }
@@ -91,9 +92,21 @@ body::after {
 }
 
 /* ===== LOGO ===== */
+.registro-brand {
+  min-height: 142px;
+  margin: -3rem -3rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0A3D62;
+}
+
 .logo-img {
   width: 130px;
   object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.2));
 }
 
 /* ===== TITULOS ===== */
@@ -115,22 +128,20 @@ body::after {
 /* ===== INPUT GROUP ===== */
 .input-group {
   border-radius: 14px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ICONOS */
 .input-group-text {
-  background: #f1f3f5;
-  border: 1px solid #dee2e6;
-  border-right: none;
+  display: none;
 }
 
 /* INPUTS */
-.form-control {
-  border-radius: 0;
+.registro-form .form-control,
+.registro-form .form-select {
+  border-radius: 14px;
   padding: 14px;
-
-  border-left: none;
+  border: 1px solid #ced4da;
 }
 
 /* FOCUS */
@@ -141,9 +152,62 @@ body::after {
     0 0 0 0.2rem rgba(241,196,15,0.25);
 }
 
-/* BOTON OJO */
-.input-group .btn {
-  border-radius: 0;
+/* BOTÓN OJO */
+.password-toggle {
+  width: 54px;
+  min-width: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ced4da;
+  border-left: 0;
+  border-radius: 0 14px 14px 0;
+  background: #fff;
+  color: #17212b;
+  font-size: 0;
+}
+
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  background: #f4f6f8;
+  color: #0A3D62;
+}
+
+.password-toggle:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(241,196,15,0.25);
+}
+
+.password-toggle .password-icon {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.password-icon--visible,
+.password-toggle.is-visible .password-icon--hidden {
+  display: none;
+}
+
+.password-toggle.is-visible .password-icon--visible {
+  display: block;
+}
+
+.registro-form .input-group:has(.password-toggle) .form-control {
+  border-radius: 14px 0 0 14px;
+}
+
+.registro-form > .btn-warning {
+  font-size: 0;
+}
+
+.registro-form > .btn-warning::after {
+  content: "Crear cuenta";
+  font-size: 1rem;
 }
 
 /* ===== BOTON PRINCIPAL ===== */
@@ -213,6 +277,11 @@ footer {
 
   .logo-img {
     width: 100px;
+  }
+
+  .registro-brand {
+    min-height: 118px;
+    margin: -25px -25px 1.75rem;
   }
 
 }
