@@ -1,5 +1,5 @@
 // ============================================================
-// 💰 FORMATO COP
+// FORMATO COP
 // ============================================================
 
 const fmtCOP = new Intl.NumberFormat('es-CO', {
@@ -9,13 +9,15 @@ const fmtCOP = new Intl.NumberFormat('es-CO', {
 });
 
 // ============================================================
-// 🛒 CARRITO
+// CARRITO
 // ============================================================
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 function requiereInicioSesion() {
   if (window.usuarioAutenticado) return false;
-  alert('Debes iniciar sesión para reservar o pedir a domicilio.');
+
+  alert('Debes iniciar sesión para agregar productos al carrito.');
   window.location.href = 'login.php?next=menu';
   return true;
 }
@@ -37,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const empty = document.getElementById('sinResultados');
   if (!input) return;
   input.addEventListener('input', () => {
-    const query = input.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    const query = normalizar(input.value);
     let visible = 0;
     document.querySelectorAll('.producto').forEach(card => {
-      const text = (card.innerText + ' ' + (card.dataset.plato || '') + ' ' + (card.dataset.desc || '')).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-      const show = !query || text.includes(query);
+      const nombre = normalizar(card.dataset.plato || '');
+      const show = !query || nombre.startsWith(query);
       const wrapper = card.parentElement;
       if (wrapper) wrapper.style.display = show ? '' : 'none';
       if (show) visible++;
@@ -50,8 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function normalizar(texto) {
+  return String(texto)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
 // ============================================================
-// 📦 MODAL BOOTSTRAP
+// MODAL BOOTSTRAP
 // ============================================================
 
 const modalElement = document.getElementById('modalProducto');
@@ -65,7 +75,7 @@ const modalPrecio = document.getElementById('modalPrecio');
 const btnCarrito = document.getElementById('btnCarrito');
 
 // ============================================================
-// 📂 ABRIR MODAL
+// ABRIR MODAL
 // ============================================================
 
 document.querySelectorAll('.producto').forEach(card => {
@@ -86,10 +96,6 @@ document.querySelectorAll('.producto').forEach(card => {
 
   });
 
-});
-
-document.querySelectorAll('.btn-add').forEach(btn => {
-  btn.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); }, true);
 });
 
 // ============================================================
@@ -120,16 +126,18 @@ document.addEventListener('click', (e) => {
 
   actualizarContador();
 
-  btn.innerHTML = '✓';
+  btn.textContent = 'Agregado';
+  btn.disabled = true;
 
   setTimeout(() => {
-    btn.innerHTML = '+';
+    btn.textContent = '+';
+    btn.disabled = false;
   }, 700);
 
 });
 
 // ============================================================
-// 🛒 AGREGAR DESDE MODAL
+// AGREGAR DESDE MODAL
 // ============================================================
 
 btnCarrito.addEventListener('click', () => {
@@ -147,7 +155,7 @@ btnCarrito.addEventListener('click', () => {
 
   actualizarContador();
 
-  btnCarrito.innerHTML = '✅ Agregado';
+  btnCarrito.textContent = 'Agregado';
 
   setTimeout(() => {
 

@@ -111,7 +111,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <span class="nav-link text-warning fw-bold">
 
-              👋 <?php echo $_SESSION['usuario']; ?>
+              <?php echo $_SESSION['usuario']; ?>
 
             </span>
 
@@ -139,7 +139,7 @@ if (session_status() === PHP_SESSION_NONE) {
               class="btn btn-warning rounded-pill px-3 fw-bold"
               href="/paginas/login.php">
 
-              👤 Login
+              Login
 
             </a>
 
@@ -154,7 +154,7 @@ if (session_status() === PHP_SESSION_NONE) {
             href="/paginas/carrito.php"
             class="btn btn-warning rounded-pill position-relative px-3 fw-bold">
 
-            🛒 Carrito
+            Carrito
 
             <span
               id="contador-carrito"

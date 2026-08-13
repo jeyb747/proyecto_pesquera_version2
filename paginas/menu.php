@@ -37,9 +37,9 @@
   <section class="mb-4" aria-label="Buscar platos">
     <div class="input-group shadow-sm">
       <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-      <input id="buscarPlato" class="form-control" type="search" placeholder="Busca un plato, ingrediente o categoría" autocomplete="off">
+      <input id="buscarPlato" class="form-control" type="search" placeholder="Escribe el inicio del nombre del plato" autocomplete="off">
     </div>
-    <p id="sinResultados" class="text-muted mt-3 d-none">No encontramos platos con esa búsqueda.</p>
+    <p id="sinResultados" class="text-muted mt-3 d-none">No encontramos platos que comiencen con esa búsqueda.</p>
   </section>
 
   <!-- TITULO -->
@@ -56,12 +56,12 @@
   </section>
 
   <!-- ================================================= -->
-  <!-- 🐟 PESCADOS Y CARNES -->
+  <!-- PESCADOS Y CARNES -->
   <!-- ================================================= -->
   <section class="mb-5">
 
     <h2 class="categoria-titulo mb-4">
-      🐟 Pescados y Carnes
+      Pescados y Carnes
     </h2>
 
     <div class="row g-4">
@@ -373,12 +373,12 @@
   </section>
 
   <!-- ================================================= -->
-  <!-- 🍲 SOPAS -->
+  <!-- SOPAS -->
   <!-- ================================================= -->
   <section class="mb-5">
 
     <h2 class="categoria-titulo mb-4">
-      🍲 Sopas
+      Sopas
     </h2>
 
     <div class="row g-4">
@@ -484,12 +484,12 @@
   </section>
 
   <!-- ================================================= -->
-  <!-- 🍚 PORCIONES -->
+  <!-- PORCIONES -->
   <!-- ================================================= -->
   <section class="mb-5">
 
     <h2 class="categoria-titulo mb-4">
-      🍚 Porciones
+      Porciones
     </h2>
 
     <div class="row g-4">
@@ -619,12 +619,12 @@
   </section>
 
   <!-- ================================================= -->
-  <!-- 🍹 BEBIDAS -->
+  <!-- BEBIDAS -->
   <!-- ================================================= -->
   <section class="mb-5">
 
     <h2 class="categoria-titulo mb-4">
-      🍹 Bebidas
+      Bebidas
     </h2>
 
     <div class="row g-4">
@@ -830,7 +830,7 @@
 <!-- ✅ Scripts -->
 <script defer src="../js/script.js"></script>
 <script>window.usuarioAutenticado = <?= $usuario_autenticado ? 'true' : 'false' ?>;</script>
-<script defer src="../js/menu-interactivo.js?v=20260805"></script>
+<script defer src="../js/menu-interactivo.js?v=20260812"></script>
 <!-- ✅ Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
