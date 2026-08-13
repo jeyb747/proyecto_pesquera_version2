@@ -34,6 +34,8 @@
 .login-left h1 {
   font-size: 3rem;
   margin-bottom: 15px;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
 }
 
 .login-left p {
@@ -90,6 +92,16 @@
 /* ===== TITULOS ===== */
 .login-box h2 {
   color: #0A3D62;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+}
+
+.login-box,
+.login-box input,
+.login-box button,
+.login-box p,
+.login-box label {
+  font-family: 'Cinzel', serif;
 }
 
 .login-box p {

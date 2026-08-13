@@ -19,7 +19,7 @@ session_start();
 
   <!-- CSS -->
   <link rel="stylesheet" href="../css/inicio.css">
-  <link rel="stylesheet" href="../css/login.css?v=20260812-3">
+  <link rel="stylesheet" href="../css/login.css?v=20260812-4">
   <link rel="stylesheet" href="../css/alerts.css">
 
 </head>
