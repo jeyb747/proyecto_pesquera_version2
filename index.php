@@ -70,7 +70,7 @@
 </section>
 
 <!-- ===== SOBRE NOSOTROS ===== -->
-<section class="about py-5">
+<section id="nosotros" class="about py-5">
 
   <div class="container">
 

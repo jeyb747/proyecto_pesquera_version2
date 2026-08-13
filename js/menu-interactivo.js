@@ -13,6 +13,9 @@ const fmtCOP = new Intl.NumberFormat('es-CO', {
 // ============================================================
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+const MAX_PRODUCTOS_POR_CATEGORIA = 5;
+const URL_NOSOTROS = '/index.php#nosotros';
+let categoriaProductoModal = '';
 
 function requiereInicioSesion() {
   if (window.usuarioAutenticado) return false;
@@ -34,6 +37,45 @@ function actualizarContador() {
 }
 
 actualizarContador();
+
+function obtenerCategoria(card) {
+  const titulo = card
+    ?.closest('section')
+    ?.querySelector('.categoria-titulo');
+
+  return titulo?.textContent.trim() || 'General';
+}
+
+function puedeAgregarCategoria(categoria) {
+  const categoriaNormalizada = normalizar(categoria);
+  const cantidadCategoria = carrito.filter(producto => {
+    return normalizar(producto.categoria || '') === categoriaNormalizada;
+  }).length;
+
+  return cantidadCategoria < MAX_PRODUCTOS_POR_CATEGORIA;
+}
+
+function avisarPedidoGrande() {
+  mostrarAviso(
+    'Solo puedes agregar maximo 5 productos por categoria. Si necesitas un pedido mas grande, contactate con nosotros en la seccion Nosotros.',
+    'Pedido grande',
+    () => {
+      window.location.href = URL_NOSOTROS;
+    }
+  );
+}
+
+function agregarProductoAlCarrito(producto) {
+  if (!puedeAgregarCategoria(producto.categoria)) {
+    avisarPedidoGrande();
+    return false;
+  }
+
+  carrito.push(producto);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarContador();
+  return true;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('buscarPlato');
@@ -69,6 +111,38 @@ function normalizar(texto) {
     .toLowerCase()
     .trim();
 }
+
+function sincronizarCategoriasCarrito() {
+  const categoriasPorProducto = new Map();
+
+  document.querySelectorAll('.producto').forEach(card => {
+    categoriasPorProducto.set(
+      normalizar(card.dataset.plato || ''),
+      obtenerCategoria(card)
+    );
+  });
+
+  let huboCambios = false;
+
+  carrito = carrito.map(producto => {
+    if (producto.categoria) return producto;
+
+    const categoria = categoriasPorProducto.get(
+      normalizar(producto.nombre || '')
+    );
+
+    if (!categoria) return producto;
+
+    huboCambios = true;
+    return { ...producto, categoria };
+  });
+
+  if (huboCambios) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+}
+
+sincronizarCategoriasCarrito();
 
 // ============================================================
 // MODAL BOOTSTRAP
@@ -110,6 +184,7 @@ document.querySelectorAll('.producto').forEach(card => {
     const imagen = card.dataset.img;
     const desc = card.dataset.desc || 'Delicioso plato de La Pesquera';
     const precio = Number(card.dataset.precio);
+    categoriaProductoModal = obtenerCategoria(card);
 
     modalImg.src = imagen;
     modalTitulo.textContent = nombre;
@@ -137,13 +212,13 @@ document.querySelectorAll('.btn-add').forEach(btn => {
     const producto = {
       nombre: card.dataset.plato,
       precio: fmtCOP.format(Number(card.dataset.precio)),
-      imagen: card.dataset.img
+      imagen: card.dataset.img,
+      categoria: obtenerCategoria(card)
     };
 
-    carrito.push(producto);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    actualizarContador();
-    mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
+    if (agregarProductoAlCarrito(producto)) {
+      mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
+    }
   });
 });
 
@@ -157,14 +232,18 @@ btnCarrito.addEventListener('click', () => {
   const producto = {
     nombre: modalTitulo.textContent,
     precio: modalPrecio.textContent,
-    imagen: modalImg.src
+    imagen: modalImg.src,
+    categoria: categoriaProductoModal
   };
 
-  carrito.push(producto);
+  if (!puedeAgregarCategoria(producto.categoria)) {
+    modalElement.addEventListener('hidden.bs.modal', avisarPedidoGrande, { once: true });
+    modalBootstrap.hide();
+    return;
+  }
 
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+  agregarProductoAlCarrito(producto);
 
-  actualizarContador();
   modalElement.addEventListener('hidden.bs.modal', () => {
     mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
   }, { once: true });

@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalEl = document.getElementById('total');
   const btnVaciar = document.getElementById('vaciarCarrito');
   const contadorGlobal = document.getElementById('contador-carrito');
+  const MAX_PRODUCTOS_POR_CATEGORIA = 5;
+  const URL_NOSOTROS = '/index.php#nosotros';
 
   if (!contenedor) {
     console.error('No se encontró #carrito-container');
@@ -81,6 +83,33 @@ document.addEventListener('DOMContentLoaded', () => {
       String(valor || '0').replace(/\D/g, '')
     ) || 0;
 
+  }
+
+  function normalizar(texto) {
+    return String(texto || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+  function categoriaExcedida() {
+    const conteo = {};
+
+    carrito.forEach(producto => {
+      const categoria = normalizar(producto.categoria || '');
+      if (!categoria) return;
+      conteo[categoria] = (conteo[categoria] || 0) + 1;
+    });
+
+    return Object.values(conteo).some(cantidad => {
+      return cantidad > MAX_PRODUCTOS_POR_CATEGORIA;
+    });
+  }
+
+  function avisarPedidoGrande() {
+    alert('Solo puedes agregar maximo 5 productos por categoria. Si necesitas un pedido mas grande, contactate con nosotros en la seccion Nosotros.');
+    window.location.href = URL_NOSOTROS;
   }
 
   /* ================================
@@ -244,6 +273,11 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('El carrito está vacío.');
         return;
 
+      }
+
+      if (categoriaExcedida()) {
+        avisarPedidoGrande();
+        return;
       }
 
       const modal = new bootstrap.Modal(modalPago);
