@@ -193,7 +193,7 @@ BODY
 BOTÓN
 ==========================*/
 
-.btn-warning{
+.recuperar-card .btn-warning{
 
     background:#f8c300;
 
@@ -211,7 +211,7 @@ BOTÓN
 
 }
 
-.btn-warning:hover{
+.recuperar-card .btn-warning:hover{
 
     transform:translateY(-2px);
 

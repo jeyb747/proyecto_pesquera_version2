@@ -225,6 +225,19 @@ main {
   border-color: var(--gris);
 }
 
+.btn-outline-primary-formal {
+  background-color: transparent;
+  color: var(--azul);
+  border: 1px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-primary-formal:hover {
+  background-color: #edf7fb;
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
 /* ======================================================
    MODAL PREMIUM FORMAL
 ====================================================== */
