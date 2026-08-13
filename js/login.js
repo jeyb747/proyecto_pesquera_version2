@@ -35,5 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
 /* MOSTRAR CONTRASEÑA */
 function togglePassword() {
   const input = document.getElementById("password");
-  input.type = input.type === "password" ? "text" : "password";
+  const button = document.querySelector(".password-toggle");
+  const passwordIsVisible = input.type === "password";
+
+  input.type = passwordIsVisible ? "text" : "password";
+  button.classList.toggle("is-visible", passwordIsVisible);
+  button.setAttribute("aria-pressed", String(passwordIsVisible));
+  button.setAttribute(
+    "aria-label",
+    passwordIsVisible ? "Ocultar contraseña" : "Mostrar contraseña"
+  );
 }

@@ -57,12 +57,12 @@ session_start();
     </div>
 
     <!-- DERECHA -->
-    <div class="col-lg-6 d-flex justify-content-center align-items-center bg-light">
+    <div class="col-lg-6 d-flex justify-content-center align-items-center login-right">
 
       <div class="login-box card shadow-lg border-0 p-4 p-md-5">
 
         <!-- LOGO -->
-        <div class="text-center mb-4">
+        <div class="login-brand text-center">
 
           <img 
             src="../imagenes/logo.png"
@@ -130,10 +130,20 @@ session_start();
               >
 
               <button 
-                class="btn btn-outline-secondary"
+                class="btn password-toggle"
                 type="button"
                 onclick="togglePassword()"
+                aria-label="Mostrar contraseña"
+                aria-controls="password"
+                aria-pressed="false"
               >
+                <svg class="password-icon password-icon--hidden" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M3 3l18 18M10.6 10.7a2 2 0 0 0 2.7 2.7M9.9 5.2A10.6 10.6 0 0 1 12 5c5.2 0 8.7 4.4 9.7 6.1a1.8 1.8 0 0 1 0 1.8 15.2 15.2 0 0 1-3 3.6M6.2 6.2A15.5 15.5 0 0 0 2.3 11a1.8 1.8 0 0 0 0 1.8C3.3 14.6 6.8 19 12 19c.9 0 1.8-.1 2.6-.4" />
+                </svg>
+                <svg class="password-icon password-icon--visible" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M2.3 11.1a1.8 1.8 0 0 0 0 1.8C3.3 14.6 6.8 19 12 19s8.7-4.4 9.7-6.1a1.8 1.8 0 0 0 0-1.8C20.7 9.4 17.2 5 12 5S3.3 9.4 2.3 11.1Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
                 👁️
               </button>
 

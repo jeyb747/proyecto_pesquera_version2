@@ -43,7 +43,11 @@
 
 /* ===== LADO DERECHO ===== */
 .login-right {
-  background: #f8f9fa;
+  background-color: #f4f6f8;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 Q 15 0, 30 15 T 60 15' fill='none' stroke='%230A3D62' stroke-width='1.5' stroke-opacity='0.04'/></svg>"),
+    linear-gradient(to bottom, #f4f6f8, #e9eef2);
+  background-size: 60px 30px, 100% 100%;
   padding: 30px;
 }
 
@@ -55,6 +59,7 @@
   border-radius: 20px;
 
   background: white;
+  overflow: hidden;
 
   transition: 0.3s ease;
 }
@@ -65,9 +70,22 @@
 }
 
 /* ===== LOGO ===== */
+.login-brand {
+  min-height: 112px;
+  margin: -3rem -3rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0A3D62;
+  box-shadow: inset 0 -4px 0 rgba(241, 196, 15, 0.35);
+}
+
 .login-logo {
   width: 120px;
   object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.2));
 }
 
 /* ===== TITULOS ===== */
@@ -93,9 +111,51 @@
   box-shadow: 0 0 0 0.2rem rgba(241,196,15,0.25);
 }
 
-/* ===== BOTON PASSWORD ===== */
-.input-group .btn {
+/* ===== BOTÓN PARA MOSTRAR LA CONTRASEÑA ===== */
+.password-toggle {
+  width: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ced4da;
+  border-left: 0;
   border-radius: 0 12px 12px 0;
+  background: #fff;
+  color: #17212b;
+  font-size: 0;
+}
+
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  background: #f4f6f8;
+  color: #0A3D62;
+}
+
+.password-toggle:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(241,196,15,0.25);
+}
+
+.password-icon {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.password-icon--visible {
+  display: none;
+}
+
+.password-toggle.is-visible .password-icon--hidden {
+  display: none;
+}
+
+.password-toggle.is-visible .password-icon--visible {
+  display: block;
 }
 
 /* ===== BOTON LOGIN ===== */
@@ -144,6 +204,14 @@
 
 }
 
+@media (min-width: 577px) and (max-width: 767.98px) {
+
+  .login-brand {
+    margin: -1.5rem -1.5rem 2.25rem;
+  }
+
+}
+
 @media (max-width: 576px) {
 
   .login-right {
@@ -152,6 +220,11 @@
 
   .login-box {
     padding: 25px !important;
+  }
+
+  .login-brand {
+    min-height: 96px;
+    margin: -25px -25px 1.75rem;
   }
 
   .login-logo {
