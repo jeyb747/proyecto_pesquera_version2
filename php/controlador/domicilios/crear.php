@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once(__DIR__ . "/../../modelo/conexion.php");
+require_once(__DIR__ . "/../../../includes/flash.php");
 
 // 🔒 validar sesión
 if (!isset($_SESSION['id'])) {
@@ -61,6 +62,7 @@ if (!$result2) {
    3. RESPUESTA FINAL
 ====================================================== */
 
-header("Location: /paginas/domicilio.php?mensaje=ok");
+flash_set('success', 'Domicilio realizado correctamente. Recibirás tu pedido en la dirección indicada.');
+header("Location: /paginas/domicilio.php");
 exit();
 ?>
