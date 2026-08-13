@@ -189,19 +189,19 @@ body::before {
 }
 
 .estado-pendiente {
-    color: #896300;
-    background: #fff3cd;
+    color: #765700;
+    background: #fff0be;
 }
 
 .estado-confirmada,
 .estado-en-camino {
-    color: #1955a0;
-    background: #dbeafe;
+    color: #ffffff;
+    background: #0A3D62;
 }
 
 .estado-entregado {
-    color: #087443;
-    background: #d1fae5;
+    color: #0A3D62;
+    background: #dcecf5;
 }
 
 .estado-cancelada {
@@ -253,7 +253,7 @@ body::before {
     display: block;
     height: 100%;
 
-    background: #eab308;
+    background: #F1C40F;
     border-radius: 99px;
 }
 
@@ -269,7 +269,23 @@ body::before {
 
 .tracking-steps .active {
     font-weight: 800;
-    color: #176c51;
+    color: #0A3D62;
+}
+
+.edit-reserva-modal {
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(10, 61, 98, 0.25);
+}
+
+.edit-reserva-modal .modal-title,
+.edit-reserva-label {
+    color: #0A3D62;
+    font-weight: 700;
+}
+
+.edit-reserva-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 /* ==========================================================
