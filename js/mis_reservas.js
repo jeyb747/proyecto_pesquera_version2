@@ -29,5 +29,6 @@ document.addEventListener('click', event => {
 
   modal.querySelector('.modal-body').appendChild(copia);
   document.body.appendChild(modal);
+  modal.addEventListener('hidden.bs.modal', () => modal.remove(), { once: true });
   bootstrap.Modal.getOrCreateInstance(modal).show();
-});
+}, true);
