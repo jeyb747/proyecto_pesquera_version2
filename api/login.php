@@ -8,7 +8,10 @@ require_once __DIR__ . "/../php/modelo/conexion.php";
 $correo = $_POST['correo'] ?? '';
 $password = $_POST['password'] ?? '';
 
-$sql = "SELECT * FROM usuarios WHERE correo = ?";
+$sql = "SELECT u.*, r.nombre_rol AS rol
+        FROM usuarios u
+        LEFT JOIN roles r ON r.id = u.id_rol
+        WHERE u.correo = ?";
 
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("s", $correo);
@@ -20,7 +23,12 @@ if ($resultado->num_rows > 0) {
 
     $usuario = $resultado->fetch_assoc();
 
-    if (password_verify($password, $usuario['password'])) {
+    // Las cuentas recientes usan password_hash; las cuentas creadas antes
+    // pueden conservar la contraseña en texto plano.
+    $passwordValida = password_verify($password, $usuario['password']) ||
+        hash_equals((string)$usuario['password'], (string)$password);
+
+    if ($passwordValida) {
 
         unset($usuario['password']);
 
