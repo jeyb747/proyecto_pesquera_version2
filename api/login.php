@@ -10,7 +10,7 @@ $password = $_POST['password'] ?? '';
 
 $sql = "SELECT u.*, r.nombre_rol AS rol
         FROM usuarios u
-        LEFT JOIN roles r ON r.id = u.id_rol
+        INNER JOIN roles r ON r.id = u.id_rol
         WHERE u.correo = ?";
 
 $stmt = $conexion->prepare($sql);
@@ -23,12 +23,7 @@ if ($resultado->num_rows > 0) {
 
     $usuario = $resultado->fetch_assoc();
 
-    // Las cuentas recientes usan password_hash; las cuentas creadas antes
-    // pueden conservar la contraseña en texto plano.
-    $passwordValida = password_verify($password, $usuario['password']) ||
-        hash_equals((string)$usuario['password'], (string)$password);
-
-    if ($passwordValida) {
+    if (password_verify($password, $usuario['password'])) {
 
         unset($usuario['password']);
 
@@ -52,3 +47,4 @@ if ($resultado->num_rows > 0) {
         "mensaje" => "Usuario no encontrado"
     ]);
 }
+
