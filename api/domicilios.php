@@ -86,6 +86,47 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
 }
 
+$accion = $_POST["accion"] ?? "";
+
+if ($accion === "actualizar_estado") {
+    $id = intval($_POST["id"] ?? 0);
+    $estado = strtolower(trim($_POST["estado"] ?? ""));
+    $estados_permitidos = ["pendiente", "en camino", "entregado"];
+
+    if ($id <= 0 || !in_array($estado, $estados_permitidos, true)) {
+        responder(false, "El domicilio o el estado no son válidos");
+    }
+
+    try {
+        $stmt = $conexion->prepare("UPDATE domicilios SET estado = ? WHERE id = ?");
+
+        if (!$stmt) {
+            throw new Exception("Error al preparar la actualización: " . $conexion->error);
+        }
+
+        $stmt->bind_param("si", $estado, $id);
+
+        if (!$stmt->execute()) {
+            throw new Exception("No se pudo actualizar el estado: " . $stmt->error);
+        }
+
+        if ($stmt->affected_rows === 0) {
+            $verificar = $conexion->prepare("SELECT id FROM domicilios WHERE id = ?");
+            $verificar->bind_param("i", $id);
+            $verificar->execute();
+            $verificar->store_result();
+
+            if ($verificar->num_rows === 0) {
+                responder(false, "El domicilio no existe");
+            }
+        }
+
+        responder(true, "Estado del domicilio actualizado", ["estado" => $estado]);
+    } catch (Throwable $e) {
+        responder(false, "No se pudo actualizar el estado: " . $e->getMessage());
+    }
+}
+
 $usuario_id = intval($_POST["usuario_id"] ?? 0);
 $nombre = trim($_POST["nombre"] ?? "");
 $direccion = trim($_POST["direccion"] ?? "");
