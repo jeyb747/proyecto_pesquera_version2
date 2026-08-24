@@ -13,8 +13,12 @@ if (!isset($_SESSION['id'])) {
 $usuario_id = $_SESSION['id'];
 
 $nombre = $_POST['nombre'] ?? '';
-$direccion = $_POST['direccion'] ?? '';
-$telefono = $_POST['telefono'] ?? '';
+$calle = trim($_POST['calle_carrera'] ?? '');
+$numero = trim($_POST['numero_direccion'] ?? '');
+$complemento = trim($_POST['complemento'] ?? '');
+$barrio = trim($_POST['barrio'] ?? '');
+$direccion = $calle !== '' ? "$calle #$numero" . ($complemento !== '' ? ", $complemento" : '') . ($barrio !== '' ? ", Barrio $barrio" : '') : trim($_POST['direccion'] ?? '');
+$telefono = preg_replace('/\s+/', '', $_POST['telefono'] ?? '');
 $pago = $_POST['pago'] ?? '';
 $observaciones = $_POST['observaciones'] ?? '';
 
@@ -22,7 +26,7 @@ $productos = $_POST['productos'] ?? '';
 $total = $_POST['total'] ?? 0;
 
 // 🧪 validar datos mínimos
-if ($productos == '' || $direccion == '' || $total <= 0) {
+if ($productos == '' || $direccion == '' || !preg_match('/^\d{7,15}$/', $telefono) || $total <= 0) {
     die("❌ Error: datos incompletos del pedido");
 }
 
@@ -30,29 +34,23 @@ if ($productos == '' || $direccion == '' || $total <= 0) {
    1. CREAR PEDIDO
 ====================================================== */
 
-$sql1 = "INSERT INTO pedidos 
-(usuario_id, productos, total, fecha)
-VALUES 
-('$usuario_id', '$productos', '$total', NOW())";
-
-$result1 = mysqli_query($conexion, $sql1);
+$sql1 = $conexion->prepare('INSERT INTO pedidos (usuario_id, productos, total, fecha) VALUES (?, ?, ?, NOW())');
+$sql1->bind_param('isd', $usuario_id, $productos, $total);
+$result1 = $sql1->execute();
 
 if (!$result1) {
     die("❌ Error en pedido: " . mysqli_error($conexion));
 }
 
-$pedido_id = mysqli_insert_id($conexion);
+$pedido_id = $conexion->insert_id;
 
 /* ======================================================
    2. CREAR DOMICILIO
 ====================================================== */
 
-$sql2 = "INSERT INTO domicilios 
-(pedido_id, direccion, estado, repartidor)
-VALUES 
-('$pedido_id', '$direccion', 'pendiente', NULL)";
-
-$result2 = mysqli_query($conexion, $sql2);
+$sql2 = $conexion->prepare('INSERT INTO domicilios (pedido_id, direccion, telefono, estado, repartidor) VALUES (?, ?, ?, "pendiente", NULL)');
+$sql2->bind_param('iss', $pedido_id, $direccion, $telefono);
+$result2 = $sql2->execute();
 
 if (!$result2) {
     die("❌ Error en domicilio: " . mysqli_error($conexion));

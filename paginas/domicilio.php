@@ -76,15 +76,17 @@
                             <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Dirección de Entrega</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-geo-alt"></i></span>
-                                <input type="text" name="direccion" class="form-control input-pesquera" placeholder="EJ: CALLE 10 #25-45" required>
+                                <input type="text" name="calle_carrera" class="form-control input-pesquera" placeholder="EJ: CALLE 10" required>
                             </div>
                         </div>
+                        <div class="row g-3 mb-3"><div class="col-sm-5"><label class="text-gris-pesquera small fw-semibold text-uppercase mb-1">Número</label><input type="text" name="numero_direccion" class="form-control input-pesquera" placeholder="25-45" required></div><div class="col-sm-7"><label class="text-gris-pesquera small fw-semibold text-uppercase mb-1">Complemento</label><input type="text" name="complemento" class="form-control input-pesquera" placeholder="Apto/interior (opcional)"></div></div>
+                        <div class="mb-3"><label class="text-gris-pesquera small fw-semibold text-uppercase mb-1">Barrio</label><input type="text" name="barrio" class="form-control input-pesquera" required></div>
 
                         <div class="mb-3">
                             <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Teléfono Celular</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-telephone"></i></span>
-                                <input type="tel" name="telefono" class="form-control input-pesquera" placeholder="EJ: 3001234567" required>
+                                <input type="tel" name="telefono" class="form-control input-pesquera" placeholder="EJ: 3001234567" required inputmode="numeric" pattern="[0-9]{7,15}">
                             </div>
                         </div>
 

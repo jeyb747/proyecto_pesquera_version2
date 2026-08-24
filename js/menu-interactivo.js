@@ -176,6 +176,9 @@ document.querySelectorAll('.producto').forEach(card => {
 
   imagenProducto?.addEventListener('click', () => {
 
+    window.location.href = `producto.php?nombre=${encodeURIComponent(card.dataset.plato)}&imagen=${encodeURIComponent(card.dataset.img)}&precio=${encodeURIComponent(card.dataset.precio)}`;
+    return;
+
     const nombre = card.dataset.plato;
     const imagen = card.dataset.img;
     const desc = card.dataset.desc || 'Delicioso plato de La Pesquera';
@@ -213,6 +216,9 @@ document.querySelectorAll('.btn-add').forEach(btn => {
     };
 
     if (agregarProductoAlCarrito(producto)) {
+      contadorCarrito?.classList.remove('carrito-pop');
+      void contadorCarrito?.offsetWidth;
+      contadorCarrito?.classList.add('carrito-pop');
       mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
     }
   });

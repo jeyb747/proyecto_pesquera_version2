@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 }
 
 require_once __DIR__ . "/../php/modelo/conexion.php";
+require_once __DIR__ . "/../php/configuracion/verificacion.php";
 
 function responder($success, $mensaje, $extra = []) {
     echo json_encode(array_merge([
@@ -39,12 +40,15 @@ if ($resultado->num_rows > 0) {
 }
 
 $password = password_hash($password_plano, PASSWORD_DEFAULT);
-$insert = $conexion->prepare("INSERT INTO usuarios (nombre, id_tipo_documento, numero_documento, correo, telefono, password) VALUES (?, ?, ?, ?, ?, ?)");
+asegurar_columnas_verificacion($conexion);
+$insert = $conexion->prepare("INSERT INTO usuarios (nombre, id_tipo_documento, numero_documento, correo, telefono, password, correo_verificado) VALUES (?, ?, ?, ?, ?, ?, 0)");
 $insert->bind_param("sissss", $nombre, $tipo_documento, $numero_documento, $correo, $telefono, $password);
 
 if ($insert->execute()) {
+    $enviado = enviar_codigo_verificacion($conexion, (int)$conexion->insert_id, $correo);
     responder(true, "Cuenta creada correctamente", [
-        "usuario_id" => $conexion->insert_id
+        "usuario_id" => $conexion->insert_id,
+        "verificacion_enviada" => $enviado
     ]);
 }
 

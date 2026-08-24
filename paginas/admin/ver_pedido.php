@@ -13,9 +13,10 @@ if ($id <= 0) {
     exit();
 }
 
-$sql = "SELECT p.*, u.nombre AS cliente, u.correo, u.telefono
+$sql = "SELECT p.*, u.nombre AS cliente, u.correo, COALESCE(NULLIF(d.telefono, ''), u.telefono) AS telefono, d.direccion
         FROM pedidos p
         LEFT JOIN usuarios u ON p.usuario_id = u.id
+        LEFT JOIN domicilios d ON d.pedido_id = p.id
         WHERE p.id = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("i", $id);

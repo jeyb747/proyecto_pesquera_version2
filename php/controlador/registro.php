@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/../modelo/conexion.php';
 require_once __DIR__ . '/../../includes/flash.php';
+require_once __DIR__ . '/../configuracion/verificacion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -27,10 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insertar nuevo usuario utilizando la relación de la tabla maestra
     // El formato en bind_param es "sissss" porque el segundo valor (id_tipo_documento) es de tipo Entero (i)
-    $insert = $conexion->prepare("INSERT INTO usuarios (nombre, id_tipo_documento, numero_documento, correo, telefono, password) VALUES (?, ?, ?, ?, ?, ?)");
+    asegurar_columnas_verificacion($conexion);
+    $insert = $conexion->prepare("INSERT INTO usuarios (nombre, id_tipo_documento, numero_documento, correo, telefono, password, correo_verificado) VALUES (?, ?, ?, ?, ?, ?, 0)");
     $insert->bind_param("sissss", $nombre, $tipo_documento, $numero_documento, $correo, $telefono, $password);
 
     if ($insert->execute()) {
+        $_SESSION['correo_pendiente'] = $correo;
+        $enviado = enviar_codigo_verificacion($conexion, (int)$conexion->insert_id, $correo);
+        flash_set('success', 'Te enviamos un código a tu correo; revísalo para activar tu cuenta.');
+        header("Location: /paginas/verificar_correo.php");
+        exit();
         flash_set('success', 'Cuenta creada correctamente. Ya puedes iniciar sesión.');
         header("Location: /paginas/login.php");
         exit();
