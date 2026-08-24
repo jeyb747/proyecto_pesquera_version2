@@ -199,6 +199,19 @@
   border-radius: 12px;
 }
 
+/* La confirmación de correo se muestra dentro de la tarjeta, sin modal. */
+.verification-box { max-width: 500px; }
+.verification-icon { width: 64px; height: 64px; margin: 0 auto 18px; display:grid; place-items:center; border-radius:50%; background:#fff8d7; color:#b88900; font-size:1.8rem; }
+.verification-notice { display:flex; align-items:flex-start; gap:10px; margin:0 0 18px; padding:12px 14px; border-radius:12px; font:600 .92rem/1.45 system-ui,sans-serif; text-align:left; }
+.verification-notice-success { background:#e8f7ed; color:#176b37; border:1px solid #b9e5c7; }
+.verification-notice-warning { background:#fff8df; color:#765500; border:1px solid #f0d36b; }
+.verification-notice-danger { background:#ffebee; color:#9b202c; border:1px solid #f1b9be; }
+.verification-code { font:700 1.45rem/1.2 system-ui,sans-serif; letter-spacing:.45em; padding-left:.8em; }
+.resend-code-button { display:flex; align-items:center; justify-content:center; gap:9px; padding:11px 16px; border:1px solid #0A3D62; border-radius:12px; background:transparent; color:#0A3D62; font:700 .95rem/1.2 system-ui,sans-serif; transition:.25s ease; }
+.resend-code-button:hover:not(:disabled) { background:#0A3D62; color:#fff; transform:translateY(-2px); }
+.resend-code-button:disabled { opacity:.7; cursor:wait; }
+.verification-help { margin-top:18px; color:#6c757d; font:400 .82rem/1.4 system-ui,sans-serif !important; text-align:center; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
 
