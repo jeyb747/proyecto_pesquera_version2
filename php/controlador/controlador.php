@@ -20,7 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($resultado) {
 
         $usuario = $resultado;
-        if (array_key_exists('correo_verificado', $usuario) && (int)$usuario['correo_verificado'] === 0) {
+        // NULL corresponde a cuentas creadas antes de activar la verificación.
+        // Solo bloqueamos una cuenta marcada explícitamente como pendiente (0).
+        if (array_key_exists('correo_verificado', $usuario) && (string)$usuario['correo_verificado'] === '0') {
             $_SESSION['correo_pendiente'] = $usuario['correo'];
             flash_set('warning', 'Debes verificar tu correo antes de iniciar sesión.');
             header("Location: /paginas/verificar_correo.php");
