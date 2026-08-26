@@ -41,6 +41,4 @@
     document.body.appendChild(fondo);
     boton.focus();
   };
-
-  window.alert = (mensaje) => window.mostrarAviso(mensaje);
 })();
