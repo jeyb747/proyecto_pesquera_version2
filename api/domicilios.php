@@ -52,6 +52,24 @@ function vincular_parametros($stmt, $tipos, $valores) {
     return call_user_func_array([$stmt, "bind_param"], $parametros);
 }
 
+function productos_respetan_limite_por_categoria($productosJson) {
+    $productos = json_decode($productosJson, true);
+    if (!is_array($productos) || count($productos) === 0) return false;
+
+    $conteoPorCategoria = [];
+    foreach ($productos as $producto) {
+        if (!is_array($producto)) return false;
+        $categoria = trim((string)($producto['categoria'] ?? ''));
+        if ($categoria === '') return false;
+
+        $categoriaNormalizada = strtolower($categoria);
+        $conteoPorCategoria[$categoriaNormalizada] = ($conteoPorCategoria[$categoriaNormalizada] ?? 0) + 1;
+        if ($conteoPorCategoria[$categoriaNormalizada] > 5) return false;
+    }
+
+    return true;
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     try {
         $usuario_id = intval($_GET["usuario_id"] ?? 0);
@@ -146,6 +164,10 @@ if (
     $total <= 0
 ) {
     responder(false, "Completa todos los datos del domicilio");
+}
+
+if (!productos_respetan_limite_por_categoria($productos)) {
+    responder(false, "Solo puedes pedir máximo 5 productos por categoría");
 }
 
 $conexion->begin_transaction();

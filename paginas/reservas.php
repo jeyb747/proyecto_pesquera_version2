@@ -64,6 +64,9 @@
                         <h2 class="text-azul-pesquera h6 mb-4 text-uppercase fw-semibold">Selecciona la fecha</h2>
                         <div class="mb-4">
                             <input type="date" id="fecha" class="form-control input-pesquera text-center fw-medium">
+                            <div class="form-text text-gris-pesquera mt-2">
+                                Puedes reservar desde hoy y hasta con 6 meses de anticipación.
+                            </div>
                         </div>
                         <button type="button" onclick="validarFecha()" class="btn btn-amarillo-action w-100 py-2.5 text-uppercase fw-bold">
                             Continuar

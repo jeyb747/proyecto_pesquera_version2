@@ -50,6 +50,24 @@ function vincular_parametros($stmt, $tipos, $valores) {
     return call_user_func_array([$stmt, "bind_param"], $parametros);
 }
 
+function fecha_reserva_en_rango($fecha) {
+    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) return false;
+    $fechaReserva = DateTimeImmutable::createFromFormat('!Y-m-d', $fecha);
+    $errores = DateTimeImmutable::getLastErrors();
+    if (!$fechaReserva || ($errores !== false && ($errores['warning_count'] > 0 || $errores['error_count'] > 0))) return false;
+
+    $hoy = new DateTimeImmutable('today');
+    $primerDiaDelMesLimite = $hoy->modify('first day of +6 months');
+    $ultimoDiaDelMesLimite = (int)$primerDiaDelMesLimite->modify('last day of this month')->format('d');
+    $fechaMaxima = $primerDiaDelMesLimite->setDate(
+        (int)$primerDiaDelMesLimite->format('Y'),
+        (int)$primerDiaDelMesLimite->format('m'),
+        min((int)$hoy->format('d'), $ultimoDiaDelMesLimite)
+    );
+
+    return $fechaReserva >= $hoy && $fechaReserva <= $fechaMaxima;
+}
+
 try {
     if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $usuario_id = intval($_GET["usuario_id"] ?? 0);
@@ -95,6 +113,10 @@ try {
         $personas <= 0
     ) {
         responder(false, "Completa todos los datos de la reserva");
+    }
+
+    if (!fecha_reserva_en_rango($fecha)) {
+        responder(false, "La reserva debe ser desde hoy y con máximo 6 meses de anticipación");
     }
 
     $hora_objeto = DateTime::createFromFormat(

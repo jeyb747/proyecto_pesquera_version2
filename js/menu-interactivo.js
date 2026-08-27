@@ -15,6 +15,8 @@ const fmtCOP = new Intl.NumberFormat('es-CO', {
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 const MAX_PRODUCTOS_POR_CATEGORIA = 5;
 let categoriaProductoModal = '';
+let productoSeleccionado = null;
+let cantidadSeleccionada = 1;
 
 function requiereInicioSesion() {
   if (window.usuarioAutenticado) return false;
@@ -45,13 +47,15 @@ function obtenerCategoria(card) {
   return titulo?.textContent.trim() || 'General';
 }
 
-function puedeAgregarCategoria(categoria) {
+function cantidadEnCategoria(categoria) {
   const categoriaNormalizada = normalizar(categoria);
-  const cantidadCategoria = carrito.filter(producto => {
+  return carrito.filter(producto => {
     return normalizar(producto.categoria || '') === categoriaNormalizada;
   }).length;
+}
 
-  return cantidadCategoria < MAX_PRODUCTOS_POR_CATEGORIA;
+function puedeAgregarCategoria(categoria, cantidad = 1) {
+  return cantidadEnCategoria(categoria) + cantidad <= MAX_PRODUCTOS_POR_CATEGORIA;
 }
 
 function avisarPedidoGrande() {
@@ -61,13 +65,15 @@ function avisarPedidoGrande() {
   );
 }
 
-function agregarProductoAlCarrito(producto) {
-  if (!puedeAgregarCategoria(producto.categoria)) {
+function agregarProductoAlCarrito(producto, cantidad = 1) {
+  if (!puedeAgregarCategoria(producto.categoria, cantidad)) {
     avisarPedidoGrande();
     return false;
   }
 
-  carrito.push(producto);
+  for (let indice = 0; indice < cantidad; indice += 1) {
+    carrito.push({ ...producto });
+  }
   localStorage.setItem('carrito', JSON.stringify(carrito));
   actualizarContador();
   return true;
@@ -157,6 +163,14 @@ const modalAvisoElement = document.getElementById('modalAviso');
 const modalAviso = new bootstrap.Modal(modalAvisoElement);
 const avisoTitulo = document.getElementById('avisoTitulo');
 const avisoMensaje = document.getElementById('avisoMensaje');
+const modalCantidadElement = document.getElementById('modalCantidad');
+const modalCantidad = new bootstrap.Modal(modalCantidadElement);
+const cantidadProducto = document.getElementById('cantidadProducto');
+const cantidadDisponible = document.getElementById('cantidadDisponible');
+const cantidadSeleccionadaEl = document.getElementById('cantidadSeleccionada');
+const btnDisminuirCantidad = document.getElementById('btnDisminuirCantidad');
+const btnAumentarCantidad = document.getElementById('btnAumentarCantidad');
+const btnConfirmarCantidad = document.getElementById('btnConfirmarCantidad');
 
 function mostrarAviso(mensaje, titulo = 'Aviso', alCerrar) {
   if (!modalAvisoElement) return;
@@ -166,6 +180,57 @@ function mostrarAviso(mensaje, titulo = 'Aviso', alCerrar) {
   if (alCerrar) modalAvisoElement.addEventListener('hidden.bs.modal', alCerrar, { once: true });
   modalAviso.show();
 }
+
+function cuposDisponiblesCategoria(categoria) {
+  return Math.max(0, MAX_PRODUCTOS_POR_CATEGORIA - cantidadEnCategoria(categoria));
+}
+
+function actualizarSelectorCantidad() {
+  if (!productoSeleccionado) return;
+  const cupos = cuposDisponiblesCategoria(productoSeleccionado.categoria);
+  cantidadSeleccionada = Math.min(Math.max(cantidadSeleccionada, 1), cupos);
+  cantidadSeleccionadaEl.textContent = cantidadSeleccionada;
+  cantidadDisponible.textContent = `Puedes agregar hasta ${cupos} producto${cupos === 1 ? '' : 's'} más de esta categoría.`;
+  btnDisminuirCantidad.disabled = cantidadSeleccionada <= 1;
+  btnAumentarCantidad.disabled = cantidadSeleccionada >= cupos;
+  btnConfirmarCantidad.textContent = `Agregar ${cantidadSeleccionada} al carrito`;
+}
+
+function abrirSelectorCantidad(producto) {
+  const cupos = cuposDisponiblesCategoria(producto.categoria);
+  if (cupos < 1) {
+    avisarPedidoGrande();
+    return;
+  }
+  productoSeleccionado = producto;
+  cantidadSeleccionada = 1;
+  cantidadProducto.textContent = producto.nombre;
+  actualizarSelectorCantidad();
+  modalCantidad.show();
+}
+
+btnDisminuirCantidad.addEventListener('click', () => {
+  cantidadSeleccionada -= 1;
+  actualizarSelectorCantidad();
+});
+
+btnAumentarCantidad.addEventListener('click', () => {
+  cantidadSeleccionada += 1;
+  actualizarSelectorCantidad();
+});
+
+btnConfirmarCantidad.addEventListener('click', () => {
+  if (!productoSeleccionado) return;
+  const cantidad = cantidadSeleccionada;
+  if (!agregarProductoAlCarrito(productoSeleccionado, cantidad)) return;
+  contadorCarrito?.classList.remove('carrito-pop');
+  void contadorCarrito?.offsetWidth;
+  contadorCarrito?.classList.add('carrito-pop');
+  modalCantidadElement.addEventListener('hidden.bs.modal', () => {
+    mostrarAviso(`${cantidad} ${cantidad === 1 ? 'producto fue agregado' : 'productos fueron agregados'} al carrito.`, 'Productos agregados');
+  }, { once: true });
+  modalCantidad.hide();
+});
 
 // ============================================================
 // ABRIR MODAL
@@ -215,12 +280,7 @@ document.querySelectorAll('.btn-add').forEach(btn => {
       categoria: obtenerCategoria(card)
     };
 
-    if (agregarProductoAlCarrito(producto)) {
-      contadorCarrito?.classList.remove('carrito-pop');
-      void contadorCarrito?.offsetWidth;
-      contadorCarrito?.classList.add('carrito-pop');
-      mostrarAviso(`${producto.nombre} fue agregado al carrito.`, 'Producto agregado');
-    }
+    abrirSelectorCantidad(producto);
   });
 });
 

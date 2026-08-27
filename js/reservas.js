@@ -23,17 +23,32 @@ function cambiarPersonas(valor) {
   document.getElementById("numPersonas").textContent = personas;
 }
 
+function fechaLocalISO(fecha) {
+  const anio = fecha.getFullYear();
+  const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+  const dia = String(fecha.getDate()).padStart(2, "0");
+  return `${anio}-${mes}-${dia}`;
+}
+
+function fechaMaximaReserva(hoy) {
+  const limite = new Date(hoy);
+  const diaOriginal = limite.getDate();
+  limite.setDate(1);
+  limite.setMonth(limite.getMonth() + 6);
+  const ultimoDiaDelMes = new Date(limite.getFullYear(), limite.getMonth() + 1, 0).getDate();
+  limite.setDate(Math.min(diaOriginal, ultimoDiaDelMes));
+  return limite;
+}
+
 /* =========================
-   FECHA MINIMA
-========================= */
+   RANGO DE FECHAS
+ ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-
-  const hoy = new Date().toISOString().split("T")[0];
-
+  const hoy = new Date();
   const inputFecha = document.getElementById("fecha");
-
   if (inputFecha) {
-    inputFecha.min = hoy;
+    inputFecha.min = fechaLocalISO(hoy);
+    inputFecha.max = fechaLocalISO(fechaMaximaReserva(hoy));
   }
 });
 
@@ -46,6 +61,12 @@ async function validarFecha() {
 
   if (!fecha) {
     alert("Selecciona una fecha");
+    return;
+  }
+
+  const inputFecha = document.getElementById("fecha");
+  if (fecha < inputFecha.min || fecha > inputFecha.max) {
+    alert("La reserva debe ser desde hoy y con máximo 6 meses de anticipación.");
     return;
   }
 

@@ -811,6 +811,30 @@
 
 </div>
 
+<div class="modal fade" id="modalCantidad" tabindex="-1" aria-labelledby="cantidadTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cantidadTitulo">Selecciona la cantidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="mb-1" id="cantidadProducto"></p>
+        <p class="text-muted small">Máximo 5 productos por categoría.</p>
+        <div class="d-flex justify-content-center align-items-center gap-3 my-4">
+          <button type="button" class="btn btn-outline-secondary rounded-circle" id="btnDisminuirCantidad" aria-label="Disminuir cantidad">−</button>
+          <span class="fs-3 fw-bold" id="cantidadSeleccionada" aria-live="polite">1</span>
+          <button type="button" class="btn btn-warning rounded-circle" id="btnAumentarCantidad" aria-label="Aumentar cantidad">+</button>
+        </div>
+        <p class="text-muted small mb-0" id="cantidadDisponible"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning w-100" id="btnConfirmarCantidad">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modalAviso" tabindex="-1" aria-labelledby="avisoTitulo" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-aviso-dialog">
     <div class="modal-content aviso-content border-0">

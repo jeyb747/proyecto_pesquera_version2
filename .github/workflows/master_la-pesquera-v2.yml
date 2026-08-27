@@ -38,7 +38,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: php-app
-          path: .
+          # Publica únicamente los archivos que necesita la aplicación. No
+          # incluyas respaldos, ZIPs, versiones antiguas ni archivos de CI.
+          path: |
+            index.php
+            google29614857fe026a4e.html
+            composer.json
+            composer.lock
+            api/**
+            css/**
+            imagenes/**
+            includes/**
+            js/**
+            paginas/**
+            php/**
+            vendor/**
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: php-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -67,4 +81,3 @@ jobs:
           app-name: 'la-pesquera-v2'
           slot-name: 'Production'
           package: .
-          

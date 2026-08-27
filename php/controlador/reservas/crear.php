@@ -24,6 +24,26 @@ if (!$nombre || !$telefono || !$fecha || !$hora || $personas < 1 || $personas > 
     exit();
 }
 
+$fechaReserva = DateTimeImmutable::createFromFormat('!Y-m-d', $fecha);
+$erroresFecha = DateTimeImmutable::getLastErrors();
+if (!$fechaReserva || ($erroresFecha !== false && ($erroresFecha['warning_count'] > 0 || $erroresFecha['error_count'] > 0))) {
+    http_response_code(422); echo "error_datos";
+    exit();
+}
+
+$hoy = new DateTimeImmutable('today');
+$primerDiaDelMesLimite = $hoy->modify('first day of +6 months');
+$ultimoDiaDelMesLimite = (int)$primerDiaDelMesLimite->modify('last day of this month')->format('d');
+$fechaMaxima = $primerDiaDelMesLimite->setDate(
+    (int)$primerDiaDelMesLimite->format('Y'),
+    (int)$primerDiaDelMesLimite->format('m'),
+    min((int)$hoy->format('d'), $ultimoDiaDelMesLimite)
+);
+if ($fechaReserva < $hoy || $fechaReserva > $fechaMaxima) {
+    http_response_code(422); echo "error_fecha_rango";
+    exit();
+}
+
 $horaNormalizada = DateTime::createFromFormat('g:i a', strtolower($hora));
 if (!$horaNormalizada) $horaNormalizada = DateTime::createFromFormat('H:i', $hora);
 if (!$horaNormalizada) { http_response_code(422); echo 'error_hora'; exit(); }
