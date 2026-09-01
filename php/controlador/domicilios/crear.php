@@ -13,11 +13,7 @@ if (!isset($_SESSION['id'])) {
 $usuario_id = $_SESSION['id'];
 
 $nombre = $_POST['nombre'] ?? '';
-$calle = trim($_POST['calle_carrera'] ?? '');
-$numero = trim($_POST['numero_direccion'] ?? '');
-$complemento = trim($_POST['complemento'] ?? '');
-$barrio = trim($_POST['barrio'] ?? '');
-$direccion = $calle !== '' ? "$calle #$numero" . ($complemento !== '' ? ", $complemento" : '') . ($barrio !== '' ? ", Barrio $barrio" : '') : trim($_POST['direccion'] ?? '');
+$direccion = trim($_POST['direccion'] ?? '');
 $telefono = preg_replace('/\s+/', '', $_POST['telefono'] ?? '');
 $pago = $_POST['pago'] ?? '';
 $observaciones = $_POST['observaciones'] ?? '';

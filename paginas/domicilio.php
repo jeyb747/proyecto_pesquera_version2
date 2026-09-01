@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="../css/inicio.css">
-    <link rel="stylesheet" href="../css/domicilio.css?v=1012">
+    <link rel="stylesheet" href="../css/domicilio.css?v=1013">
     <link rel="stylesheet" href="../css/alerts.css">
 
     <script defer src="../js/domicilio.js"></script>
@@ -76,11 +76,9 @@
                             <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Dirección de Entrega</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-geo-alt"></i></span>
-                                <input type="text" name="calle_carrera" class="form-control input-pesquera" placeholder="EJ: CALLE 10" required>
+                                <input type="text" name="direccion" class="form-control input-pesquera" placeholder="EJ: CRA. 79 #42B-07, BOGOTÁ" required autocomplete="street-address">
                             </div>
                         </div>
-                        <div class="row g-3 mb-3"><div class="col-sm-5"><label class="text-gris-pesquera small fw-semibold text-uppercase mb-1">Número</label><input type="text" name="numero_direccion" class="form-control input-pesquera" placeholder="25-45" required></div><div class="col-sm-7"><label class="text-gris-pesquera small fw-semibold text-uppercase mb-1">Complemento</label><input type="text" name="complemento" class="form-control input-pesquera" placeholder="Apto/interior (opcional)"></div></div>
-                        <div class="mb-3"><label class="text-gris-pesquera small fw-semibold text-uppercase mb-1">Barrio</label><input type="text" name="barrio" class="form-control input-pesquera" required></div>
 
                         <div class="mb-3">
                             <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Teléfono Celular</label>

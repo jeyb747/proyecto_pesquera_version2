@@ -298,8 +298,8 @@ body::before {
   right: clamp(18px, 3vw, 38px);
   bottom: clamp(18px, 3vw, 34px);
   z-index: 1050;
-  width: 82px;
-  height: 82px;
+  width: 116px;
+  height: 116px;
   padding: 0;
   border: 3px solid #fff;
   border-radius: 50%;
@@ -316,10 +316,10 @@ body::before {
   height: 100%;
   border-radius: inherit;
   background-color: #0a3d62;
-  background-image: url('/imagenes/asistente-pesquera.png');
-  background-position: -315px -297px;
+  background-image: url('/imagenes/asistente-pesquera-avatar-v2.png');
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 665px auto;
+  background-size: cover;
 }
 
 .route-assistant-pulse {
@@ -336,7 +336,7 @@ body::before {
 .route-assistant {
   position: fixed;
   right: clamp(18px, 3vw, 38px);
-  bottom: 116px;
+  bottom: 150px;
   z-index: 1050;
   display: flex;
   width: min(370px, calc(100vw - 32px));
@@ -368,7 +368,7 @@ body::before {
 .route-assistant-header small { color: rgba(255,255,255,.8); font-family: system-ui, sans-serif; font-size: .72rem; }
 .route-assistant-header small i { color: #4ade80; font-size: .5rem; }
 .route-assistant-header .btn-close { margin-left: auto; }
-.route-assistant-avatar-small { width: 42px; height: 42px; flex: 0 0 42px; background-position: -316px -298px; }
+.route-assistant-avatar-small { width: 46px; height: 46px; flex: 0 0 46px; }
 
 .route-assistant-body { padding: 15px; overflow-y: auto; font-family: system-ui, sans-serif; }
 .assistant-message { max-width: 92%; padding: 10px 12px; border-radius: 4px 14px 14px; color: #334155; background: #eff6ff; font-size: .9rem; line-height: 1.42; }
@@ -538,6 +538,6 @@ body::before {
     min-height: 360px;
   }
 
-  .route-assistant-launcher { bottom: 18px; right: 18px; width: 70px; height: 70px; }
-  .route-assistant { right: 16px; bottom: 102px; max-height: min(560px, calc(100vh - 124px)); }
+  .route-assistant-launcher { bottom: 18px; right: 18px; width: 92px; height: 92px; }
+  .route-assistant { right: 16px; bottom: 122px; max-height: min(560px, calc(100vh - 144px)); }
 }
