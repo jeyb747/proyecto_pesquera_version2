@@ -242,25 +242,38 @@ function obtenerPedidosActivos() {
 function direccionIncompleta(direccion) {
   const texto = String(direccion || '').trim();
   // Una dirección útil debe contener número y alguna referencia vial; evita sugerir datos como "JO" o "FJFJ".
-  return texto.length < 8 || !/\d/.test(texto) || !/(cra|carrera|cl|calle|av|avenida|transv|diagonal|dg|kr)/i.test(texto);
+  return texto.length < 8 || !/\d/.test(texto) || !/\b(cra|carrera|kr|k|cl|cll|calle|c|av|avda|avenida|ac|ak|tv|transv|transversal|diag|diagonal|dg|autop|autopista|circ|circular)\b/i.test(texto);
 }
 
 function referenciaVial(direccion) {
   const texto = String(direccion || '').toLowerCase().replace(/\./g, ' ');
-  const via = texto.match(/\b(cra|carrera|kr|cl|calle|av|avenida|transv|transversal|diag|diagonal|dg)\s*([\d]+[a-z-]*)/i);
+  const via = texto.match(/\b(avenida\s*calle|av\s*calle|avenida\s*carrera|av\s*carrera|autopista|autop|transversal|transv|diagonal|circular|carrera|avenida|calle|avda|cra|cll|diag|circ|kr|cl|dg|tv|ac|ak|av|k|c)\s*([\d]+[a-z-]*)/i);
   const cruce = texto.match(/#\s*(\d+[a-z-]*)/i);
   if (!via || !cruce) return null;
-  return { tipo: via[1], viaNumero: parseInt(via[2], 10), cruceNumero: parseInt(cruce[1], 10) };
+  return { tipo: normalizarTipoVia(via[1]), viaNumero: parseInt(via[2], 10), cruceNumero: parseInt(cruce[1], 10) };
+}
+
+function normalizarTipoVia(tipo) {
+  const valor = String(tipo || '').replace(/\s+/g, ' ').trim();
+  const equivalencias = {
+    'calle': 'calle', 'cl': 'calle', 'cll': 'calle', 'c': 'calle',
+    'carrera': 'carrera', 'cra': 'carrera', 'kr': 'carrera', 'k': 'carrera',
+    'avenida': 'avenida', 'av': 'avenida', 'avda': 'avenida',
+    'diagonal': 'diagonal', 'diag': 'diagonal', 'dg': 'diagonal',
+    'transversal': 'transversal', 'transv': 'transversal', 'tv': 'transversal',
+    'avenida calle': 'avenida-calle', 'av calle': 'avenida-calle', 'ac': 'avenida-calle',
+    'avenida carrera': 'avenida-carrera', 'av carrera': 'avenida-carrera', 'ak': 'avenida-carrera',
+    'autopista': 'autopista', 'autop': 'autopista',
+    'circular': 'circular', 'circ': 'circular'
+  };
+  return equivalencias[valor] || valor;
 }
 
 function mismaFamiliaVia(a, b) {
-  const carreras = ['cra', 'carrera', 'kr'];
-  const calles = ['cl', 'calle'];
-  const diagonales = ['dg', 'diag', 'diagonal'];
-  return (carreras.includes(a) && carreras.includes(b))
-    || (calles.includes(a) && calles.includes(b))
-    || (diagonales.includes(a) && diagonales.includes(b))
-    || a === b;
+  if (a === b) return true;
+  // AC y AK son avenidas que siguen una calle o carrera, respectivamente.
+  return (a === 'avenida-calle' && b === 'calle') || (a === 'calle' && b === 'avenida-calle')
+    || (a === 'avenida-carrera' && b === 'carrera') || (a === 'carrera' && b === 'avenida-carrera');
 }
 
 function evaluarCercania(base, candidato) {
