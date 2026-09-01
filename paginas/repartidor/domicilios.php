@@ -256,7 +256,11 @@ function referenciaVial(direccion) {
 function mismaFamiliaVia(a, b) {
   const carreras = ['cra', 'carrera', 'kr'];
   const calles = ['cl', 'calle'];
-  return (carreras.includes(a) && carreras.includes(b)) || (calles.includes(a) && calles.includes(b)) || a === b;
+  const diagonales = ['dg', 'diag', 'diagonal'];
+  return (carreras.includes(a) && carreras.includes(b))
+    || (calles.includes(a) && calles.includes(b))
+    || (diagonales.includes(a) && diagonales.includes(b))
+    || a === b;
 }
 
 function evaluarCercania(base, candidato) {
