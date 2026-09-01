@@ -51,7 +51,7 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
     <title>Domicilios | Repartidor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/repartidor.css?v=4">
+    <link rel="stylesheet" href="/css/repartidor.css?v=5">
 </head>
 <body>
 <header class="delivery-topbar">
@@ -151,9 +151,6 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
                             </td>
                             <td class="text-end">
                                 <div class="action-group">
-                                    <button type="button" class="btn delivery-action-btn action-suggest" data-pedido='<?= $pedido_json ?>'>
-                                        <i class="bi bi-diagram-3"></i> Agrupar
-                                    </button>
                                     <a href="/paginas/repartidor/ver_domicilio.php?id=<?= htmlspecialchars($row['id']) ?>" class="btn delivery-action-btn action-view">
                                         <i class="bi bi-eye"></i> Ver
                                     </a>
@@ -204,26 +201,29 @@ $total_domicilios = $resultado ? mysqli_num_rows($resultado) : 0;
   </div>
 </div>
 
-<div class="modal fade" id="modalAgrupacion" tabindex="-1" aria-labelledby="tituloAgrupacion" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content route-modal">
-      <div class="modal-header">
-        <div>
-          <span class="eyebrow route-eyebrow">Agente de rutas</span>
-          <h5 class="modal-title" id="tituloAgrupacion">Sugerencia de agrupación</h5>
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <div id="resultadoAgrupacion" class="route-suggestion" aria-live="polite"></div>
-        <div class="d-flex justify-content-end mt-3 gap-2">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Revisar después</button>
-          <button type="button" class="btn btn-warning" id="usarSugerencia"><i class="bi bi-check2-circle"></i> Usar ruta sugerida</button>
-        </div>
-      </div>
+<button type="button" id="abrirAsistenteRuta" class="route-assistant-launcher" aria-label="Abrir asistente de rutas" aria-expanded="false">
+  <span class="route-assistant-avatar" aria-hidden="true"></span>
+  <span class="route-assistant-pulse"></span>
+</button>
+
+<aside id="asistenteRuta" class="route-assistant" aria-hidden="true" aria-label="Asistente virtual de rutas">
+  <header class="route-assistant-header">
+    <span class="route-assistant-avatar route-assistant-avatar-small" aria-hidden="true"></span>
+    <div><strong>Capitán Ruta</strong><small><i class="bi bi-circle-fill"></i> Disponible</small></div>
+    <button type="button" id="cerrarAsistenteRuta" class="btn-close btn-close-white" aria-label="Cerrar asistente"></button>
+  </header>
+  <div class="route-assistant-body">
+    <div class="assistant-message">
+      <p>¡Hola! Soy tu asistente de rutas. Elige el pedido base y te diré cuáles puedes agrupar.</p>
     </div>
+    <div id="listaPedidosAsistente" class="assistant-order-list" aria-label="Pedidos disponibles"></div>
+    <div id="resultadoAgrupacion" class="route-suggestion d-none" aria-live="polite"></div>
   </div>
-</div>
+  <footer id="accionesAsistente" class="route-assistant-footer d-none">
+    <button type="button" class="btn btn-outline-secondary btn-sm" id="elegirOtroPedido">Cambiar pedido</button>
+    <button type="button" class="btn btn-warning btn-sm" id="usarSugerencia"><i class="bi bi-map"></i> Usar ruta</button>
+  </footer>
+</aside>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/avisos.js"></script>
@@ -282,6 +282,33 @@ function escaparHtml(valor) {
   return nodo.innerHTML;
 }
 
+function cargarPedidosEnAsistente() {
+  const lista = document.getElementById('listaPedidosAsistente');
+  const pedidos = obtenerPedidosActivos();
+  lista.innerHTML = pedidos.length
+    ? pedidos.map((pedido) => `<button type="button" class="assistant-order" data-pedido-id="${pedido.id}"><strong>${escaparHtml(pedido.cliente)}</strong><span>${escaparHtml(pedido.direccion || 'Dirección sin registrar')}</span></button>`).join('')
+    : '<p class="text-muted small mb-0">No hay pedidos disponibles.</p>';
+  lista.querySelectorAll('.assistant-order').forEach((boton) => {
+    boton.addEventListener('click', () => {
+      const pedido = pedidos.find((item) => item.id === Number(boton.dataset.pedidoId));
+      if (pedido) mostrarAgrupacion(pedido);
+    });
+  });
+}
+
+function abrirAsistenteRuta() {
+  document.getElementById('asistenteRuta').classList.add('is-open');
+  document.getElementById('asistenteRuta').setAttribute('aria-hidden', 'false');
+  document.getElementById('abrirAsistenteRuta').setAttribute('aria-expanded', 'true');
+  cargarPedidosEnAsistente();
+}
+
+function cerrarAsistenteRuta() {
+  document.getElementById('asistenteRuta').classList.remove('is-open');
+  document.getElementById('asistenteRuta').setAttribute('aria-hidden', 'true');
+  document.getElementById('abrirAsistenteRuta').setAttribute('aria-expanded', 'false');
+}
+
 function mostrarAgrupacion(base) {
   const pedidos = obtenerPedidosActivos();
   const incompletos = pedidos.filter((p) => p.id !== base.id && direccionIncompleta(p.direccion));
@@ -294,8 +321,8 @@ function mostrarAgrupacion(base) {
 
   sugerenciaActual = [base, ...cercanos.map((item) => item.pedido)];
   const salida = document.getElementById('resultadoAgrupacion');
-  const titulo = document.getElementById('tituloAgrupacion');
-  titulo.textContent = `Agrupar con ${base.cliente}`;
+  document.getElementById('listaPedidosAsistente').classList.add('d-none');
+  document.getElementById('accionesAsistente').classList.remove('d-none');
   let html = `<p><strong>${escaparHtml(base.cliente)}</strong> está en ${escaparHtml(base.direccion)}.</p>`;
   if (!cercanos.length) {
     html += '<p class="mb-0"><strong>Este pedido va solo, no hay otros pendientes cerca de su ruta.</strong></p>';
@@ -308,7 +335,7 @@ function mostrarAgrupacion(base) {
     html += `<p class="route-warning mb-0"><i class="bi bi-exclamation-triangle"></i> Dirección incompleta, verificar antes de asignar: ${incompletos.map((p) => escaparHtml(p.cliente)).join(', ')}.</p>`;
   }
   salida.innerHTML = html;
-  bootstrap.Modal.getOrCreateInstance(document.getElementById('modalAgrupacion')).show();
+  salida.classList.remove('d-none');
 }
 
 function normalizarDireccion(direccion) {
@@ -366,15 +393,20 @@ document.querySelectorAll('.action-route[data-destination]').forEach((btn) => {
   });
 });
 
-document.querySelectorAll('.action-suggest').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    try { mostrarAgrupacion(JSON.parse(btn.dataset.pedido)); } catch (_) { alert('No fue posible leer la dirección de este pedido.'); }
-  });
+document.getElementById('abrirAsistenteRuta')?.addEventListener('click', abrirAsistenteRuta);
+document.getElementById('cerrarAsistenteRuta')?.addEventListener('click', cerrarAsistenteRuta);
+
+document.getElementById('elegirOtroPedido')?.addEventListener('click', () => {
+  sugerenciaActual = [];
+  document.getElementById('resultadoAgrupacion').classList.add('d-none');
+  document.getElementById('accionesAsistente').classList.add('d-none');
+  document.getElementById('listaPedidosAsistente').classList.remove('d-none');
+  cargarPedidosEnAsistente();
 });
 
 document.getElementById('usarSugerencia')?.addEventListener('click', () => {
   if (!sugerenciaActual.length) return;
-  bootstrap.Modal.getInstance(document.getElementById('modalAgrupacion'))?.hide();
+  cerrarAsistenteRuta();
   iniciarRuta([...sugerenciaActual.slice(1), sugerenciaActual[0]].map((pedido) => pedido.direccion));
 });
 
