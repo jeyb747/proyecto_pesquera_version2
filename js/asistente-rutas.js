@@ -65,7 +65,6 @@
   const cerrar = () => { document.getElementById('asistenteRuta').classList.remove('is-open'); document.getElementById('asistenteRuta').setAttribute('aria-hidden', 'true'); document.getElementById('abrirAsistenteRuta').setAttribute('aria-expanded', 'false'); };
 
   const mostrarAgrupacion = (base) => {
-    const incompletos = pedidos.filter((p) => p.id !== base.id && direccionIncompleta(p.direccion));
     const cercanos = pedidos.filter((p) => p.id !== base.id && !direccionIncompleta(p.direccion)).map((p) => ({ pedido: p, evaluacion: evaluarCercania(base, p) })).filter((item) => item.evaluacion).sort((a, b) => a.evaluacion.prioridad - b.evaluacion.prioridad).slice(0, maxSugeridos);
     sugerenciaActual = [base, ...cercanos.map((item) => item.pedido)];
     document.getElementById('listaPedidosAsistente').classList.add('d-none');
@@ -74,7 +73,6 @@
     let html = `<p><strong>${escaparHtml(base.cliente)}</strong> está en ${escaparHtml(base.direccion)}.</p>`;
     if (!cercanos.length) html += '<p class="mb-0"><strong>Este pedido va solo, no hay otros pendientes cerca de su ruta.</strong></p>';
     else html += `<p>Estos pedidos pasan cerca o quedan en el camino:</p><ol class="route-suggestion-list">${cercanos.map(({ pedido, evaluacion }) => `<li><strong>${escaparHtml(pedido.cliente)}</strong> – ${escaparHtml(pedido.direccion)} <span>(${escaparHtml(evaluacion.texto)})</span></li>`).join('')}</ol><p class="mb-0"><strong>Orden sugerido de entrega:</strong> ${cercanos.map(({ pedido }) => escaparHtml(pedido.cliente)).join(' → ')} → ${escaparHtml(base.cliente)}, para no cruzar zonas ni regresar.</p>`;
-    if (incompletos.length) html += `<p class="route-warning mb-0"><i class="bi bi-exclamation-triangle"></i> Dirección incompleta, verificar antes de asignar: ${incompletos.map((p) => escaparHtml(p.cliente)).join(', ')}.</p>`;
     salida.innerHTML = html;
     salida.classList.remove('d-none');
   };
