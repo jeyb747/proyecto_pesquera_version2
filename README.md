@@ -6,7 +6,7 @@ El proyecto nació como una versión sencilla para XAMPP (carpeta version_final/
 
  Capturas de Pantalla
 
-🔹 Inicio <img width="1347" height="683" alt="Inicio" src=<img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/b21592ae-e102-4c15-8ff5-f6bd34482f95" />
+🔹 Inicio <img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/b21592ae-e102-4c15-8ff5-f6bd34482f95" />
 
 🔹 Menú de Productos <img width="1904" height="933" alt="image" src="https://github.com/user-attachments/assets/ef96f2f6-f114-4492-ada0-1333b8b01e58" />
 
