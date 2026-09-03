@@ -6,15 +6,15 @@ El proyecto nació como una versión sencilla para XAMPP (carpeta version_final/
 
  Capturas de Pantalla
 
-🔹 Inicio <img width="1347" height="683" alt="Inicio" src="https://github.com/user-attachments/assets/e97e2f8b-77e3-4d0c-a210-1cf5f835555d" />
+🔹 Inicio <img width="1347" height="683" alt="Inicio" src=<img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/b21592ae-e102-4c15-8ff5-f6bd34482f95" />
 
-🔹 Menú de Productos <img width="1366" height="696" alt="Menú" src="https://github.com/user-attachments/assets/af0213c8-15cb-4bb8-bb9a-0b28e442042d" />
+🔹 Menú de Productos <img width="1904" height="933" alt="image" src="https://github.com/user-attachments/assets/ef96f2f6-f114-4492-ada0-1333b8b01e58" />
 
-🔹 Carrito de Compras <img width="1347" height="675" alt="Carrito" src="https://github.com/user-attachments/assets/91ce2241-8c0b-4adb-b2be-930de442f370" />
+🔹 Carrito de Compras <img width="1906" height="944" alt="image" src="https://github.com/user-attachments/assets/e9068ab6-a610-4ce3-956f-078298132b63" />
 
-🔹 Reservas <img width="1352" height="630" alt="Reservas" src="https://github.com/user-attachments/assets/0e667eea-a652-4d8f-a628-0369b0a833fc" />
+🔹 Reservas <img width="1904" height="936" alt="image" src="https://github.com/user-attachments/assets/ee2fd006-6a74-4806-8eb5-7ea084da9e66" />
 
-🔹 Domicilios <img width="1347" height="667" alt="Domicilios" src="https://github.com/user-attachments/assets/c129a429-4026-495e-83d7-d1b6ddecd46b" />
+🔹 Domicilios <img width="1903" height="938" alt="image" src="https://github.com/user-attachments/assets/e342bfeb-19ac-4bde-9652-8dfb0672a6fa" />
 
  Funcionalidades
 Cliente
