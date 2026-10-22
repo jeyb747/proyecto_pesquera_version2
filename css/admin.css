@@ -263,9 +263,13 @@ body::before {
 }
 
 @media(max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
   .main-content {
-    width: calc(100% - 64px);
-    margin-left: 64px;
+    width: 100%;
+    margin: 64px 0 0;
     padding: 16px;
   }
 }

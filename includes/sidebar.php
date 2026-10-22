@@ -3,7 +3,7 @@
 $pagina_actual = basename($_SERVER['SCRIPT_NAME']);
 ?>
 
-<link rel="stylesheet" href="/css/includes/sidebar.css?v=13">
+<link rel="stylesheet" href="/css/includes/sidebar.css?v=14">
 
 <aside class="sidebar" id="admin-sidebar">
   <button class="sidebar-logo" type="button" aria-label="Abrir menú de administración" aria-expanded="false" aria-controls="admin-menu">
