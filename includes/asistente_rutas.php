@@ -3,13 +3,13 @@
 $pedidos_asistente_json = json_encode($pedidos_asistente ?? [], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 ?>
 <button type="button" id="abrirAsistenteRuta" class="route-assistant-launcher" aria-label="Abrir asistente de rutas" aria-expanded="false">
-  <span class="route-assistant-avatar" aria-hidden="true"></span>
+  <span class="route-assistant-avatar" aria-hidden="true"><i class="bi bi-robot"></i><img src="/imagenes/asistente-pesquera-avatar-v5.png" alt=""></span>
   <span class="route-assistant-pulse"></span>
 </button>
 
 <aside id="asistenteRuta" class="route-assistant" aria-hidden="true" aria-label="Asistente virtual de rutas">
   <header class="route-assistant-header">
-    <span class="route-assistant-avatar route-assistant-avatar-small" aria-hidden="true"></span>
+    <span class="route-assistant-avatar route-assistant-avatar-small" aria-hidden="true"><i class="bi bi-robot"></i><img src="/imagenes/asistente-pesquera-avatar-v5.png" alt=""></span>
     <div><strong>Capitán Ruta</strong><small><i class="bi bi-circle-fill"></i> Disponible</small></div>
     <button type="button" id="cerrarAsistenteRuta" class="btn-close btn-close-white" aria-label="Cerrar asistente"></button>
   </header>

@@ -52,8 +52,8 @@ $pedidos_asistente = [];
     <title>Domicilios | Repartidor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/repartidor.css?v=5">
-    <link rel="stylesheet" href="/css/asistente-rutas.css?v=1">
+    <link rel="stylesheet" href="/css/repartidor.css?v=6">
+    <link rel="stylesheet" href="/css/asistente-rutas.css?v=2">
 </head>
 <body>
 <header class="delivery-topbar">
@@ -69,36 +69,25 @@ $pedidos_asistente = [];
 
 <main class="delivery-shell">
     <section class="delivery-summary">
-        <div>
+        <div class="summary-metric">
+            <span class="summary-icon"><i class="bi bi-box-seam"></i></span>
+            <div>
             <span class="summary-label">Pendientes y en ruta</span>
             <strong><?= $total_domicilios ?></strong>
+            </div>
         </div>
-        <p>Elige un pedido base y revisa los domicilios que se pueden agrupar antes de iniciar la ruta.</p>
+        <p>Organiza las entregas disponibles, selecciona hasta cinco pedidos y comienza tu recorrido.</p>
     </section>
 
-    <div class="d-flex justify-content-between align-items-center mb-3 gap-3 flex-wrap">
-        <small class="text-muted"><i class="bi bi-geo-alt-fill"></i> Salida: Cra. 79 #42B-07, Antonio Nariño, Bogotá</small>
+    <div class="delivery-controls">
+        <div class="delivery-origin"><span class="origin-icon"><i class="bi bi-geo-alt-fill"></i></span><span><small>Punto de salida</small><strong>Cra. 79 #42B-07, Antonio Nariño, Bogotá</strong></span></div>
         <div class="d-flex gap-2 route-tools">
           <?php if ($_SESSION['rol'] === 'admin'): ?><form method="post" action="/php/controlador/domicilios/asignar_equitativo.php"><button class="btn btn-primary route-bulk-btn"><i class="bi bi-diagram-3"></i> Distribuir pedidos</button></form><?php endif; ?>
           <button type="button" id="abrirRutaConjunta" class="btn btn-warning route-bulk-btn"><i class="bi bi-sign-turn-right"></i> Iniciar ruta seleccionada</button>
         </div>
     </div>
 
-    <section class="delivery-card">
-        <div class="table-responsive">
-            <table class="table align-middle delivery-table">
-                <thead>
-                    <tr>
-                        <th>Ruta</th>
-                        <th>Cliente</th>
-                        <th>Direccion</th>
-                        <th>Productos</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                        <th class="text-end">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <section class="delivery-list" aria-label="Pedidos por entregar">
                 <?php if ($resultado && $total_domicilios > 0): ?>
                     <?php while ($row = mysqli_fetch_assoc($resultado)): ?>
                         <?php
@@ -111,22 +100,33 @@ $pedidos_asistente = [];
                             'direccion' => $row['direccion'] ?? ''
                         ];
                         ?>
-                        <tr>
-                            <td><input class="form-check-input pedido-ruta" type="checkbox" value="<?= htmlspecialchars($row['direccion'] ?? '') ?>" aria-label="Incluir pedido en ruta"></td>
-                            <td>
+                        <article class="delivery-order">
+                            <header class="order-heading">
+                                <label class="order-select">
+                                    <input class="form-check-input pedido-ruta" type="checkbox" value="<?= htmlspecialchars($row['direccion'] ?? '') ?>" aria-label="Incluir pedido de <?= htmlspecialchars($row['nombre'] ?? 'Cliente') ?> en la ruta">
+                                    <span>Agregar a ruta</span>
+                                </label>
                                 <div class="customer-cell">
-                                    <span><i class="bi bi-person"></i></span>
-                                    <strong><?= htmlspecialchars($row['nombre'] ?? 'Cliente') ?></strong>
+                                    <span class="customer-icon"><i class="bi bi-person"></i></span>
+                                    <div><small>Pedido #<?= (int)$row['id'] ?></small><strong><?= htmlspecialchars($row['nombre'] ?? 'Cliente') ?></strong></div>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="address-text">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <?= htmlspecialchars($row['direccion'] ?? '') ?>
-                                </span>
-                            </td>
-                            <td>
-                                <div class="products-stack">
+                                <form action="/php/controlador/domicilios/estado.php" method="POST" class="status-form">
+                                    <input type="hidden" name="id" value="<?= (int)$row['id'] ?>">
+                                    <select name="estado" aria-label="Cambiar estado del pedido #<?= (int)$row['id'] ?>" class="form-select status-select status-<?= htmlspecialchars($estado_class) ?>" onchange="this.form.submit()">
+                                        <option value="pendiente" <?= $row['estado'] == 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
+                                        <option value="en camino" <?= $row['estado'] == 'en camino' ? 'selected' : '' ?>>En camino</option>
+                                        <option value="entregado" <?= $row['estado'] == 'entregado' ? 'selected' : '' ?>>Entregado</option>
+                                    </select>
+                                </form>
+                            </header>
+                            <div class="order-details">
+                                <div class="order-detail address-detail">
+                                    <span class="detail-label">Dirección de entrega</span>
+                                    <span class="address-text"><i class="bi bi-geo-alt-fill"></i><?= htmlspecialchars($row['direccion'] ?? '') ?></span>
+                                </div>
+                                <div class="order-detail products-detail">
+                                    <span class="detail-label">Productos</span>
+                                    <div class="products-stack">
                                     <?php if (is_array($productos) && count($productos) > 0): ?>
                                         <?php foreach ($productos as $producto): ?>
                                             <span><?= htmlspecialchars($producto['nombre'] ?? 'Producto') ?></span>
@@ -134,22 +134,14 @@ $pedidos_asistente = [];
                                     <?php else: ?>
                                         <span class="text-muted">Sin productos</span>
                                     <?php endif; ?>
+                                    </div>
                                 </div>
-                            </td>
-                            <td>
-                                <strong class="money">$<?= number_format((int)$total, 0, ',', '.') ?></strong>
-                            </td>
-                            <td>
-                                <form action="/php/controlador/domicilios/estado.php" method="POST" class="m-0">
-                                    <input type="hidden" name="id" value="<?= htmlspecialchars($row['id']) ?>">
-                                    <select name="estado" class="form-select status-select status-<?= htmlspecialchars($estado_class) ?>" onchange="this.form.submit()">
-                                        <option value="pendiente" <?= $row['estado'] == 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
-                                        <option value="en camino" <?= $row['estado'] == 'en camino' ? 'selected' : '' ?>>En camino</option>
-                                        <option value="entregado" <?= $row['estado'] == 'entregado' ? 'selected' : '' ?>>Entregado</option>
-                                    </select>
-                                </form>
-                            </td>
-                            <td class="text-end">
+                                <div class="order-detail total-detail">
+                                    <span class="detail-label">Total del pedido</span>
+                                    <strong class="money">$<?= number_format((int)$total, 0, ',', '.') ?></strong>
+                                </div>
+                            </div>
+                            <footer class="order-actions">
                                 <div class="action-group">
                                     <a href="/paginas/repartidor/ver_domicilio.php?id=<?= htmlspecialchars($row['id']) ?>" class="btn delivery-action-btn action-view">
                                         <i class="bi bi-eye"></i> Ver
@@ -161,20 +153,16 @@ $pedidos_asistente = [];
                                         <i class="bi bi-geo-alt-fill"></i> Iniciar ruta
                                     </a>
                                 </div>
-                            </td>
-                        </tr>
+                            </footer>
+                        </article>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <tr>
-                        <td colspan="7" class="empty-state">
+                    <div class="empty-state">
                             <i class="bi bi-check2-circle"></i>
-                            No hay domicilios pendientes por gestionar.
-                        </td>
-                    </tr>
+                            <strong>No hay domicilios pendientes</strong>
+                            <span>Cuando tengas nuevas entregas asignadas, aparecerán aquí.</span>
+                    </div>
                 <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
     </section>
 </main>
 
