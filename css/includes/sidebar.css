@@ -100,8 +100,8 @@
   min-height: 46px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 11px 14px;
+  gap: 0;
+  padding: 11px 12px;
   overflow: hidden;
   color: rgba(255, 255, 255, .78);
   border-radius: 12px;
@@ -117,6 +117,28 @@
   flex: 0 0 20px;
   font-size: 1.2rem;
   text-align: center;
+}
+
+.sidebar-menu .nav-label {
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .15s ease;
+}
+
+.sidebar:hover .sidebar-menu a,
+.sidebar:focus-within .sidebar-menu a,
+.sidebar.is-open .sidebar-menu a {
+  gap: 14px;
+  padding-right: 14px;
+  padding-left: 14px;
+}
+
+.sidebar:hover .sidebar-menu .nav-label,
+.sidebar:focus-within .sidebar-menu .nav-label,
+.sidebar.is-open .sidebar-menu .nav-label {
+  opacity: 1;
+  visibility: visible;
 }
 
 .sidebar-menu a:hover {
@@ -166,7 +188,12 @@
   .sidebar.is-open .sidebar-logo span { display: inline; }
   .sidebar.is-open .sidebar-logo small { display: inline; }
   .sidebar-menu { gap: 6px; }
-  .sidebar-menu a { min-height: 44px; padding: 10px 12px; }
+  .sidebar-menu a { min-height: 44px; gap: 0; padding: 10px 12px; }
+  .sidebar.is-open .sidebar-menu a { gap: 14px; padding: 10px 12px; }
+  .sidebar:hover .sidebar-menu a,
+  .sidebar:focus-within:not(.is-open) .sidebar-menu a { gap: 0; padding: 10px 12px; }
+  .sidebar.is-open .sidebar-menu .nav-label { opacity: 1; visibility: visible; }
+  .sidebar:not(.is-open) .sidebar-menu .nav-label { opacity: 0; visibility: hidden; }
   .sidebar-menu a:not(.active) { color: rgba(255, 255, 255, .78); }
 }
 

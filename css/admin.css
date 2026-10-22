@@ -64,8 +64,8 @@ body::before {
    MAIN CONTENT (CORREGIDO)
 ====================================================== */
 .main-content {
-  margin-left: 270px;
-  width: calc(100% - 270px);
+  margin-left: 76px;
+  width: calc(100% - 76px);
   padding: 35px;
   flex-grow: 1;
   background: transparent !important;
