@@ -246,19 +246,27 @@ body::before {
 ====================================================== */
 @media(max-width: 992px) {
   .dashboard-layout {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
+    width: 76px;
+    height: 100vh;
+    position: fixed;
   }
 
   .main-content {
-    width: 100%;
-    margin-left: 0;
+    width: calc(100% - 76px);
+    margin-left: 76px;
     padding: 20px;
+  }
+}
+
+@media(max-width: 768px) {
+  .main-content {
+    width: calc(100% - 64px);
+    margin-left: 64px;
+    padding: 16px;
   }
 }
 
