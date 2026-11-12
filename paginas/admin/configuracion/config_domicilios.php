@@ -141,12 +141,12 @@ $resultado_domicilios = mysqli_query($conexion, $query_domicilios);
             <form action="/php/controlador/admin/procesar_domicilio.php?accion=crear_columna" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre de la Columna (Sin espacios ni eñes)</label>
-                        <input type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. repartidor, telefono_contacto, costo_envio" required>
+                        <label for="domicilio-nombre-columna" class="form-label text-secondary small fw-medium">Nombre de la Columna (Sin espacios ni eñes)</label>
+                        <input id="domicilio-nombre-columna" type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. repartidor, telefono_contacto, costo_envio" required>
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
-                        <select name="tipo_columna" class="form-select rounded-3" required>
+                        <label for="domicilio-tipo-columna" class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
+                        <select id="domicilio-tipo-columna" name="tipo_columna" class="form-select rounded-3" required>
                             <option value="VARCHAR(255) DEFAULT NULL">Texto (VARCHAR 255)</option>
                             <option value="TEXT DEFAULT NULL">Texto Largo (TEXT)</option>
                             <option value="DECIMAL(10,2) DEFAULT 0.00">Decimal (Costos/Precios)</option>
@@ -176,8 +176,8 @@ $resultado_domicilios = mysqli_query($conexion, $query_domicilios);
                         <strong>¡Cuidado!</strong> Al borrar la columna se destruirán permanentemente todos los datos de logística en ella contenidos.
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Selecciona la columna a DESTRUIR</label>
-                        <select name="nombre_columna" class="form-select rounded-3" required>
+                        <label for="domicilio-columna-eliminar" class="form-label text-secondary small fw-medium">Selecciona la columna a DESTRUIR</label>
+                        <select id="domicilio-columna-eliminar" name="nombre_columna" class="form-select rounded-3" required>
                             <option value="" disabled selected>Selecciona...</option>
                             <?php 
                             foreach ($columnas_domicilios as $col) {
@@ -208,21 +208,21 @@ $resultado_domicilios = mysqli_query($conexion, $query_domicilios);
             <form action="/php/controlador/admin/procesar_domicilio.php?accion=crear" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">ID Pedido Asociado</label>
-                        <input type="number" name="pedido_id" class="form-control rounded-3" required>
+                        <label for="domicilio-pedido-id" class="form-label text-secondary small fw-medium">ID Pedido Asociado</label>
+                        <input id="domicilio-pedido-id" type="number" name="pedido_id" class="form-control rounded-3" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Dirección de Envío Completa</label>
-                        <input type="text" name="direccion" class="form-control rounded-3" placeholder="Calle, Carrera, Barrio, Apto" required>
+                        <label for="domicilio-direccion" class="form-label text-secondary small fw-medium">Dirección de Envío Completa</label>
+                        <input id="domicilio-direccion" type="text" name="direccion" class="form-control rounded-3" placeholder="Calle, Carrera, Barrio, Apto" required>
                     </div>
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <label class="form-label text-secondary small fw-medium">Teléfono Destino</label>
-                            <input type="text" name="telefono" class="form-control rounded-3" required>
+                            <label for="domicilio-telefono" class="form-label text-secondary small fw-medium">Teléfono Destino</label>
+                            <input id="domicilio-telefono" type="text" name="telefono" class="form-control rounded-3" required>
                         </div>
                         <div class="col-6 mb-3">
-                            <label class="form-label text-secondary small fw-medium">Estado Inicial</label>
-                            <select name="estado" class="form-select rounded-3" required>
+                            <label for="domicilio-estado" class="form-label text-secondary small fw-medium">Estado Inicial</label>
+                            <select id="domicilio-estado" name="estado" class="form-select rounded-3" required>
                                 <option value="pendiente">Pendiente</option>
                                 <option value="en camino">En Camino</option>
                                 <option value="entregado">Entregado</option>

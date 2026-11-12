@@ -42,8 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
   carrito.forEach(item => {
 
     // 🔥 LIMPIEZA DE PRECIO (CLAVE DEL ERROR)
-    const precio = parseInt(
-      String(item.precio).replace(/\D/g, "")
+    const precio = Number.parseInt(
+      String(item.precio).replace(/\D/g, ""),
+      10
     ) || 0;
 
     total += precio;

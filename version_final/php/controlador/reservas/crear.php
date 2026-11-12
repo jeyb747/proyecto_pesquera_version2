@@ -8,7 +8,11 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-$usuario_id = $_SESSION['id'];
+$usuario_id = filter_var($_SESSION['id'], FILTER_VALIDATE_INT);
+if ($usuario_id === false || $usuario_id <= 0) {
+    http_response_code(400);
+    exit('Sesión no válida');
+}
 
 // 📦 Obtener datos
 $nombre = $_POST['nombre'] ?? '';
@@ -19,18 +23,20 @@ $personas = $_POST['personas'] ?? '';
 $observaciones = $_POST['observaciones'] ?? '';
 
 // 🧪 Validar
-if (!$nombre || !$telefono || !$fecha || !$hora || !$personas) {
+if (!is_string($nombre) || $nombre === '' || !is_string($telefono) || $telefono === '' || !is_string($fecha) || !is_string($hora) || !is_string($observaciones)) {
+    echo "error_datos";
+    exit();
+}
+$personas = filter_var($personas, FILTER_VALIDATE_INT);
+if ($personas === false || $personas < 1) {
     echo "error_datos";
     exit();
 }
 
 // 🚀 Insertar en BD
-$sql = "INSERT INTO reservas 
-(usuario_id, nombre, telefono, fecha, hora, personas, observaciones, estado)
-VALUES 
-('$usuario_id', '$nombre', '$telefono', '$fecha', '$hora', '$personas', '$observaciones', 'pendiente')";
-
-$resultado = mysqli_query($conexion, $sql);
+$stmt = $conexion->prepare("INSERT INTO reservas (usuario_id, nombre, telefono, fecha, hora, personas, observaciones, estado) VALUES (?, ?, ?, ?, ?, ?, ?, 'pendiente')");
+$stmt->bind_param('issssis', $usuario_id, $nombre, $telefono, $fecha, $hora, $personas, $observaciones);
+$resultado = $stmt->execute();
 
 // 📤 Respuesta para JS
 if ($resultado) {

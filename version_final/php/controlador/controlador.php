@@ -4,7 +4,7 @@ require_once("../modelo/login.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(!isset($_POST['correo']) || !isset($_POST['password'])){
+    if(!isset($_POST['correo'], $_POST['password']) || !is_string($_POST['correo']) || !is_string($_POST['password'])){
         echo "Faltan datos";
         exit();
     }
@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $resultado = verificarUsuario($correo, $password);
 
-    if ($resultado && mysqli_num_rows($resultado) > 0) {
+    if ($resultado) {
 
-        $usuario = mysqli_fetch_assoc($resultado);
+        $usuario = $resultado;
 
         // ✅ sesión
         $_SESSION['id'] = $usuario['id'];

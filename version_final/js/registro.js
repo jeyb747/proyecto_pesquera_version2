@@ -1,4 +1,3 @@
-{"id","58219","variant","standard","title","registro.js corregido"}
 document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("formRegistro");

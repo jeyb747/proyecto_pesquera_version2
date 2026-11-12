@@ -242,21 +242,6 @@ document.querySelectorAll('.producto').forEach(card => {
   imagenProducto?.addEventListener('click', () => {
 
     window.location.href = `producto.php?nombre=${encodeURIComponent(card.dataset.plato)}&imagen=${encodeURIComponent(card.dataset.img)}&precio=${encodeURIComponent(card.dataset.precio)}`;
-    return;
-
-    const nombre = card.dataset.plato;
-    const imagen = card.dataset.img;
-    const desc = card.dataset.desc || 'Delicioso plato de La Pesquera';
-    const precio = Number(card.dataset.precio);
-    categoriaProductoModal = obtenerCategoria(card);
-
-    modalImg.src = imagen;
-    modalTitulo.textContent = nombre;
-    modalDescripcion.textContent = desc;
-    modalPrecio.textContent = fmtCOP.format(precio);
-
-    modalBootstrap.show();
-
   });
 
 });

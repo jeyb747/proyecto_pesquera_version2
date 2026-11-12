@@ -17,7 +17,11 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$id = $_GET['id'];
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if ($id === false || $id === null || $id <= 0) {
+    http_response_code(400);
+    exit('ID no válido');
+}
 
 // 🔥 CONSULTA CON JOIN
 $sql = "SELECT 
@@ -31,10 +35,12 @@ $sql = "SELECT
         FROM domicilios d
         INNER JOIN pedidos p ON d.pedido_id = p.id
         INNER JOIN usuarios u ON p.usuario_id = u.id
-        WHERE d.id = '$id'";
+        WHERE d.id = ?";
 
-$resultado = mysqli_query($conexion, $sql);
-$data = mysqli_fetch_assoc($resultado);
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param('i', $id);
+$stmt->execute();
+$data = $stmt->get_result()->fetch_assoc();
 
 if (!$data) {
     echo "Domicilio no encontrado";

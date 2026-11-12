@@ -7,34 +7,32 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre_tabla'])) {
-    // 🧼 Sanitizar el nombre de la tabla
-    $nombre_tabla = preg_replace('/[^a-zA-Z0-9_]/', '', $_POST['nombre_tabla']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nombre_tabla']) && is_string($_POST['nombre_tabla'])) {
+    $nombre_tabla = $_POST['nombre_tabla'];
     
     $nombres_cols = $_POST['nombre_col'] ?? [];
     $tipos_cols = $_POST['tipo_col'] ?? [];
     
-    // Iniciar la estructura de la consulta SQL basal con su ID maestro auto_increment
-    $sql_columnas = "`id` INT(11) NOT NULL AUTO_INCREMENT, ";
+    $columnas = ["`id` INT(11) NOT NULL AUTO_INCREMENT"];
+    $tipos_permitidos = ['VARCHAR(255) DEFAULT NULL', 'TEXT DEFAULT NULL', 'INT DEFAULT 0', 'DECIMAL(10,2) DEFAULT 0.00', 'DATE DEFAULT NULL'];
+    $columnas_vistas = ['id'];
     
     // Agregar las columnas dinámicas que envió el formulario
-    for ($i = 0; $i < count($nombres_cols); $i++) {
-        $col_clean = preg_replace('/[^a-zA-Z0-9_]/', '', $nombres_cols[$i]);
-        $tipo_clean = $tipos_cols[$i]; 
-        
-        if (!empty($col_clean)) {
-            $sql_columnas .= "`$col_clean` $tipo_clean, ";
+    if (preg_match('/\A[a-zA-Z][a-zA-Z0-9_]{0,63}\z/D', $nombre_tabla) && is_array($nombres_cols) && is_array($tipos_cols)) {
+        foreach ($nombres_cols as $i => $nombre_columna) {
+            $tipo = $tipos_cols[$i] ?? '';
+            if (is_string($nombre_columna) && preg_match('/\A[a-zA-Z][a-zA-Z0-9_]{0,63}\z/D', $nombre_columna)
+                && !in_array(strtolower($nombre_columna), $columnas_vistas, true)
+                && is_string($tipo) && in_array($tipo, $tipos_permitidos, true)) {
+                $columnas_vistas[] = strtolower($nombre_columna);
+                $columnas[] = "`$nombre_columna` $tipo";
+            }
         }
+
+        $sql_columnas = implode(', ', $columnas) . ', PRIMARY KEY (`id`)';
+        $query_final = "CREATE TABLE `$nombre_tabla` ($sql_columnas) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
+        mysqli_query($conexion, $query_final);
     }
-    
-    // Declarar la llave primaria final de la tabla
-    $sql_columnas .= "PRIMARY KEY (`id`)";
-    
-    // Construir la consulta completa estructurada
-    $query_final = "CREATE TABLE `$nombre_tabla` ($sql_columnas) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
-    
-    // Ejecutar en el motor MariaDB/MySQL
-    mysqli_query($conexion, $query_final);
 }
 
 // 🔄 Redireccionar de vuelta a la página del constructor estructural

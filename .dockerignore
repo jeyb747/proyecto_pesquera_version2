@@ -1,0 +1,9 @@
+.git
+**/.git
+**/.env*
+**/*mail_config.php
+**/vendor
+**/*.sql
+**/*.zip
+**/flutter_app/.dart_tool
+**/flutter_app/build

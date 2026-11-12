@@ -17,7 +17,7 @@
     border: 1px solid #dee2e6 !important;
     border-radius: 8px !important;
     background-color: #f8f9fa !important;
-    transition: all 0.2s ease-index !important;
+    transition: all 0.2s ease-in !important;
 }
 
 .custom-input:focus {

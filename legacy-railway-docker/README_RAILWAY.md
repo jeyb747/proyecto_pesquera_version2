@@ -6,4 +6,4 @@
 4. En el servicio MySQL usa **Connect** para obtener host y credenciales públicas, e importa `database_railway.sql` con MySQL Workbench o consola. El archivo ya crea la base `la_pesquera`.
 5. Despliega. Railway detectará el `Dockerfile`. En Networking genera un dominio público y abre `https://TU-DOMINIO/version_final/`.
 
-Las credenciales de Gmail deben ponerse únicamente en Variables de Railway: `MAIL_USERNAME` y `MAIL_PASSWORD`.
+Las credenciales de Gmail deben ponerse únicamente en Variables de Railway: `MAIL_USERNAME` y `MAIL_PASSWORD`. Los archivos `.env`, respaldos SQL, archivos ZIP y configuraciones privadas se excluyen del contexto de Docker.

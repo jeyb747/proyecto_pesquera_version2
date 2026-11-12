@@ -34,7 +34,7 @@
     const via = texto.match(/\b(avenida\s*calle|av\s*calle|avenida\s*carrera|av\s*carrera|autopista|autop|transversal|transv|diagonal|circular|carrera|avenida|calle|avda|cra|cll|diag|circ|kr|cl|dg|tv|ac|ak|av|k|c)\s*([\d]+[a-z-]*)/i);
     const cruce = texto.match(/#\s*(\d+[a-z-]*)/i);
     if (!via || !cruce) return null;
-    return { tipo: normalizarTipoVia(via[1]), viaNumero: parseInt(via[2], 10), cruceNumero: parseInt(cruce[1], 10) };
+    return { tipo: normalizarTipoVia(via[1]), viaNumero: Number.parseInt(via[2], 10), cruceNumero: Number.parseInt(cruce[1], 10) };
   };
 
   const mismaFamiliaVia = (a, b) => a === b

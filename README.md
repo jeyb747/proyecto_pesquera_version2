@@ -100,7 +100,8 @@ DB_USER	Usuario de MySQL
 DB_PASSWORD	Contraseña de MySQL
 DB_NAME	Nombre de la base de datos (la_pesquera)
 DB_PORT	Puerto (por defecto 3306)
-Puedes definirlas en tu sistema, en la configuración de Apache/PHP, o con un plugin de variables de entorno para XAMPP. Ten en cuenta que la conexión se realiza forzando SSL (MYSQLI_CLIENT_SSL); en un entorno local sin SSL configurado en MySQL, es posible que debas ajustar temporalmente conexion.php para desarrollo.
+Puedes definirlas en tu sistema, en la configuración de Apache/PHP, o con un plugin de variables de entorno para XAMPP. La conexión usa SSL; para MySQL local sin SSL, define `DB_SSL=false` solo en el entorno local.
+La versión histórica `version_final/` también lee `DB_HOST`, `DB_USER`, `DB_PASSWORD` y `DB_NAME`; usa `DB_PORT` (por defecto 3307) y requiere SSL por defecto. Para MySQL local sin SSL, define `DB_SSL=false` solo en el entorno local.
 Configurar el envío de correos (opcional, para verificación y recuperación de contraseña)
 Copia php/configuracion/mail_config.php.example como php/configuracion/mail_config.php.
 Completa username y password con una contraseña de aplicación de Google (16 caracteres), no la contraseña normal de Gmail.
@@ -116,6 +117,7 @@ Empaqueta index.php, api/, css/, imagenes/, includes/, js/, paginas/, php/ y ven
 Despliega automáticamente al App Service la-pesquera-v2 usando OpenID Connect (secretos AZUREAPPSERVICE_CLIENTID_*, TENANTID_*, SUBSCRIPTIONID_*).
 
 Configura en Azure App Service las variables de entorno DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD, MAIL_FROM_NAME y APP_BASE_URL (ver php/configuracion/app_config.php.example).
+La API sirve al sitio en el mismo dominio. Si conectas un frontend web en otro dominio, agrega `CORS_ALLOWED_ORIGINS` con sus orígenes exactos separados por comas, por ejemplo `https://app.example.com`; no uses `*`.
 
 Opción C — Despliegue en Railway (legado)
 

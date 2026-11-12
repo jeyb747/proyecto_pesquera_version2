@@ -1,13 +1,14 @@
 <?php
 require_once __DIR__ . "/../../modelo/conexion.php";
 
-$id = $_GET['id'];
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$sql = "DELETE FROM productos WHERE id=$id";
-
-if ($conexion->query($sql)) {
+if ($id !== false && $id !== null && $id > 0) {
+    $stmt = $conexion->prepare('DELETE FROM productos WHERE id = ?');
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
     header("Location: /paginas/admin/productos.php?mensaje=eliminado");
 } else {
-    echo "Error al eliminar";
+    header("Location: /paginas/admin/productos.php?mensaje=error");
 }
-?>
+exit();

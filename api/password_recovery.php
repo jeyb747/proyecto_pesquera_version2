@@ -1,8 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') exit;
+require_once __DIR__ . '/../php/configuracion/cors.php';
+configurar_cors(['POST', 'OPTIONS']);
 
 require_once(__DIR__ . '/../php/modelo/conexion.php');
 require_once(__DIR__ . '/../php/configuracion/mail.php');

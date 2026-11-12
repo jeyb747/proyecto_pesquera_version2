@@ -1,7 +1,8 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
+require_once __DIR__ . "/../php/configuracion/cors.php";
+configurar_cors(['POST', 'OPTIONS']);
 
 require_once __DIR__ . "/../php/modelo/conexion.php";
 require_once __DIR__ . "/../php/configuracion/verificacion.php";
