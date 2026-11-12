@@ -770,6 +770,7 @@
 
         <h5 class="modal-title"
           id="modalTitulo">
+          <span class="visually-hidden">Detalle del producto</span>
         </h5>
 
         <button type="button"
@@ -788,9 +789,9 @@
 
         <p id="modalDescripcion"></p>
 
-        <h4 id="modalPrecio"
+        <p id="modalPrecio"
           class="fw-bold text-primary">
-        </h4>
+        </p>
 
       </div>
 

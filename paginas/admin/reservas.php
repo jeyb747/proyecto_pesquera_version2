@@ -102,7 +102,8 @@ $resultado = mysqli_query($conexion, $sql);
                                 <td class="text-center">
                                     <form action="/php/controlador/reservas/estado.php" method="POST" class="m-0">
                                         <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                        <select name="estado" class="form-select form-select-sm rounded-pill font-medium text-center bg-light" onchange="this.form.submit()" style="min-width: 130px;">
+                                        <label for="reserva-estado-<?= (int) $row['id'] ?>" class="visually-hidden">Estado de la reserva <?= (int) $row['id'] ?></label>
+                                        <select id="reserva-estado-<?= (int) $row['id'] ?>" name="estado" class="form-select form-select-sm rounded-pill font-medium text-center bg-light" onchange="this.form.submit()" style="min-width: 130px;">
                                             <option value="pendiente" <?= $row['estado']=='pendiente'?'selected':'' ?>>Pendiente</option>
                                             <option value="confirmada" <?= $row['estado']=='confirmada'?'selected':'' ?>>Confirmada</option>
                                             <option value="cancelada" <?= $row['estado']=='cancelada'?'selected':'' ?>>Cancelada</option>

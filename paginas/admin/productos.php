@@ -46,23 +46,23 @@ $categorias = $conexion->query("SELECT nombre FROM categorias WHERE estado=1 ORD
                     <form action="/php/controlador/productos/crear.php" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Nombre del Producto</label>
-                                <input type="text" name="nombre" class="form-control custom-input" placeholder="Ej: Mojarra frita" required>
+                                <label for="nuevo-producto-nombre" class="form-label small fw-semibold text-secondary">Nombre del Producto</label>
+                                <input id="nuevo-producto-nombre" type="text" name="nombre" class="form-control custom-input" placeholder="Ej: Mojarra frita" required>
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Precio (COP)</label>
-                                <input type="number" name="precio" class="form-control custom-input" placeholder="25000" required>
+                                <label for="nuevo-producto-precio" class="form-label small fw-semibold text-secondary">Precio (COP)</label>
+                                <input id="nuevo-producto-precio" type="number" name="precio" class="form-control custom-input" placeholder="25000" required>
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Categoría</label>
-                                <select name="categoria" class="form-select custom-input" required><option value="">Selecciona una categoría</option><?php while($categoria = $categorias->fetch_assoc()): ?><option value="<?= htmlspecialchars($categoria['nombre']) ?>"><?= htmlspecialchars($categoria['nombre']) ?></option><?php endwhile; ?></select>
+                                <label for="nuevo-producto-categoria" class="form-label small fw-semibold text-secondary">Categoría</label>
+                                <select id="nuevo-producto-categoria" name="categoria" class="form-select custom-input" required><option value="">Selecciona una categoría</option><?php while($categoria = $categorias->fetch_assoc()): ?><option value="<?= htmlspecialchars($categoria['nombre']) ?>"><?= htmlspecialchars($categoria['nombre']) ?></option><?php endwhile; ?></select>
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Descripción Breve</label>
-                                <input type="text" name="descripcion" class="form-control custom-input" placeholder="Ej: Acompañado de arroz y patacón" required>
+                                <label for="nuevo-producto-descripcion" class="form-label small fw-semibold text-secondary">Descripción Breve</label>
+                                <input id="nuevo-producto-descripcion" type="text" name="descripcion" class="form-control custom-input" placeholder="Ej: Acompañado de arroz y patacón" required>
                             </div>
                         </div>
 

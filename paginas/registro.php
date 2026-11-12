@@ -65,7 +65,7 @@
 
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-nombre" class="form-label">
               Nombre completo
             </label>
 
@@ -76,6 +76,7 @@
               </span>
 
               <input 
+                id="registro-nombre"
                 type="text"
                 name="nombre"
                 class="form-control"
@@ -89,7 +90,7 @@
 
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-tipo-documento" class="form-label">
               Tipo de documento
             </label>
 
@@ -100,6 +101,7 @@
               </span>
 
               <select 
+                id="registro-tipo-documento"
                 name="tipo_documento" 
                 class="form-select" 
                 required
@@ -117,7 +119,7 @@
 
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-numero-documento" class="form-label">
               Número de documento
             </label>
 
@@ -128,6 +130,7 @@
               </span>
 
               <input 
+                id="registro-numero-documento"
                 type="text"
                 name="numero_documento"
                 class="form-control"
@@ -142,7 +145,7 @@
 
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-correo" class="form-label">
               Correo electrónico
             </label>
 
@@ -153,6 +156,7 @@
               </span>
 
               <input 
+                id="registro-correo"
                 type="email"
                 name="correo"
                 class="form-control"
@@ -166,7 +170,7 @@
 
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-telefono" class="form-label">
               Teléfono
             </label>
 
@@ -177,6 +181,7 @@
               </span>
 
               <input 
+                id="registro-telefono"
                 type="tel"
                 name="telefono"
                 class="form-control"
@@ -191,7 +196,7 @@
 
           <div class="mb-4">
 
-            <label class="form-label">
+            <label for="password" class="form-label">
               Contraseña
             </label>
 

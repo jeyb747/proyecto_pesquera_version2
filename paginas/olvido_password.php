@@ -285,11 +285,12 @@ Te enviaremos un enlace seguro para crear una nueva contraseña.
 
 <div class="mb-4">
 
-<label class="form-label">
+<label for="recuperar-correo" class="form-label">
 Correo electrónico
 </label>
 
 <input
+id="recuperar-correo"
 type="email"
 name="correo"
 class="form-control"

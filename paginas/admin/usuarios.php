@@ -106,7 +106,8 @@ $resultado = mysqli_query($conexion, $sql);
                                     <td class="text-center">
                                         <form action="/php/controlador/usuarios/estado.php" method="POST" class="m-0">
                                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                            <select name="estado" class="form-select form-select-sm rounded-pill font-medium text-center bg-light" onchange="this.form.submit()" style="min-width: 120px;">
+                                            <label for="usuario-estado-<?= (int) $row['id'] ?>" class="visually-hidden">Estado del usuario <?= (int) $row['id'] ?></label>
+                                            <select id="usuario-estado-<?= (int) $row['id'] ?>" name="estado" class="form-select form-select-sm rounded-pill font-medium text-center bg-light" onchange="this.form.submit()" style="min-width: 120px;">
                                                 <option value="1" <?= (!isset($row['estado']) || $row['estado'] == 1) ? 'selected' : '' ?>>Activo</option>
                                                 <option value="0" <?= (isset($row['estado']) && $row['estado'] == 0) ? 'selected' : '' ?>>Inactivo</option>
                                             </select>

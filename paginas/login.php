@@ -95,7 +95,7 @@ session_start();
           <!-- CORREO -->
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="correo" class="form-label">
               Correo electrónico
             </label>
 
@@ -113,7 +113,7 @@ session_start();
           <!-- PASSWORD -->
           <div class="mb-4">
 
-            <label class="form-label">
+            <label for="password" class="form-label">
               Contraseña
             </label>
 

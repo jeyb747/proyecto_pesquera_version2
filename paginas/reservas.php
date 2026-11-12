@@ -63,6 +63,7 @@
                     <div class="step d-none text-center" id="step2">
                         <h2 class="text-azul-pesquera h6 mb-4 text-uppercase fw-semibold">Selecciona la fecha</h2>
                         <div class="mb-4">
+                            <label for="fecha" class="visually-hidden">Fecha de la reserva</label>
                             <input type="date" id="fecha" class="form-control input-pesquera text-center fw-medium">
                             <div class="form-text text-gris-pesquera mt-2">
                                 Puedes reservar desde hoy y hasta con 6 meses de anticipación.
@@ -91,24 +92,24 @@
                             <input type="hidden" name="hora" id="inputHora">
 
                             <div class="mb-3">
-                                <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Nombre Completo</label>
+                                <label for="reserva-nombre" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Nombre Completo</label>
                                 <div class="wrapper-input-pesquera">
                                     <span class="icono-izq"><i class="bi bi-person"></i></span>
-                                    <input type="text" name="nombre" class="form-control input-pesquera" placeholder="INGRESA TU NOMBRE" required>
+                                    <input id="reserva-nombre" type="text" name="nombre" class="form-control input-pesquera" placeholder="INGRESA TU NOMBRE" required>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Teléfono</label>
+                                <label for="reserva-telefono" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Teléfono</label>
                                 <div class="wrapper-input-pesquera">
                                     <span class="icono-izq"><i class="bi bi-telephone"></i></span>
-                                    <input type="tel" name="telefono" class="form-control input-pesquera" placeholder="EJ: 3001234567" required>
+                                    <input id="reserva-telefono" type="tel" name="telefono" class="form-control input-pesquera" placeholder="EJ: 3001234567" required>
                                 </div>
                             </div>
 
                             <div class="mb-4">
-                                <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Observaciones</label>
-                                <textarea name="observaciones" class="form-control input-pesquera pt-3" rows="3" placeholder="¿ALERGIAS O CELEBRACIONES?"></textarea>
+                                <label for="reserva-observaciones" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Observaciones</label>
+                                <textarea id="reserva-observaciones" name="observaciones" class="form-control input-pesquera pt-3" rows="3" placeholder="¿ALERGIAS O CELEBRACIONES?"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-azul-action w-100 py-2.5 fw-bold text-uppercase">

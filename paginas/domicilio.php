@@ -65,31 +65,31 @@
                         <input type="hidden" name="total" id="totalInput">
 
                         <div class="mb-3">
-                            <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Nombre Completo</label>
+                            <label for="domicilio-nombre" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Nombre Completo</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-person"></i></span>
-                                <input type="text" name="nombre" class="form-control input-pesquera" placeholder="INGRESA TU NOMBRE" required>
+                                <input id="domicilio-nombre" type="text" name="nombre" class="form-control input-pesquera" placeholder="INGRESA TU NOMBRE" required autocomplete="name">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Dirección de Entrega</label>
+                            <label for="domicilio-direccion" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Dirección de Entrega</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-geo-alt"></i></span>
-                                <input type="text" name="direccion" class="form-control input-pesquera" placeholder="EJ: CRA. 79 #42B-07, BOGOTÁ" required autocomplete="street-address">
+                                <input id="domicilio-direccion" type="text" name="direccion" class="form-control input-pesquera" placeholder="EJ: CRA. 79 #42B-07, BOGOTÁ" required autocomplete="shipping street-address">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Teléfono Celular</label>
+                            <label for="domicilio-telefono" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Teléfono Celular</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-telephone"></i></span>
-                                <input type="tel" name="telefono" class="form-control input-pesquera" placeholder="EJ: 3001234567" required inputmode="numeric" pattern="[0-9]{7,15}">
+                                <input id="domicilio-telefono" type="tel" name="telefono" class="form-control input-pesquera" placeholder="EJ: 3001234567" required inputmode="numeric" pattern="[0-9]{7,15}" autocomplete="tel">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Método de Pago</label>
+                            <label for="pago" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Método de Pago</label>
                             <div class="wrapper-input-pesquera">
                                 <span class="icono-izq"><i class="bi bi-credit-card"></i></span>
                                 <select name="pago" id="pago" class="form-select input-pesquera" required>
@@ -101,13 +101,13 @@
                         </div>
 
                         <div id="campoComprobante" class="mb-3 d-none">
-                            <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Adjuntar Comprobante de Pago</label>
+                            <label for="comprobante" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Adjuntar Comprobante de Pago</label>
                             <input type="file" id="comprobante" class="form-control input-pesquera pt-2">
                         </div>
 
                         <div class="mb-4">
-                            <label class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Indicaciones o Notas Adicionales</label>
-                            <textarea name="observaciones" class="form-control input-pesquera pt-3" rows="3" placeholder="EJ: APTO 402, TIMBRAR DURO..."></textarea>
+                            <label for="domicilio-observaciones" class="text-gris-pesquera small fw-semibold text-uppercase mb-1 label-spacing">Indicaciones o Notas Adicionales</label>
+                            <textarea id="domicilio-observaciones" name="observaciones" class="form-control input-pesquera pt-3" rows="3" placeholder="EJ: APTO 402, TIMBRAR DURO..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-amarillo-action w-100 py-2.5 text-uppercase fw-bold">
