@@ -127,13 +127,13 @@ $resultado = mysqli_query($conexion, $query);
             <form action="/php/controlador/admin/procesar_rol.php?accion=crear" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre Interno (slug)</label>
-                        <input type="text" name="nombre_rol" class="form-control rounded-3" placeholder="ej. empleado, cliente" required>
+                        <label for="nuevo-rol-nombre" class="form-label text-secondary small fw-medium">Nombre Interno (slug)</label>
+                        <input id="nuevo-rol-nombre" type="text" name="nombre_rol" class="form-control rounded-3" placeholder="ej. empleado, cliente" required>
                     </div>
                     <?php if ($tiene_descripcion): ?>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Descripción del Rol</label>
-                        <textarea name="descripcion" class="form-control rounded-3" rows="3" placeholder="Define brevemente el alcance de este rol..." required></textarea>
+                        <label for="nuevo-rol-descripcion" class="form-label text-secondary small fw-medium">Descripción del Rol</label>
+                        <textarea id="nuevo-rol-descripcion" name="descripcion" class="form-control rounded-3" rows="3" placeholder="Define brevemente el alcance de este rol..." required></textarea>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -157,12 +157,12 @@ $resultado = mysqli_query($conexion, $query);
                 <input type="hidden" name="id_rol" id="edit_id_rol" value="">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre Interno</label>
+                        <label for="edit_nombre_rol" class="form-label text-secondary small fw-medium">Nombre Interno</label>
                         <input type="text" name="nombre_rol" id="edit_nombre_rol" class="form-control rounded-3" required>
                     </div>
                     <?php if ($tiene_descripcion): ?>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Descripción del Rol</label>
+                        <label for="edit_descripcion" class="form-label text-secondary small fw-medium">Descripción del Rol</label>
                         <textarea name="descripcion" id="edit_descripcion" class="form-control rounded-3" rows="3" required></textarea>
                     </div>
                     <?php endif; ?>

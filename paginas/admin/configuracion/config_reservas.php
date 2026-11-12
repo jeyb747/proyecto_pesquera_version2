@@ -138,12 +138,12 @@ $resultado_reservas = mysqli_query($conexion, $query_reservas);
             <form action="/php/controlador/admin/procesar_reserva.php?accion=crear_columna" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre de la Columna</label>
-                        <input type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. mesa_asignada" required>
+                        <label for="nueva-columna-reserva-nombre" class="form-label text-secondary small fw-medium">Nombre de la Columna</label>
+                        <input id="nueva-columna-reserva-nombre" type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. mesa_asignada" required>
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
-                        <select name="tipo_columna" class="form-select rounded-3" required>
+                        <label for="nueva-columna-reserva-tipo" class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
+                        <select id="nueva-columna-reserva-tipo" name="tipo_columna" class="form-select rounded-3" required>
                             <option value="VARCHAR(255) DEFAULT NULL">Texto (VARCHAR 255)</option>
                             <option value="TEXT DEFAULT NULL">Texto Largo (TEXT)</option>
                             <option value="INT DEFAULT 0">Número Entero (INT)</option>
@@ -173,13 +173,14 @@ $resultado_reservas = mysqli_query($conexion, $query_reservas);
                         <strong>¡Advertencia!</strong> Se eliminará la columna física y se perderá toda la información.
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Selecciona la columna a eliminar</label>
-                        <select name="nombre_columna" class="form-select rounded-3" required>
+                        <label for="columna-reserva-a-eliminar" class="form-label text-secondary small fw-medium">Selecciona la columna a eliminar</label>
+                        <select id="columna-reserva-a-eliminar" name="nombre_columna" class="form-select rounded-3" required>
                             <option value="" disabled selected>Selecciona...</option>
                             <?php 
                             foreach ($columnas_reservas as $col) {
                                 if (!in_array($col, ['id', 'usuario_id', 'fecha', 'hora', 'estado', 'nombre'])) {
-                                    echo "<option value='$col'>$col</option>";
+                                    $columna_segura = htmlspecialchars($col, ENT_QUOTES, 'UTF-8');
+                                    echo "<option value='{$columna_segura}'>{$columna_segura}</option>";
                                 }
                             }
                             ?>
@@ -205,31 +206,31 @@ $resultado_reservas = mysqli_query($conexion, $query_reservas);
             <form action="/php/controlador/admin/procesar_reserva.php?accion=crear" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre Cliente</label>
-                        <input type="text" name="nombre" class="form-control rounded-3" required>
+                        <label for="reserva-nombre-cliente" class="form-label text-secondary small fw-medium">Nombre Cliente</label>
+                        <input id="reserva-nombre-cliente" type="text" name="nombre" class="form-control rounded-3" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Teléfono</label>
-                        <input type="text" name="telefono" class="form-control rounded-3" required>
+                        <label for="reserva-telefono" class="form-label text-secondary small fw-medium">Teléfono</label>
+                        <input id="reserva-telefono" type="text" name="telefono" class="form-control rounded-3" required>
                     </div>
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label class="form-label text-secondary small fw-medium">Fecha</label>
-                            <input type="date" name="fecha" class="form-control rounded-3" required>
+                            <label for="reserva-fecha" class="form-label text-secondary small fw-medium">Fecha</label>
+                            <input id="reserva-fecha" type="date" name="fecha" class="form-control rounded-3" required>
                         </div>
                         <div class="col-6">
-                            <label class="form-label text-secondary small fw-medium">Hora</label>
-                            <input type="time" name="hora" class="form-control rounded-3" required>
+                            <label for="reserva-hora" class="form-label text-secondary small fw-medium">Hora</label>
+                            <input id="reserva-hora" type="time" name="hora" class="form-control rounded-3" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <label class="form-label text-secondary small fw-medium">Personas</label>
-                            <input type="number" name="personas" class="form-control rounded-3" value="2" min="1" required>
+                            <label for="reserva-personas" class="form-label text-secondary small fw-medium">Personas</label>
+                            <input id="reserva-personas" type="number" name="personas" class="form-control rounded-3" value="2" min="1" required>
                         </div>
                         <div class="col-6">
-                            <label class="form-label text-secondary small fw-medium">Estado</label>
-                            <select name="estado" class="form-select rounded-3" required>
+                            <label for="reserva-estado" class="form-label text-secondary small fw-medium">Estado</label>
+                            <select id="reserva-estado" name="estado" class="form-select rounded-3" required>
                                 <option value="pendiente">Pendiente</option>
                                 <option value="confirmada">Confirmada</option>
                             </select>

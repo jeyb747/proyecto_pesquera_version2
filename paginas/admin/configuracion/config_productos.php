@@ -138,12 +138,12 @@ $resultado_productos = mysqli_query($conexion, $query_productos);
             <form action="/php/controlador/admin/procesar_producto.php?accion=crear_columna" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre de la Columna (Sin espacios ni eñes)</label>
-                        <input type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. codigo_barras, marca, categoria" required>
+                        <label for="nueva-columna-producto-nombre" class="form-label text-secondary small fw-medium">Nombre de la Columna (Sin espacios ni eñes)</label>
+                        <input id="nueva-columna-producto-nombre" type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. codigo_barras, marca, categoria" required>
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
-                        <select name="tipo_columna" class="form-select rounded-3" required>
+                        <label for="nueva-columna-producto-tipo" class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
+                        <select id="nueva-columna-producto-tipo" name="tipo_columna" class="form-select rounded-3" required>
                             <option value="VARCHAR(255) DEFAULT NULL">Texto (VARCHAR 255)</option>
                             <option value="TEXT DEFAULT NULL">Texto Largo (TEXT)</option>
                             <option value="INT DEFAULT 0">Número Entero (INT)</option>
@@ -173,13 +173,14 @@ $resultado_productos = mysqli_query($conexion, $query_productos);
                         <strong>¡Cuidado!</strong> Eliminar una columna borrará permanentemente todos los datos de inventario contenidos en ella.
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Selecciona la columna a DESTRUIR</label>
-                        <select name="nombre_columna" class="form-select rounded-3" required>
+                        <label for="columna-producto-a-eliminar" class="form-label text-secondary small fw-medium">Selecciona la columna a DESTRUIR</label>
+                        <select id="columna-producto-a-eliminar" name="nombre_columna" class="form-select rounded-3" required>
                             <option value="" disabled selected>Selecciona...</option>
                             <?php 
                             foreach ($columnas_productos as $col) {
                                 if (!in_array($col, ['id', 'nombre', 'descripcion', 'precio', 'stock', 'estado'])) {
-                                    echo "<option value='$col'>$col</option>";
+                                    $columna_segura = htmlspecialchars($col, ENT_QUOTES, 'UTF-8');
+                                    echo "<option value='{$columna_segura}'>{$columna_segura}</option>";
                                 }
                             }
                             ?>
@@ -205,26 +206,26 @@ $resultado_productos = mysqli_query($conexion, $query_productos);
             <form action="/php/controlador/admin/procesar_producto.php?accion=crear" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre del Producto</label>
-                        <input type="text" name="nombre" class="form-control rounded-3" required>
+                        <label for="producto-nombre" class="form-label text-secondary small fw-medium">Nombre del Producto</label>
+                        <input id="producto-nombre" type="text" name="nombre" class="form-control rounded-3" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Descripción</label>
-                        <textarea name="descripcion" class="form-control rounded-3" rows="2"></textarea>
+                        <label for="producto-descripcion" class="form-label text-secondary small fw-medium">Descripción</label>
+                        <textarea id="producto-descripcion" name="descripcion" class="form-control rounded-3" rows="2"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <label class="form-label text-secondary small fw-medium">Precio ($)</label>
-                            <input type="number" step="0.01" name="precio" class="form-control rounded-3" placeholder="0.00" required>
+                            <label for="producto-precio" class="form-label text-secondary small fw-medium">Precio ($)</label>
+                            <input id="producto-precio" type="number" step="0.01" name="precio" class="form-control rounded-3" placeholder="0.00" required>
                         </div>
                         <div class="col-6 mb-3">
-                            <label class="form-label text-secondary small fw-medium">Stock Inicial</label>
-                            <input type="number" name="stock" class="form-control rounded-3" value="0" required>
+                            <label for="producto-stock" class="form-label text-secondary small fw-medium">Stock Inicial</label>
+                            <input id="producto-stock" type="number" name="stock" class="form-control rounded-3" value="0" required>
                         </div>
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Estado Comercial</label>
-                        <select name="estado" class="form-select rounded-3" required>
+                        <label for="producto-estado" class="form-label text-secondary small fw-medium">Estado Comercial</label>
+                        <select id="producto-estado" name="estado" class="form-select rounded-3" required>
                             <option value="1">Disponible / Activo</option>
                             <option value="0">No Disponible</option>
                         </select>

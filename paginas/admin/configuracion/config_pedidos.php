@@ -140,12 +140,12 @@ $resultado_pedidos = mysqli_query($conexion, $query_pedidos);
             <form action="/php/controlador/admin/procesar_pedido.php?accion=crear_columna" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Nombre de la Columna (Sin espacios ni eñes)</label>
-                        <input type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. metodo_pago, direccion_envio, notas" required>
+                        <label for="nueva-columna-nombre" class="form-label text-secondary small fw-medium">Nombre de la Columna (Sin espacios ni eñes)</label>
+                        <input id="nueva-columna-nombre" type="text" name="nombre_columna" class="form-control rounded-3" placeholder="ej. metodo_pago, direccion_envio, notas" required>
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
-                        <select name="tipo_columna" class="form-select rounded-3" required>
+                        <label for="nueva-columna-tipo" class="form-label text-secondary small fw-medium">Tipo de Dato SQL</label>
+                        <select id="nueva-columna-tipo" name="tipo_columna" class="form-select rounded-3" required>
                             <option value="VARCHAR(255) DEFAULT NULL">Texto (VARCHAR 255)</option>
                             <option value="TEXT DEFAULT NULL">Texto Largo (TEXT)</option>
                             <option value="DECIMAL(10,2) DEFAULT 0.00">Decimal (Precios/Costos)</option>
@@ -175,13 +175,14 @@ $resultado_pedidos = mysqli_query($conexion, $query_pedidos);
                         <strong>¡Cuidado!</strong> Eliminar una columna borrará permanentemente todos los registros guardados en ella de forma irreversible.
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Selecciona la columna a DESTRUIR</label>
-                        <select name="nombre_columna" class="form-select rounded-3" required>
+                        <label for="columna-a-eliminar" class="form-label text-secondary small fw-medium">Selecciona la columna a DESTRUIR</label>
+                        <select id="columna-a-eliminar" name="nombre_columna" class="form-select rounded-3" required>
                             <option value="" disabled selected>Selecciona...</option>
                             <?php 
                             foreach ($columnas_pedidos as $col) {
                                 if (!in_array($col, ['id', 'id_usuario', 'usuario_id', 'fecha', 'total', 'estado'])) {
-                                    echo "<option value='$col'>$col</option>";
+                                    $columna_segura = htmlspecialchars($col, ENT_QUOTES, 'UTF-8');
+                                    echo "<option value='{$columna_segura}'>{$columna_segura}</option>";
                                 }
                             }
                             ?>
@@ -207,16 +208,16 @@ $resultado_pedidos = mysqli_query($conexion, $query_pedidos);
             <form action="/php/controlador/admin/procesar_pedido.php?accion=crear" method="POST">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">ID Usuario Relacionado</label>
-                        <input type="number" name="usuario_id" class="form-control rounded-3" value="1" required>
+                        <label for="pedido-usuario-id" class="form-label text-secondary small fw-medium">ID Usuario Relacionado</label>
+                        <input id="pedido-usuario-id" type="number" name="usuario_id" class="form-control rounded-3" value="1" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary small fw-medium">Monto Total ($)</label>
-                        <input type="number" step="0.01" name="total" class="form-control rounded-3" placeholder="0.00" required>
+                        <label for="pedido-total" class="form-label text-secondary small fw-medium">Monto Total ($)</label>
+                        <input id="pedido-total" type="number" step="0.01" name="total" class="form-control rounded-3" placeholder="0.00" required>
                     </div>
                     <div class="mb-0">
-                        <label class="form-label text-secondary small fw-medium">Estado del Pedido</label>
-                        <select name="estado" class="form-select rounded-3" required>
+                        <label for="pedido-estado" class="form-label text-secondary small fw-medium">Estado del Pedido</label>
+                        <select id="pedido-estado" name="estado" class="form-select rounded-3" required>
                             <option value="pendiente">Pendiente</option>
                             <option value="completado">Completado</option>
                             <option value="cancelado">Cancelado</option>

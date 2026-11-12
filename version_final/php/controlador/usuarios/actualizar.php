@@ -1,16 +1,27 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/version_final/php/modelo/conexion.php");
 
-$id = $_POST['id'];
-$nombre = $_POST['nombre'];
-$correo = $_POST['correo'];
-$rol = $_POST['rol'];
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+$nombre = trim($_POST['nombre'] ?? '');
+$correo = trim($_POST['correo'] ?? '');
+$rol = trim($_POST['rol'] ?? '');
 
-$sql = "UPDATE usuarios 
-        SET nombre='$nombre', correo='$correo', rol='$rol'
-        WHERE id=$id";
+if (!$id || $nombre === '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || $rol === '') {
+    header("Location: /version_final/paginas/admin/usuarios.php?mensaje=error");
+    exit();
+}
 
-mysqli_query($conexion, $sql);
+$sql = "UPDATE usuarios SET nombre = ?, correo = ?, rol = ? WHERE id = ?";
+$stmt = mysqli_prepare($conexion, $sql);
 
-header("Location: /version_final/paginas/admin/usuarios.php?mensaje=actualizado");
+if (!$stmt) {
+    header("Location: /version_final/paginas/admin/usuarios.php?mensaje=error");
+    exit();
+}
+
+mysqli_stmt_bind_param($stmt, 'sssi', $nombre, $correo, $rol, $id);
+$actualizado = mysqli_stmt_execute($stmt);
+mysqli_stmt_close($stmt);
+
+header("Location: /version_final/paginas/admin/usuarios.php?mensaje=" . ($actualizado ? 'actualizado' : 'error'));
 exit();
