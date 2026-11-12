@@ -57,7 +57,7 @@ $tablas_protegidas = ['usuarios', 'reservas', 'productos', 'pedidos', 'domicilio
 
                 <form action="/php/controlador/admin/procesar_eliminar_tabla.php" method="POST" id="formEliminar">
                     <div class="text-start mb-4">
-                        <label class="form-label text-secondary small fw-medium">Selecciona la tabla a destruir:</label>
+                        <label for="selectTabla" class="form-label text-secondary small fw-medium">Selecciona la tabla a destruir:</label>
                         <select name="nombre_tabla" class="form-select rounded-3" required id="selectTabla">
                             <option value="" disabled selected>Selecciona una tabla...</option>
                             <?php 

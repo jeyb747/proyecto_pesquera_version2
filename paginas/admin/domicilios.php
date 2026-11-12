@@ -144,7 +144,8 @@ while ($row = mysqli_fetch_assoc($resultado)) {
                                 <td class="text-center">
                                     <form action="/php/controlador/domicilios/estado.php" method="POST" class="m-0">
                                         <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                        <select name="estado" class="form-select form-select-sm rounded-pill font-medium text-center bg-light" onchange="this.form.submit()" style="min-width: 130px;">
+                                        <label for="estado-domicilio-<?= (int) $row['id'] ?>" class="visually-hidden">Estado del domicilio <?= (int) $row['id'] ?></label>
+                                        <select id="estado-domicilio-<?= (int) $row['id'] ?>" name="estado" class="form-select form-select-sm rounded-pill font-medium text-center bg-light" onchange="this.form.submit()" style="min-width: 130px;">
                                             <option value="pendiente" <?= $row['estado']=='pendiente'?'selected':'' ?>>Pendiente</option>
                                             <option value="en camino" <?= $row['estado']=='en camino'?'selected':'' ?>>En camino</option>
                                             <option value="entregado" <?= $row['estado']=='entregado'?'selected':'' ?>>Entregado</option>
@@ -205,7 +206,8 @@ while ($row = mysqli_fetch_assoc($resultado)) {
                                 <strong>$<?= number_format(preg_replace('/\D/', '', $row['total']), 0, ',', '.') ?></strong>
                                 <form action="/php/controlador/domicilios/estado.php" method="POST" class="m-0">
                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                    <select name="estado" class="form-select form-select-sm rounded-pill" onchange="this.form.submit()">
+                                    <label for="estado-domicilio-card-<?= (int) $row['id'] ?>" class="visually-hidden">Estado del domicilio <?= (int) $row['id'] ?></label>
+                                    <select id="estado-domicilio-card-<?= (int) $row['id'] ?>" name="estado" class="form-select form-select-sm rounded-pill" onchange="this.form.submit()">
                                         <option value="pendiente" <?= $row['estado']=='pendiente'?'selected':'' ?>>Pendiente</option>
                                         <option value="en camino" <?= $row['estado']=='en camino'?'selected':'' ?>>En camino</option>
                                         <option value="entregado" <?= $row['estado']=='entregado'?'selected':'' ?>>Entregado</option>

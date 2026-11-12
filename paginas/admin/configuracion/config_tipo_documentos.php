@@ -62,8 +62,9 @@ $resultado = mysqli_query($conexion, $query);
                         <h5 class="fw-bold text-dark h6 mb-3">Agregar Nuevo Tipo</h5>
                         <form action="/php/controlador/admin/config_tipo_documentos.php?accion=crear" method="POST">
                             <div class="mb-3">
-                                <label class="form-label text-secondary small fw-medium">Nombre Completo del Tipo</label>
+                                <label for="tipo-documento-nombre" class="form-label text-secondary small fw-medium">Nombre Completo del Tipo</label>
                                 <input 
+                                    id="tipo-documento-nombre"
                                     type="text" 
                                     name="nombre_documento" 
                                     class="form-control rounded-3" 

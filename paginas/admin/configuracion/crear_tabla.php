@@ -55,8 +55,8 @@ if ($resultado) {
                         
                         <form action="/php/controlador/admin/procesar_nueva_tabla.php" method="POST">
                             <div class="mb-3">
-                                <label class="form-label text-secondary small fw-medium">Nombre de la Tabla (Ej: proveedores, facturas)</label>
-                                <input type="text" name="nombre_tabla" class="form-control rounded-3" placeholder="Ingresa el nombre en minúsculas y sin espacios" required>
+                                <label for="nombre-tabla" class="form-label text-secondary small fw-medium">Nombre de la Tabla (Ej: proveedores, facturas)</label>
+                                <input id="nombre-tabla" type="text" name="nombre_tabla" class="form-control rounded-3" placeholder="Ingresa el nombre en minúsculas y sin espacios" required>
                             </div>
 
                             <div class="alert alert-light border rounded-3 p-3 mb-4">
@@ -72,10 +72,12 @@ if ($resultado) {
                             <div id="contenedor-columnas">
                                 <div class="row g-2 mb-2 columna-item">
                                     <div class="col-6">
-                                        <input type="text" name="nombre_col[]" class="form-control form-control-sm rounded-3" placeholder="Nombre (ej: nombre_campo)" required>
+                                        <label for="nombre-col-0" class="visually-hidden">Nombre de la columna 1</label>
+                                        <input id="nombre-col-0" type="text" name="nombre_col[]" class="form-control form-control-sm rounded-3" placeholder="Nombre (ej: nombre_campo)" required>
                                     </div>
                                     <div class="col-6">
-                                        <select name="tipo_col[]" class="form-select form-select-sm rounded-3" required>
+                                        <label for="tipo-col-0" class="visually-hidden">Tipo de dato de la columna 1</label>
+                                        <select id="tipo-col-0" name="tipo_col[]" class="form-select form-select-sm rounded-3" required>
                                             <option value="VARCHAR(255) DEFAULT NULL">Texto (VARCHAR 255)</option>
                                             <option value="TEXT DEFAULT NULL">Texto Largo (TEXT)</option>
                                             <option value="INT DEFAULT 0">Número Entero (INT)</option>
@@ -124,16 +126,21 @@ if ($resultado) {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    let indiceColumna = 1;
+
     function agregarCampo() {
         const contenedor = document.getElementById('contenedor-columnas');
         const nuevaFila = document.createElement('div');
         nuevaFila.className = 'row g-2 mb-2 columna-item';
+        const indice = indiceColumna++;
         nuevaFila.innerHTML = `
             <div class="col-6">
-                <input type="text" name="nombre_col[]" class="form-control form-control-sm rounded-3" placeholder="Nombre" required>
+                <label for="nombre-col-${indice}" class="visually-hidden">Nombre de la columna ${indice + 1}</label>
+                <input id="nombre-col-${indice}" type="text" name="nombre_col[]" class="form-control form-control-sm rounded-3" placeholder="Nombre" required>
             </div>
             <div class="col-5">
-                <select name="tipo_col[]" class="form-select form-select-sm rounded-3" required>
+                <label for="tipo-col-${indice}" class="visually-hidden">Tipo de dato de la columna ${indice + 1}</label>
+                <select id="tipo-col-${indice}" name="tipo_col[]" class="form-select form-select-sm rounded-3" required>
                     <option value="VARCHAR(255) DEFAULT NULL">Texto (VARCHAR 255)</option>
                     <option value="TEXT DEFAULT NULL">Texto Largo (TEXT)</option>
                     <option value="INT DEFAULT 0">Número Entero (INT)</option>

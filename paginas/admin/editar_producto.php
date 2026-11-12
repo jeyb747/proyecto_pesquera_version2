@@ -65,29 +65,29 @@ if (!$producto) {
 
                     <div class="row g-4">
                         <div class="col-md-8">
-                            <label class="form-label">Nombre del producto</label>
-                            <input type="text" name="nombre" class="form-control form-control-lg"
+                            <label for="producto-nombre" class="form-label">Nombre del producto</label>
+                            <input id="producto-nombre" type="text" name="nombre" class="form-control form-control-lg"
                                    value="<?= htmlspecialchars($producto['nombre'] ?? '') ?>" required>
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label">Precio</label>
+                            <label for="producto-precio" class="form-label">Precio</label>
                             <div class="input-group input-group-lg">
                                 <span class="input-group-text">$</span>
-                                <input type="number" step="0.01" min="0" name="precio" class="form-control"
+                                <input id="producto-precio" type="number" step="0.01" min="0" name="precio" class="form-control"
                                        value="<?= htmlspecialchars($producto['precio'] ?? 0) ?>" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Categoria</label>
-                            <input type="text" name="categoria" class="form-control form-control-lg"
+                            <label for="producto-categoria" class="form-label">Categoria</label>
+                            <input id="producto-categoria" type="text" name="categoria" class="form-control form-control-lg"
                                    value="<?= htmlspecialchars($producto['categoria'] ?? '') ?>" required>
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label">Descripcion</label>
-                            <textarea name="descripcion" class="form-control form-control-lg" rows="5"><?= htmlspecialchars($producto['descripcion'] ?? '') ?></textarea>
+                            <label for="producto-descripcion" class="form-label">Descripcion</label>
+                            <textarea id="producto-descripcion" name="descripcion" class="form-control form-control-lg" rows="5"><?= htmlspecialchars($producto['descripcion'] ?? '') ?></textarea>
                         </div>
                     </div>
 

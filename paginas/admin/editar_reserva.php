@@ -15,17 +15,17 @@ $reserva = $resultado->fetch_assoc();
 
 <input type="hidden" name="id" value="<?php echo $reserva['id']; ?>">
 
-Fecha:
-<input type="date" name="fecha" value="<?php echo $reserva['fecha']; ?>"><br>
+<label for="reserva-fecha">Fecha:</label>
+<input id="reserva-fecha" type="date" name="fecha" value="<?php echo htmlspecialchars($reserva['fecha'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"><br>
 
-Hora:
-<input type="time" name="hora" value="<?php echo $reserva['hora']; ?>"><br>
+<label for="reserva-hora">Hora:</label>
+<input id="reserva-hora" type="time" name="hora" value="<?php echo htmlspecialchars($reserva['hora'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"><br>
 
-Personas:
-<input type="number" name="personas" value="<?php echo $reserva['personas']; ?>"><br>
+<label for="reserva-personas">Personas:</label>
+<input id="reserva-personas" type="number" name="personas" value="<?php echo htmlspecialchars($reserva['personas'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"><br>
 
-Estado:
-<select name="estado">
+<label for="reserva-estado">Estado:</label>
+<select id="reserva-estado" name="estado">
     <option value="pendiente">Pendiente</option>
     <option value="confirmada">Confirmada</option>
     <option value="cancelada">Cancelada</option>

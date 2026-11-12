@@ -67,26 +67,26 @@ $roles = mysqli_query($conexion, "SELECT id, nombre_rol FROM roles ORDER BY nomb
 
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <label class="form-label">Nombre completo</label>
-                            <input type="text" name="nombre" class="form-control form-control-lg"
+                            <label for="usuario-nombre" class="form-label">Nombre completo</label>
+                            <input id="usuario-nombre" type="text" name="nombre" class="form-control form-control-lg"
                                    value="<?= htmlspecialchars($user['nombre'] ?? '') ?>" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Correo electronico</label>
-                            <input type="email" name="correo" class="form-control form-control-lg"
+                            <label for="usuario-correo" class="form-label">Correo electronico</label>
+                            <input id="usuario-correo" type="email" name="correo" class="form-control form-control-lg"
                                    value="<?= htmlspecialchars($user['correo'] ?? '') ?>" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Telefono</label>
-                            <input type="text" name="telefono" class="form-control form-control-lg"
+                            <label for="usuario-telefono" class="form-label">Telefono</label>
+                            <input id="usuario-telefono" type="text" name="telefono" class="form-control form-control-lg"
                                    value="<?= htmlspecialchars($user['telefono'] ?? '') ?>">
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Rol</label>
-                            <select name="id_rol" class="form-select form-select-lg" required>
+                            <label for="usuario-rol" class="form-label">Rol</label>
+                            <select id="usuario-rol" name="id_rol" class="form-select form-select-lg" required>
                                 <?php while ($rol = mysqli_fetch_assoc($roles)): ?>
                                     <option value="<?= htmlspecialchars($rol['id']) ?>"
                                         <?= intval($user['id_rol'] ?? 0) === intval($rol['id']) ? 'selected' : '' ?>>
@@ -97,8 +97,8 @@ $roles = mysqli_query($conexion, "SELECT id, nombre_rol FROM roles ORDER BY nomb
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Estado</label>
-                            <select name="estado" class="form-select form-select-lg" required>
+                            <label for="usuario-estado" class="form-label">Estado</label>
+                            <select id="usuario-estado" name="estado" class="form-select form-select-lg" required>
                                 <option value="1" <?= (!isset($user['estado']) || intval($user['estado']) === 1) ? 'selected' : '' ?>>Activo</option>
                                 <option value="0" <?= (isset($user['estado']) && intval($user['estado']) === 0) ? 'selected' : '' ?>>Inactivo</option>
                             </select>
