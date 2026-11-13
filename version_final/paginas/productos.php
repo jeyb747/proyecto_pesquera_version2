@@ -5,10 +5,14 @@ require_once "../php/controlador/productos/listar.php";
 <h2>Agregar Producto</h2>
 
 <form action="../php/controlador/productos/crear.php" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre" required><br>
-    <input type="text" name="descripcion" placeholder="Descripción" required><br>
-    <input type="number" name="precio" placeholder="Precio" required><br>
-    <input type="text" name="categoria" placeholder="Categoría" required><br>
+    <label for="producto-nombre">Nombre</label>
+    <input id="producto-nombre" type="text" name="nombre" placeholder="Nombre" required><br>
+    <label for="producto-descripcion">Descripción</label>
+    <input id="producto-descripcion" type="text" name="descripcion" placeholder="Descripción" required><br>
+    <label for="producto-precio">Precio</label>
+    <input id="producto-precio" type="number" name="precio" placeholder="Precio" required><br>
+    <label for="producto-categoria">Categoría</label>
+    <input id="producto-categoria" type="text" name="categoria" placeholder="Categoría" required><br>
     <button type="submit">Guardar</button>
 </form>
 

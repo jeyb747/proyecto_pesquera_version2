@@ -10,7 +10,7 @@
   <title>La Pesquera | Menú</title>
 
   <!-- ✅ BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
   <!-- ✅ FUENTE -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -37,6 +37,7 @@
   <section class="mb-4" aria-label="Buscar platos">
     <div class="input-group shadow-sm">
       <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+      <label for="buscarPlato" class="visually-hidden">Buscar platos por nombre</label>
       <input id="buscarPlato" class="form-control" type="search" placeholder="Escribe el inicio del nombre del plato" autocomplete="off">
     </div>
     <p id="sinResultados" class="text-muted mt-3 d-none">No encontramos platos que comiencen con esa búsqueda.</p>
@@ -870,7 +871,7 @@
 <script>window.usuarioAutenticado = <?= $usuario_autenticado ? 'true' : 'false' ?>;</script>
 <script defer src="../js/menu-interactivo.js?v=20260814-4"></script>
 <!-- ✅ Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 
 </body>

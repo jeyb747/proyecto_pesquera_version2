@@ -10,7 +10,7 @@
   <title>La Pesquera | Menú</title>
 
   <!-- ✅ BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
   <!-- ✅ FUENTE -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -761,6 +761,7 @@
 
         <h5 class="modal-title"
           id="modalTitulo">
+          <span class="visually-hidden">Detalle del producto</span>
         </h5>
 
         <button type="button"
@@ -779,9 +780,9 @@
 
         <p id="modalDescripcion"></p>
 
-        <h4 id="modalPrecio"
+        <p id="modalPrecio"
           class="fw-bold text-primary">
-        </h4>
+        </p>
 
       </div>
 
@@ -822,7 +823,7 @@
 <script defer src="../js/script.js"></script>
 <script defer src="../js/menu-interactivo.js"></script>
 <!-- ✅ Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 
 </body>

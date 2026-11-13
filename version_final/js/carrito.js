@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function obtenerPrecio(valor) {
 
-    return parseInt(
+    return Number.parseInt(
       String(valor || '0').replace(/\D/g, '')
     ) || 0;
 

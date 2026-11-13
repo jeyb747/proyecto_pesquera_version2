@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- ✅ BOOTSTRAP CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
   <!-- CSS -->
   <link rel="stylesheet" href="../css/inicio.css">
@@ -122,11 +122,14 @@
             <!-- NOMBRE -->
             <div class="mb-3">
 
+              <label for="domicilio-nombre" class="visually-hidden">Nombre completo</label>
               <input
+                id="domicilio-nombre"
                 type="text"
                 name="nombre"
                 class="form-control form-control-lg"
                 placeholder="Nombre completo"
+                autocomplete="name"
                 required>
 
             </div>
@@ -134,11 +137,14 @@
             <!-- DIRECCION -->
             <div class="mb-3">
 
+              <label for="domicilio-direccion" class="visually-hidden">Dirección de entrega</label>
               <input
+                id="domicilio-direccion"
                 type="text"
                 name="direccion"
                 class="form-control form-control-lg"
                 placeholder="Dirección"
+                autocomplete="street-address"
                 required>
 
             </div>
@@ -146,11 +152,14 @@
             <!-- TELEFONO -->
             <div class="mb-3">
 
+              <label for="domicilio-telefono" class="visually-hidden">Teléfono</label>
               <input
+                id="domicilio-telefono"
                 type="tel"
                 name="telefono"
                 class="form-control form-control-lg"
                 placeholder="Teléfono"
+                autocomplete="tel"
                 required>
 
             </div>
@@ -158,6 +167,7 @@
             <!-- PAGO -->
             <div class="mb-3">
 
+              <label for="pago" class="visually-hidden">Método de pago</label>
               <select
                 name="pago"
                 id="pago"
@@ -185,7 +195,7 @@
               id="campoComprobante"
               class="mb-3 d-none">
 
-              <label class="form-label fw-bold">
+              <label for="comprobante" class="form-label fw-bold">
                 Subir comprobante
               </label>
 
@@ -199,7 +209,9 @@
             <!-- OBSERVACIONES -->
             <div class="mb-4">
 
+              <label for="domicilio-observaciones" class="visually-hidden">Observaciones</label>
               <textarea
+                id="domicilio-observaciones"
                 name="observaciones"
                 class="form-control"
                 rows="4"
@@ -241,7 +253,7 @@
 </footer>
 
 <!-- ✅ BOOTSTRAP JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>

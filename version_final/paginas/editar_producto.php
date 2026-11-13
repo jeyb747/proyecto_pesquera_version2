@@ -12,10 +12,17 @@ $producto = $resultado->fetch_assoc();
 
     <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
 
-    <input type="text" name="nombre" value="<?php echo $producto['nombre']; ?>"><br>
-    <input type="text" name="descripcion" value="<?php echo $producto['descripcion']; ?>"><br>
-    <input type="number" name="precio" value="<?php echo $producto['precio']; ?>"><br>
-    <input type="text" name="categoria" value="<?php echo $producto['categoria']; ?>"><br>
+    <label for="producto-nombre">Nombre del producto</label>
+    <input id="producto-nombre" type="text" name="nombre" value="<?= htmlspecialchars($producto['nombre'] ?? '', ENT_QUOTES, 'UTF-8') ?>"><br>
+
+    <label for="producto-descripcion">Descripción</label>
+    <input id="producto-descripcion" type="text" name="descripcion" value="<?= htmlspecialchars($producto['descripcion'] ?? '', ENT_QUOTES, 'UTF-8') ?>"><br>
+
+    <label for="producto-precio">Precio</label>
+    <input id="producto-precio" type="number" name="precio" value="<?= htmlspecialchars((string) ($producto['precio'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br>
+
+    <label for="producto-categoria">Categoría</label>
+    <input id="producto-categoria" type="text" name="categoria" value="<?= htmlspecialchars($producto['categoria'] ?? '', ENT_QUOTES, 'UTF-8') ?>"><br>
 
     <button type="submit">Actualizar</button>
 

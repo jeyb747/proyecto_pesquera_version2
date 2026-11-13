@@ -9,7 +9,7 @@
   <title>Registro | La Pesquera</title>
 
   <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
   <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -72,7 +72,7 @@
           <!-- NOMBRE -->
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-nombre" class="form-label">
               Nombre completo
             </label>
 
@@ -83,6 +83,7 @@
               </span>
 
               <input 
+                id="registro-nombre"
                 type="text"
                 name="nombre"
                 class="form-control"
@@ -97,7 +98,7 @@
           <!-- CORREO -->
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-correo" class="form-label">
               Correo electrónico
             </label>
 
@@ -108,6 +109,7 @@
               </span>
 
               <input 
+                id="registro-correo"
                 type="email"
                 name="correo"
                 class="form-control"
@@ -122,7 +124,7 @@
           <!-- TELEFONO -->
           <div class="mb-3">
 
-            <label class="form-label">
+            <label for="registro-telefono" class="form-label">
               Teléfono
             </label>
 
@@ -133,6 +135,7 @@
               </span>
 
               <input 
+                id="registro-telefono"
                 type="tel"
                 name="telefono"
                 class="form-control"
@@ -148,7 +151,7 @@
           <!-- PASSWORD -->
           <div class="mb-4">
 
-            <label class="form-label">
+            <label for="password" class="form-label">
               Contraseña
             </label>
 
@@ -233,7 +236,7 @@
 </footer>
 
 <!-- Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 <!-- JS -->
 <script>

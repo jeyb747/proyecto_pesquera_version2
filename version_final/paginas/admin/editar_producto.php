@@ -45,10 +45,10 @@ if (!$producto) {
 <title>Editar Producto</title>
 
 <!-- BOOTSTRAP -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 <!-- ICONOS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
 
 <!-- CSS -->
 <link rel="stylesheet" href="/version_final/css/admin.css">
@@ -112,13 +112,14 @@ if (!$producto) {
                     <!-- NOMBRE -->
                     <div class="mb-3">
 
-                        <label class="form-label fw-semibold">
+                        <label for="producto-nombre" class="form-label fw-semibold">
 
                             Nombre del producto
 
                         </label>
 
                         <input
+                            id="producto-nombre"
                             type="text"
                             name="nombre"
                             class="form-control"
@@ -130,13 +131,14 @@ if (!$producto) {
                     <!-- DESCRIPCION -->
                     <div class="mb-3">
 
-                        <label class="form-label fw-semibold">
+                        <label for="producto-descripcion" class="form-label fw-semibold">
 
                             Descripción
 
                         </label>
 
                         <textarea
+                            id="producto-descripcion"
                             name="descripcion"
                             class="form-control"
                             rows="4"
@@ -147,7 +149,7 @@ if (!$producto) {
                     <!-- PRECIO -->
                     <div class="mb-3">
 
-                        <label class="form-label fw-semibold">
+                        <label for="producto-precio" class="form-label fw-semibold">
 
                             Precio
 
@@ -160,6 +162,7 @@ if (!$producto) {
                             </span>
 
                             <input
+                                id="producto-precio"
                                 type="number"
                                 name="precio"
                                 class="form-control"
@@ -173,13 +176,14 @@ if (!$producto) {
                     <!-- CATEGORIA -->
                     <div class="mb-4">
 
-                        <label class="form-label fw-semibold">
+                        <label for="producto-categoria" class="form-label fw-semibold">
 
                             Categoría
 
                         </label>
 
                         <input
+                            id="producto-categoria"
                             type="text"
                             name="categoria"
                             class="form-control"
@@ -221,7 +225,7 @@ if (!$producto) {
 </div>
 
 <!-- BOOTSTRAP -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>
